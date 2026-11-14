@@ -1,0 +1,12 @@
+{
+ "source": "https://tx.main.fastnear.com/v0",
+ "account": "intents.near",
+ "start": 223455000,
+ "end": 224500000,
+ "windows": 168,
+ "blocksPerWindow": 600,
+ "txs": 97616,
+ "batches": 4881,
+ "failedBatches": 0,
+ "finishedAt": "2026-11-14T15:57:22.647Z"
+}

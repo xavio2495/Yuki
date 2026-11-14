@@ -1,0 +1,1016 @@
+{
+ "fullRange": {
+  "v2.ref-finance.near": 495595,
+  "dclv2.ref-labs.near": 432867
+ },
+ "windows": [
+  {
+   "from": 223455000,
+   "to": 223455599,
+   "v2.ref-finance.near": 148,
+   "dclv2.ref-labs.near": 91
+  },
+  {
+   "from": 223461220,
+   "to": 223461819,
+   "v2.ref-finance.near": 114,
+   "dclv2.ref-labs.near": 91
+  },
+  {
+   "from": 223467440,
+   "to": 223468039,
+   "v2.ref-finance.near": 118,
+   "dclv2.ref-labs.near": 88
+  },
+  {
+   "from": 223473660,
+   "to": 223474259,
+   "v2.ref-finance.near": 95,
+   "dclv2.ref-labs.near": 101
+  },
+  {
+   "from": 223479880,
+   "to": 223480479,
+   "v2.ref-finance.near": 99,
+   "dclv2.ref-labs.near": 135
+  },
+  {
+   "from": 223486101,
+   "to": 223486700,
+   "v2.ref-finance.near": 195,
+   "dclv2.ref-labs.near": 119
+  },
+  {
+   "from": 223492321,
+   "to": 223492920,
+   "v2.ref-finance.near": 72,
+   "dclv2.ref-labs.near": 69
+  },
+  {
+   "from": 223498541,
+   "to": 223499140,
+   "v2.ref-finance.near": 105,
+   "dclv2.ref-labs.near": 96
+  },
+  {
+   "from": 223504761,
+   "to": 223505360,
+   "v2.ref-finance.near": 66,
+   "dclv2.ref-labs.near": 32
+  },
+  {
+   "from": 223510982,
+   "to": 223511581,
+   "v2.ref-finance.near": 84,
+   "dclv2.ref-labs.near": 66
+  },
+  {
+   "from": 223517202,
+   "to": 223517801,
+   "v2.ref-finance.near": 184,
+   "dclv2.ref-labs.near": 293
+  },
+  {
+   "from": 223523422,
+   "to": 223524021,
+   "v2.ref-finance.near": 70,
+   "dclv2.ref-labs.near": 73
+  },
+  {
+   "from": 223529642,
+   "to": 223530241,
+   "v2.ref-finance.near": 43,
+   "dclv2.ref-labs.near": 42
+  },
+  {
+   "from": 223535863,
+   "to": 223536462,
+   "v2.ref-finance.near": 132,
+   "dclv2.ref-labs.near": 92
+  },
+  {
+   "from": 223542083,
+   "to": 223542682,
+   "v2.ref-finance.near": 75,
+   "dclv2.ref-labs.near": 69
+  },
+  {
+   "from": 223548303,
+   "to": 223548902,
+   "v2.ref-finance.near": 69,
+   "dclv2.ref-labs.near": 80
+  },
+  {
+   "from": 223554523,
+   "to": 223555122,
+   "v2.ref-finance.near": 91,
+   "dclv2.ref-labs.near": 116
+  },
+  {
+   "from": 223560744,
+   "to": 223561343,
+   "v2.ref-finance.near": 79,
+   "dclv2.ref-labs.near": 39
+  },
+  {
+   "from": 223566964,
+   "to": 223567563,
+   "v2.ref-finance.near": 163,
+   "dclv2.ref-labs.near": 126
+  },
+  {
+   "from": 223573184,
+   "to": 223573783,
+   "v2.ref-finance.near": 72,
+   "dclv2.ref-labs.near": 72
+  },
+  {
+   "from": 223579404,
+   "to": 223580003,
+   "v2.ref-finance.near": 56,
+   "dclv2.ref-labs.near": 47
+  },
+  {
+   "from": 223585625,
+   "to": 223586224,
+   "v2.ref-finance.near": 51,
+   "dclv2.ref-labs.near": 49
+  },
+  {
+   "from": 223591845,
+   "to": 223592444,
+   "v2.ref-finance.near": 89,
+   "dclv2.ref-labs.near": 33
+  },
+  {
+   "from": 223598065,
+   "to": 223598664,
+   "v2.ref-finance.near": 87,
+   "dclv2.ref-labs.near": 31
+  },
+  {
+   "from": 223604285,
+   "to": 223604884,
+   "v2.ref-finance.near": 62,
+   "dclv2.ref-labs.near": 26
+  },
+  {
+   "from": 223610506,
+   "to": 223611105,
+   "v2.ref-finance.near": 94,
+   "dclv2.ref-labs.near": 47
+  },
+  {
+   "from": 223616726,
+   "to": 223617325,
+   "v2.ref-finance.near": 97,
+   "dclv2.ref-labs.near": 24
+  },
+  {
+   "from": 223622946,
+   "to": 223623545,
+   "v2.ref-finance.near": 135,
+   "dclv2.ref-labs.near": 25
+  },
+  {
+   "from": 223629166,
+   "to": 223629765,
+   "v2.ref-finance.near": 129,
+   "dclv2.ref-labs.near": 45
+  },
+  {
+   "from": 223635387,
+   "to": 223635986,
+   "v2.ref-finance.near": 323,
+   "dclv2.ref-labs.near": 96
+  },
+  {
+   "from": 223641607,
+   "to": 223642206,
+   "v2.ref-finance.near": 913,
+   "dclv2.ref-labs.near": 72
+  },
+  {
+   "from": 223647827,
+   "to": 223648426,
+   "v2.ref-finance.near": 143,
+   "dclv2.ref-labs.near": 48
+  },
+  {
+   "from": 223654047,
+   "to": 223654646,
+   "v2.ref-finance.near": 108,
+   "dclv2.ref-labs.near": 49
+  },
+  {
+   "from": 223660268,
+   "to": 223660867,
+   "v2.ref-finance.near": 141,
+   "dclv2.ref-labs.near": 43
+  },
+  {
+   "from": 223666488,
+   "to": 223667087,
+   "v2.ref-finance.near": 83,
+   "dclv2.ref-labs.near": 26
+  },
+  {
+   "from": 223672708,
+   "to": 223673307,
+   "v2.ref-finance.near": 205,
+   "dclv2.ref-labs.near": 87
+  },
+  {
+   "from": 223678928,
+   "to": 223679527,
+   "v2.ref-finance.near": 424,
+   "dclv2.ref-labs.near": 376
+  },
+  {
+   "from": 223685149,
+   "to": 223685748,
+   "v2.ref-finance.near": 286,
+   "dclv2.ref-labs.near": 192
+  },
+  {
+   "from": 223691369,
+   "to": 223691968,
+   "v2.ref-finance.near": 173,
+   "dclv2.ref-labs.near": 257
+  },
+  {
+   "from": 223697589,
+   "to": 223698188,
+   "v2.ref-finance.near": 144,
+   "dclv2.ref-labs.near": 341
+  },
+  {
+   "from": 223703809,
+   "to": 223704408,
+   "v2.ref-finance.near": 172,
+   "dclv2.ref-labs.near": 101
+  },
+  {
+   "from": 223710030,
+   "to": 223710629,
+   "v2.ref-finance.near": 119,
+   "dclv2.ref-labs.near": 240
+  },
+  {
+   "from": 223716250,
+   "to": 223716849,
+   "v2.ref-finance.near": 83,
+   "dclv2.ref-labs.near": 128
+  },
+  {
+   "from": 223722470,
+   "to": 223723069,
+   "v2.ref-finance.near": 86,
+   "dclv2.ref-labs.near": 165
+  },
+  {
+   "from": 223728690,
+   "to": 223729289,
+   "v2.ref-finance.near": 95,
+   "dclv2.ref-labs.near": 241
+  },
+  {
+   "from": 223734910,
+   "to": 223735509,
+   "v2.ref-finance.near": 195,
+   "dclv2.ref-labs.near": 304
+  },
+  {
+   "from": 223741131,
+   "to": 223741730,
+   "v2.ref-finance.near": 268,
+   "dclv2.ref-labs.near": 295
+  },
+  {
+   "from": 223747351,
+   "to": 223747950,
+   "v2.ref-finance.near": 213,
+   "dclv2.ref-labs.near": 234
+  },
+  {
+   "from": 223753571,
+   "to": 223754170,
+   "v2.ref-finance.near": 187,
+   "dclv2.ref-labs.near": 135
+  },
+  {
+   "from": 223759791,
+   "to": 223760390,
+   "v2.ref-finance.near": 1278,
+   "dclv2.ref-labs.near": 1085
+  },
+  {
+   "from": 223766012,
+   "to": 223766611,
+   "v2.ref-finance.near": 323,
+   "dclv2.ref-labs.near": 197
+  },
+  {
+   "from": 223772232,
+   "to": 223772831,
+   "v2.ref-finance.near": 121,
+   "dclv2.ref-labs.near": 128
+  },
+  {
+   "from": 223778452,
+   "to": 223779051,
+   "v2.ref-finance.near": 127,
+   "dclv2.ref-labs.near": 112
+  },
+  {
+   "from": 223784672,
+   "to": 223785271,
+   "v2.ref-finance.near": 313,
+   "dclv2.ref-labs.near": 200
+  },
+  {
+   "from": 223790893,
+   "to": 223791492,
+   "v2.ref-finance.near": 376,
+   "dclv2.ref-labs.near": 360
+  },
+  {
+   "from": 223797113,
+   "to": 223797712,
+   "v2.ref-finance.near": 359,
+   "dclv2.ref-labs.near": 401
+  },
+  {
+   "from": 223803333,
+   "to": 223803932,
+   "v2.ref-finance.near": 277,
+   "dclv2.ref-labs.near": 114
+  },
+  {
+   "from": 223809553,
+   "to": 223810152,
+   "v2.ref-finance.near": 114,
+   "dclv2.ref-labs.near": 123
+  },
+  {
+   "from": 223815774,
+   "to": 223816373,
+   "v2.ref-finance.near": 84,
+   "dclv2.ref-labs.near": 200
+  },
+  {
+   "from": 223821994,
+   "to": 223822593,
+   "v2.ref-finance.near": 108,
+   "dclv2.ref-labs.near": 116
+  },
+  {
+   "from": 223828214,
+   "to": 223828813,
+   "v2.ref-finance.near": 227,
+   "dclv2.ref-labs.near": 93
+  },
+  {
+   "from": 223834434,
+   "to": 223835033,
+   "v2.ref-finance.near": 170,
+   "dclv2.ref-labs.near": 70
+  },
+  {
+   "from": 223840655,
+   "to": 223841254,
+   "v2.ref-finance.near": 118,
+   "dclv2.ref-labs.near": 68
+  },
+  {
+   "from": 223846875,
+   "to": 223847474,
+   "v2.ref-finance.near": 104,
+   "dclv2.ref-labs.near": 96
+  },
+  {
+   "from": 223853095,
+   "to": 223853694,
+   "v2.ref-finance.near": 275,
+   "dclv2.ref-labs.near": 260
+  },
+  {
+   "from": 223859315,
+   "to": 223859914,
+   "v2.ref-finance.near": 792,
+   "dclv2.ref-labs.near": 107
+  },
+  {
+   "from": 223865536,
+   "to": 223866135,
+   "v2.ref-finance.near": 120,
+   "dclv2.ref-labs.near": 76
+  },
+  {
+   "from": 223871756,
+   "to": 223872355,
+   "v2.ref-finance.near": 56,
+   "dclv2.ref-labs.near": 57
+  },
+  {
+   "from": 223877976,
+   "to": 223878575,
+   "v2.ref-finance.near": 234,
+   "dclv2.ref-labs.near": 104
+  },
+  {
+   "from": 223884196,
+   "to": 223884795,
+   "v2.ref-finance.near": 138,
+   "dclv2.ref-labs.near": 48
+  },
+  {
+   "from": 223890417,
+   "to": 223891016,
+   "v2.ref-finance.near": 221,
+   "dclv2.ref-labs.near": 229
+  },
+  {
+   "from": 223896637,
+   "to": 223897236,
+   "v2.ref-finance.near": 77,
+   "dclv2.ref-labs.near": 73
+  },
+  {
+   "from": 223902857,
+   "to": 223903456,
+   "v2.ref-finance.near": 98,
+   "dclv2.ref-labs.near": 152
+  },
+  {
+   "from": 223909077,
+   "to": 223909676,
+   "v2.ref-finance.near": 75,
+   "dclv2.ref-labs.near": 91
+  },
+  {
+   "from": 223915298,
+   "to": 223915897,
+   "v2.ref-finance.near": 90,
+   "dclv2.ref-labs.near": 108
+  },
+  {
+   "from": 223921518,
+   "to": 223922117,
+   "v2.ref-finance.near": 197,
+   "dclv2.ref-labs.near": 137
+  },
+  {
+   "from": 223927738,
+   "to": 223928337,
+   "v2.ref-finance.near": 245,
+   "dclv2.ref-labs.near": 331
+  },
+  {
+   "from": 223933958,
+   "to": 223934557,
+   "v2.ref-finance.near": 369,
+   "dclv2.ref-labs.near": 887
+  },
+  {
+   "from": 223940179,
+   "to": 223940778,
+   "v2.ref-finance.near": 995,
+   "dclv2.ref-labs.near": 380
+  },
+  {
+   "from": 223946399,
+   "to": 223946998,
+   "v2.ref-finance.near": 449,
+   "dclv2.ref-labs.near": 85
+  },
+  {
+   "from": 223952619,
+   "to": 223953218,
+   "v2.ref-finance.near": 618,
+   "dclv2.ref-labs.near": 223
+  },
+  {
+   "from": 223958839,
+   "to": 223959438,
+   "v2.ref-finance.near": 262,
+   "dclv2.ref-labs.near": 393
+  },
+  {
+   "from": 223965060,
+   "to": 223965659,
+   "v2.ref-finance.near": 284,
+   "dclv2.ref-labs.near": 85
+  },
+  {
+   "from": 223971280,
+   "to": 223971879,
+   "v2.ref-finance.near": 226,
+   "dclv2.ref-labs.near": 198
+  },
+  {
+   "from": 223977500,
+   "to": 223978099,
+   "v2.ref-finance.near": 163,
+   "dclv2.ref-labs.near": 140
+  },
+  {
+   "from": 223983720,
+   "to": 223984319,
+   "v2.ref-finance.near": 147,
+   "dclv2.ref-labs.near": 230
+  },
+  {
+   "from": 223989940,
+   "to": 223990539,
+   "v2.ref-finance.near": 181,
+   "dclv2.ref-labs.near": 95
+  },
+  {
+   "from": 223996161,
+   "to": 223996760,
+   "v2.ref-finance.near": 404,
+   "dclv2.ref-labs.near": 147
+  },
+  {
+   "from": 224002381,
+   "to": 224002980,
+   "v2.ref-finance.near": 268,
+   "dclv2.ref-labs.near": 304
+  },
+  {
+   "from": 224008601,
+   "to": 224009200,
+   "v2.ref-finance.near": 240,
+   "dclv2.ref-labs.near": 146
+  },
+  {
+   "from": 224014821,
+   "to": 224015420,
+   "v2.ref-finance.near": 246,
+   "dclv2.ref-labs.near": 241
+  },
+  {
+   "from": 224021042,
+   "to": 224021641,
+   "v2.ref-finance.near": 169,
+   "dclv2.ref-labs.near": 258
+  },
+  {
+   "from": 224027262,
+   "to": 224027861,
+   "v2.ref-finance.near": 191,
+   "dclv2.ref-labs.near": 141
+  },
+  {
+   "from": 224033482,
+   "to": 224034081,
+   "v2.ref-finance.near": 408,
+   "dclv2.ref-labs.near": 491
+  },
+  {
+   "from": 224039702,
+   "to": 224040301,
+   "v2.ref-finance.near": 453,
+   "dclv2.ref-labs.near": 207
+  },
+  {
+   "from": 224045923,
+   "to": 224046522,
+   "v2.ref-finance.near": 239,
+   "dclv2.ref-labs.near": 383
+  },
+  {
+   "from": 224052143,
+   "to": 224052742,
+   "v2.ref-finance.near": 639,
+   "dclv2.ref-labs.near": 485
+  },
+  {
+   "from": 224058363,
+   "to": 224058962,
+   "v2.ref-finance.near": 185,
+   "dclv2.ref-labs.near": 179
+  },
+  {
+   "from": 224064583,
+   "to": 224065182,
+   "v2.ref-finance.near": 392,
+   "dclv2.ref-labs.near": 531
+  },
+  {
+   "from": 224070804,
+   "to": 224071403,
+   "v2.ref-finance.near": 336,
+   "dclv2.ref-labs.near": 196
+  },
+  {
+   "from": 224077024,
+   "to": 224077623,
+   "v2.ref-finance.near": 189,
+   "dclv2.ref-labs.near": 316
+  },
+  {
+   "from": 224083244,
+   "to": 224083843,
+   "v2.ref-finance.near": 449,
+   "dclv2.ref-labs.near": 451
+  },
+  {
+   "from": 224089464,
+   "to": 224090063,
+   "v2.ref-finance.near": 824,
+   "dclv2.ref-labs.near": 374
+  },
+  {
+   "from": 224095685,
+   "to": 224096284,
+   "v2.ref-finance.near": 537,
+   "dclv2.ref-labs.near": 266
+  },
+  {
+   "from": 224101905,
+   "to": 224102504,
+   "v2.ref-finance.near": 229,
+   "dclv2.ref-labs.near": 164
+  },
+  {
+   "from": 224108125,
+   "to": 224108724,
+   "v2.ref-finance.near": 197,
+   "dclv2.ref-labs.near": 159
+  },
+  {
+   "from": 224114345,
+   "to": 224114944,
+   "v2.ref-finance.near": 228,
+   "dclv2.ref-labs.near": 246
+  },
+  {
+   "from": 224120566,
+   "to": 224121165,
+   "v2.ref-finance.near": 225,
+   "dclv2.ref-labs.near": 314
+  },
+  {
+   "from": 224126786,
+   "to": 224127385,
+   "v2.ref-finance.near": 372,
+   "dclv2.ref-labs.near": 259
+  },
+  {
+   "from": 224133006,
+   "to": 224133605,
+   "v2.ref-finance.near": 156,
+   "dclv2.ref-labs.near": 463
+  },
+  {
+   "from": 224139226,
+   "to": 224139825,
+   "v2.ref-finance.near": 256,
+   "dclv2.ref-labs.near": 329
+  },
+  {
+   "from": 224145447,
+   "to": 224146046,
+   "v2.ref-finance.near": 164,
+   "dclv2.ref-labs.near": 358
+  },
+  {
+   "from": 224151667,
+   "to": 224152266,
+   "v2.ref-finance.near": 138,
+   "dclv2.ref-labs.near": 251
+  },
+  {
+   "from": 224157887,
+   "to": 224158486,
+   "v2.ref-finance.near": 88,
+   "dclv2.ref-labs.near": 232
+  },
+  {
+   "from": 224164107,
+   "to": 224164706,
+   "v2.ref-finance.near": 184,
+   "dclv2.ref-labs.near": 321
+  },
+  {
+   "from": 224170328,
+   "to": 224170927,
+   "v2.ref-finance.near": 82,
+   "dclv2.ref-labs.near": 132
+  },
+  {
+   "from": 224176548,
+   "to": 224177147,
+   "v2.ref-finance.near": 110,
+   "dclv2.ref-labs.near": 136
+  },
+  {
+   "from": 224182768,
+   "to": 224183367,
+   "v2.ref-finance.near": 146,
+   "dclv2.ref-labs.near": 92
+  },
+  {
+   "from": 224188988,
+   "to": 224189587,
+   "v2.ref-finance.near": 200,
+   "dclv2.ref-labs.near": 208
+  },
+  {
+   "from": 224195209,
+   "to": 224195808,
+   "v2.ref-finance.near": 226,
+   "dclv2.ref-labs.near": 203
+  },
+  {
+   "from": 224201429,
+   "to": 224202028,
+   "v2.ref-finance.near": 342,
+   "dclv2.ref-labs.near": 223
+  },
+  {
+   "from": 224207649,
+   "to": 224208248,
+   "v2.ref-finance.near": 204,
+   "dclv2.ref-labs.near": 206
+  },
+  {
+   "from": 224213869,
+   "to": 224214468,
+   "v2.ref-finance.near": 381,
+   "dclv2.ref-labs.near": 250
+  },
+  {
+   "from": 224220090,
+   "to": 224220689,
+   "v2.ref-finance.near": 514,
+   "dclv2.ref-labs.near": 623
+  },
+  {
+   "from": 224226310,
+   "to": 224226909,
+   "v2.ref-finance.near": 604,
+   "dclv2.ref-labs.near": 1089
+  },
+  {
+   "from": 224232530,
+   "to": 224233129,
+   "v2.ref-finance.near": 1189,
+   "dclv2.ref-labs.near": 664
+  },
+  {
+   "from": 224238750,
+   "to": 224239349,
+   "v2.ref-finance.near": 438,
+   "dclv2.ref-labs.near": 269
+  },
+  {
+   "from": 224244970,
+   "to": 224245569,
+   "v2.ref-finance.near": 473,
+   "dclv2.ref-labs.near": 382
+  },
+  {
+   "from": 224251191,
+   "to": 224251790,
+   "v2.ref-finance.near": 188,
+   "dclv2.ref-labs.near": 227
+  },
+  {
+   "from": 224257411,
+   "to": 224258010,
+   "v2.ref-finance.near": 173,
+   "dclv2.ref-labs.near": 178
+  },
+  {
+   "from": 224263631,
+   "to": 224264230,
+   "v2.ref-finance.near": 175,
+   "dclv2.ref-labs.near": 156
+  },
+  {
+   "from": 224269851,
+   "to": 224270450,
+   "v2.ref-finance.near": 178,
+   "dclv2.ref-labs.near": 190
+  },
+  {
+   "from": 224276072,
+   "to": 224276671,
+   "v2.ref-finance.near": 147,
+   "dclv2.ref-labs.near": 121
+  },
+  {
+   "from": 224282292,
+   "to": 224282891,
+   "v2.ref-finance.near": 178,
+   "dclv2.ref-labs.near": 157
+  },
+  {
+   "from": 224288512,
+   "to": 224289111,
+   "v2.ref-finance.near": 257,
+   "dclv2.ref-labs.near": 325
+  },
+  {
+   "from": 224294732,
+   "to": 224295331,
+   "v2.ref-finance.near": 264,
+   "dclv2.ref-labs.near": 286
+  },
+  {
+   "from": 224300953,
+   "to": 224301552,
+   "v2.ref-finance.near": 404,
+   "dclv2.ref-labs.near": 572
+  },
+  {
+   "from": 224307173,
+   "to": 224307772,
+   "v2.ref-finance.near": 586,
+   "dclv2.ref-labs.near": 910
+  },
+  {
+   "from": 224313393,
+   "to": 224313992,
+   "v2.ref-finance.near": 796,
+   "dclv2.ref-labs.near": 1029
+  },
+  {
+   "from": 224319613,
+   "to": 224320212,
+   "v2.ref-finance.near": 293,
+   "dclv2.ref-labs.near": 281
+  },
+  {
+   "from": 224325834,
+   "to": 224326433,
+   "v2.ref-finance.near": 522,
+   "dclv2.ref-labs.near": 160
+  },
+  {
+   "from": 224332054,
+   "to": 224332653,
+   "v2.ref-finance.near": 658,
+   "dclv2.ref-labs.near": 408
+  },
+  {
+   "from": 224338274,
+   "to": 224338873,
+   "v2.ref-finance.near": 369,
+   "dclv2.ref-labs.near": 286
+  },
+  {
+   "from": 224344494,
+   "to": 224345093,
+   "v2.ref-finance.near": 159,
+   "dclv2.ref-labs.near": 266
+  },
+  {
+   "from": 224350715,
+   "to": 224351314,
+   "v2.ref-finance.near": 220,
+   "dclv2.ref-labs.near": 167
+  },
+  {
+   "from": 224356935,
+   "to": 224357534,
+   "v2.ref-finance.near": 249,
+   "dclv2.ref-labs.near": 362
+  },
+  {
+   "from": 224363155,
+   "to": 224363754,
+   "v2.ref-finance.near": 191,
+   "dclv2.ref-labs.near": 255
+  },
+  {
+   "from": 224369375,
+   "to": 224369974,
+   "v2.ref-finance.near": 884,
+   "dclv2.ref-labs.near": 797
+  },
+  {
+   "from": 224375596,
+   "to": 224376195,
+   "v2.ref-finance.near": 255,
+   "dclv2.ref-labs.near": 489
+  },
+  {
+   "from": 224381816,
+   "to": 224382415,
+   "v2.ref-finance.near": 510,
+   "dclv2.ref-labs.near": 559
+  },
+  {
+   "from": 224388036,
+   "to": 224388635,
+   "v2.ref-finance.near": 552,
+   "dclv2.ref-labs.near": 571
+  },
+  {
+   "from": 224394256,
+   "to": 224394855,
+   "v2.ref-finance.near": 196,
+   "dclv2.ref-labs.near": 321
+  },
+  {
+   "from": 224400477,
+   "to": 224401076,
+   "v2.ref-finance.near": 1148,
+   "dclv2.ref-labs.near": 226
+  },
+  {
+   "from": 224406697,
+   "to": 224407296,
+   "v2.ref-finance.near": 176,
+   "dclv2.ref-labs.near": 236
+  },
+  {
+   "from": 224412917,
+   "to": 224413516,
+   "v2.ref-finance.near": 339,
+   "dclv2.ref-labs.near": 1446
+  },
+  {
+   "from": 224419137,
+   "to": 224419736,
+   "v2.ref-finance.near": 314,
+   "dclv2.ref-labs.near": 327
+  },
+  {
+   "from": 224425358,
+   "to": 224425957,
+   "v2.ref-finance.near": 240,
+   "dclv2.ref-labs.near": 381
+  },
+  {
+   "from": 224431578,
+   "to": 224432177,
+   "v2.ref-finance.near": 163,
+   "dclv2.ref-labs.near": 326
+  },
+  {
+   "from": 224437798,
+   "to": 224438397,
+   "v2.ref-finance.near": 136,
+   "dclv2.ref-labs.near": 148
+  },
+  {
+   "from": 224444018,
+   "to": 224444617,
+   "v2.ref-finance.near": 110,
+   "dclv2.ref-labs.near": 199
+  },
+  {
+   "from": 224450239,
+   "to": 224450838,
+   "v2.ref-finance.near": 436,
+   "dclv2.ref-labs.near": 304
+  },
+  {
+   "from": 224456459,
+   "to": 224457058,
+   "v2.ref-finance.near": 249,
+   "dclv2.ref-labs.near": 389
+  },
+  {
+   "from": 224462679,
+   "to": 224463278,
+   "v2.ref-finance.near": 405,
+   "dclv2.ref-labs.near": 513
+  },
+  {
+   "from": 224468899,
+   "to": 224469498,
+   "v2.ref-finance.near": 178,
+   "dclv2.ref-labs.near": 297
+  },
+  {
+   "from": 224475120,
+   "to": 224475719,
+   "v2.ref-finance.near": 178,
+   "dclv2.ref-labs.near": 188
+  },
+  {
+   "from": 224481340,
+   "to": 224481939,
+   "v2.ref-finance.near": 347,
+   "dclv2.ref-labs.near": 498
+  },
+  {
+   "from": 224487560,
+   "to": 224488159,
+   "v2.ref-finance.near": 158,
+   "dclv2.ref-labs.near": 144
+  },
+  {
+   "from": 224493780,
+   "to": 224494379,
+   "v2.ref-finance.near": 201,
+   "dclv2.ref-labs.near": 190
+  }
+ ]
+}

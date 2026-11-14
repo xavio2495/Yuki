@@ -1,0 +1,61 @@
+{
+ "fetchedAt": "2026-11-14T16:33:03.807Z",
+ "hub": "51e8f94d77b5e90dc9852ca6113771e11e8382ce69473a75e313e41665de7cbe",
+ "range": [
+  223455000,
+  224500000
+ ],
+ "txsCountRange": {
+  "intents.near": 1020025,
+  "hub": 473794
+ },
+ "viewAccount": {
+  "amount": "10000000000000000000000",
+  "block_hash": "4jivW2jxFBbxjRCTwHWd9dRHC46ZgUsn3M5uxXZixiG4",
+  "block_height": 224539740,
+  "code_hash": "11111111111111111111111111111111",
+  "locked": "0",
+  "storage_paid_at": 0,
+  "storage_usage": 182
+ },
+ "intentsPublicKeys": [
+  "ed25519:6Wk4sb8Gc449VB4LoofP3AM8hMSMgbAwwUEc4RhBodV7"
+ ],
+ "oldestTxs": [
+  {
+   "tx": "5BfpVdVufdZD3xim5JYWkBFa1e69DfqLLadk3HGZLdLX",
+   "h": 186125289,
+   "ts": "1771440983870698023",
+   "is_signer": false,
+   "is_event_log": false
+  },
+  {
+   "tx": "41NE1pS4BqBaD6eZN5fQhpzbyzVipSCNXnkQvVccLpJb",
+   "h": 186126476,
+   "ts": "1771441706497781380",
+   "is_signer": false,
+   "is_event_log": true
+  },
+  {
+   "tx": "C95Jxr2c5qSDNReZ7ayS6mnEcQH3Z7HQHEA3gGMd4GKR",
+   "h": 186126715,
+   "ts": "1771441868648023383",
+   "is_signer": false,
+   "is_event_log": true
+  },
+  {
+   "tx": "7KkeRdwHrWR51hdCWpN4YkLjAC7EKG46waharYeyUsD7",
+   "h": 186126872,
+   "ts": "1771441977729051471",
+   "is_signer": false,
+   "is_event_log": true
+  },
+  {
+   "tx": "2VDiixPG5mJwBL27esfge7jFbUdsLuozNFLfjKCjRL5s",
+   "h": 186225979,
+   "ts": "1771502190654149542",
+   "is_signer": false,
+   "is_event_log": true
+  }
+ ]
+}

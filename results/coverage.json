@@ -1,0 +1,540 @@
+{
+ "note": "Post hoc. Random sample of intents.near txs from the 168 sampled windows; per-day values = sample mean per tx x full-range tx count / days. HOT Omni (nep245) tokens are unpriced, so values are lower bounds on priced flow. Hub operator unverified.",
+ "sample": {
+  "txs": 2000,
+  "population": 97616,
+  "seed": 20261114,
+  "fetchedAt": "2026-11-14T16:33:03.755Z",
+  "fullRangeTxs": 1020025,
+  "days": 6.999
+ },
+ "txKinds": {
+  "transfer (no token_diff)": {
+   "n": 1113,
+   "pct": 55.6
+  },
+  "deposit (mt_mint)": {
+   "n": 401,
+   "pct": 20.1
+  },
+  "no intents.near event": {
+   "n": 240,
+   "pct": 12
+  },
+  "withdraw": {
+   "n": 212,
+   "pct": 10.6
+  },
+  "token_diff": {
+   "n": 18,
+   "pct": 0.9
+  },
+  "other events": {
+   "n": 16,
+   "pct": 0.8
+  }
+ },
+ "hub": {
+  "account": "51e8f94d77b5e90dc9852ca6113771e11e8382ce69473a75e313e41665de7cbe",
+  "txsCountRange": 473794,
+  "shareOfRangeTxsPct": 46.4,
+  "shareOfSampleTxsPct": 47.3,
+  "onChainAccount": {
+   "amountYocto": "10000000000000000000000",
+   "codeHash": "11111111111111111111111111111111",
+   "storageUsage": 182
+  },
+  "intentsPublicKeys": [
+   "ed25519:6Wk4sb8Gc449VB4LoofP3AM8hMSMgbAwwUEc4RhBodV7"
+  ],
+  "oldestTx": {
+   "tx": "5BfpVdVufdZD3xim5JYWkBFa1e69DfqLLadk3HGZLdLX",
+   "h": 186125289,
+   "ts": "1771440983870698023",
+   "is_signer": false,
+   "is_event_log": false
+  },
+  "transfersInSample": 1410,
+  "transfersWithMemoPct": 47.3,
+  "unpricedTransfers": 185,
+  "sentPerDayUsd": 87760078,
+  "sentPerDayCI95": [
+   50146443,
+   111342109
+  ],
+  "receivedPerDayUsd": 108936327,
+  "counterpartyClasses": {
+   "named solver": {
+    "accounts": 6,
+    "transfers": 613,
+    "toHubPerDayUsd": 59774814,
+    "fromHubPerDayUsd": 26147424
+   },
+   "implicit (hex)": {
+    "accounts": 586,
+    "transfers": 612,
+    "toHubPerDayUsd": 49161516,
+    "fromHubPerDayUsd": 61612652
+   }
+  },
+  "topCounterparties": [
+   {
+    "acct": "solver-priv-liq.near",
+    "class": "named solver",
+    "transfers": 394,
+    "toHubPerDayUsd": 30298641,
+    "fromHubPerDayUsd": 13452556
+   },
+   {
+    "acct": "solver-multichain-asset.near",
+    "class": "named solver",
+    "transfers": 167,
+    "toHubPerDayUsd": 29474426,
+    "fromHubPerDayUsd": 12527712
+   },
+   {
+    "acct": "fdbd112a1999c951fdcc5be597fb827b65f130615162fbf5fffab8474192cff7",
+    "class": "implicit (hex)",
+    "transfers": 1,
+    "toHubPerDayUsd": 0,
+    "fromHubPerDayUsd": 8606163
+   },
+   {
+    "acct": "812614cf447a916bce1c3110ce8670b94ef020a6833177c8d50c507f9f1ed98e",
+    "class": "implicit (hex)",
+    "transfers": 1,
+    "toHubPerDayUsd": 7286591,
+    "fromHubPerDayUsd": 0
+   },
+   {
+    "acct": "d347cf8b8b8808f58211bd9d5a7ad24f499424cae7a9b5f7820e1529a6934b28",
+    "class": "implicit (hex)",
+    "transfers": 1,
+    "toHubPerDayUsd": 0,
+    "fromHubPerDayUsd": 7285847
+   },
+   {
+    "acct": "18f8a699e7624ced4ef810cbcb6e936a9642d0044b808d69fba71bfc166c859f",
+    "class": "implicit (hex)",
+    "transfers": 1,
+    "toHubPerDayUsd": 0,
+    "fromHubPerDayUsd": 7282969
+   },
+   {
+    "acct": "f8d86e40209f62c186c99edda5354b87250962d23b9f36ab7c0a49c4684e9d5b",
+    "class": "implicit (hex)",
+    "transfers": 1,
+    "toHubPerDayUsd": 6613256,
+    "fromHubPerDayUsd": 0
+   },
+   {
+    "acct": "6247d9c671ca6a80cf2c75e26edb8cd75ebf00fcd3c56c39107d6ca20c9cfb29",
+    "class": "implicit (hex)",
+    "transfers": 24,
+    "toHubPerDayUsd": 1592573,
+    "fromHubPerDayUsd": 4016124
+   },
+   {
+    "acct": "8d85faff3ee7a45e2789c3a9a1de34c6632ef25b285216624974845a508ea282",
+    "class": "implicit (hex)",
+    "transfers": 1,
+    "toHubPerDayUsd": 0,
+    "fromHubPerDayUsd": 4591742
+   },
+   {
+    "acct": "e464353c94554e0f3a5319600bc8b4f2d8e4736b35ffd4ea7368e886541d8f37",
+    "class": "implicit (hex)",
+    "transfers": 1,
+    "toHubPerDayUsd": 4151436,
+    "fromHubPerDayUsd": 0
+   },
+   {
+    "acct": "411d86aca03e8b8e04efce2ca9a7dc1fe116a47ce9348a9e6ba62fb315cfb24c",
+    "class": "implicit (hex)",
+    "transfers": 1,
+    "toHubPerDayUsd": 0,
+    "fromHubPerDayUsd": 3646724
+   },
+   {
+    "acct": "22416f93c1390f8981373746be51d9ccc65fefbfd28b26bf790236d5f1ded628",
+    "class": "implicit (hex)",
+    "transfers": 1,
+    "toHubPerDayUsd": 3643295,
+    "fromHubPerDayUsd": 0
+   }
+  ],
+  "medianSentPerHubTxUsd": 24.95
+ },
+ "allTransfersPerDayUsd": 212962299,
+ "allTransfersPerDayCI95": [
+  162304494,
+  274333544
+ ],
+ "boundaryFlows": {
+  "deposits": [
+   {
+    "chain": "eth",
+    "events": 87,
+    "unpricedEvents": 0,
+    "perDayUsd": 113911868
+   },
+   {
+    "chain": "tron",
+    "events": 27,
+    "unpricedEvents": 0,
+    "perDayUsd": 24393078
+   },
+   {
+    "chain": "btc",
+    "events": 18,
+    "unpricedEvents": 0,
+    "perDayUsd": 12502784
+   },
+   {
+    "chain": "near",
+    "events": 14,
+    "unpricedEvents": 0,
+    "perDayUsd": 4957361
+   },
+   {
+    "chain": "sol",
+    "events": 73,
+    "unpricedEvents": 0,
+    "perDayUsd": 2549577
+   },
+   {
+    "chain": "zec",
+    "events": 9,
+    "unpricedEvents": 0,
+    "perDayUsd": 1472602
+   },
+   {
+    "chain": "near-native",
+    "events": 28,
+    "unpricedEvents": 4,
+    "perDayUsd": 1311282
+   },
+   {
+    "chain": "arb",
+    "events": 19,
+    "unpricedEvents": 0,
+    "perDayUsd": 1257208
+   },
+   {
+    "chain": "base",
+    "events": 28,
+    "unpricedEvents": 2,
+    "perDayUsd": 143855
+   },
+   {
+    "chain": "omdep(bridged)",
+    "events": 31,
+    "unpricedEvents": 7,
+    "perDayUsd": 135414
+   },
+   {
+    "chain": "hood",
+    "events": 2,
+    "unpricedEvents": 1,
+    "perDayUsd": 5295
+   },
+   {
+    "chain": "plasma",
+    "events": 2,
+    "unpricedEvents": 0,
+    "perDayUsd": 4063
+   },
+   {
+    "chain": "ltc",
+    "events": 6,
+    "unpricedEvents": 6,
+    "perDayUsd": 0
+   },
+   {
+    "chain": "dash",
+    "events": 1,
+    "unpricedEvents": 1,
+    "perDayUsd": 0
+   },
+   {
+    "chain": "xrp",
+    "events": 23,
+    "unpricedEvents": 23,
+    "perDayUsd": 0
+   },
+   {
+    "chain": "eth(rainbow)",
+    "events": 2,
+    "unpricedEvents": 2,
+    "perDayUsd": 0
+   },
+   {
+    "chain": "hot-chain-43114",
+    "events": 4,
+    "unpricedEvents": 4,
+    "perDayUsd": 0
+   },
+   {
+    "chain": "hot-chain-10",
+    "events": 1,
+    "unpricedEvents": 1,
+    "perDayUsd": 0
+   },
+   {
+    "chain": "prl",
+    "events": 7,
+    "unpricedEvents": 7,
+    "perDayUsd": 0
+   },
+   {
+    "chain": "doge",
+    "events": 2,
+    "unpricedEvents": 2,
+    "perDayUsd": 0
+   },
+   {
+    "chain": "hot-chain-1117",
+    "events": 3,
+    "unpricedEvents": 3,
+    "perDayUsd": 0
+   },
+   {
+    "chain": "qtc",
+    "events": 3,
+    "unpricedEvents": 3,
+    "perDayUsd": 0
+   },
+   {
+    "chain": "hot-chain-56",
+    "events": 5,
+    "unpricedEvents": 5,
+    "perDayUsd": 0
+   },
+   {
+    "chain": "starknet",
+    "events": 1,
+    "unpricedEvents": 1,
+    "perDayUsd": 0
+   },
+   {
+    "chain": "gnosis",
+    "events": 1,
+    "unpricedEvents": 1,
+    "perDayUsd": 0
+   }
+  ],
+  "withdrawals": [
+   {
+    "chain": "tron",
+    "events": 61,
+    "unpricedEvents": 0,
+    "perDayUsd": 24144076
+   },
+   {
+    "chain": "sol",
+    "events": 76,
+    "unpricedEvents": 0,
+    "perDayUsd": 11959811
+   },
+   {
+    "chain": "eth",
+    "events": 45,
+    "unpricedEvents": 0,
+    "perDayUsd": 11242255
+   },
+   {
+    "chain": "near-native",
+    "events": 20,
+    "unpricedEvents": 3,
+    "perDayUsd": 10725140
+   },
+   {
+    "chain": "btc",
+    "events": 15,
+    "unpricedEvents": 0,
+    "perDayUsd": 7657325
+   },
+   {
+    "chain": "arb",
+    "events": 15,
+    "unpricedEvents": 0,
+    "perDayUsd": 4357072
+   },
+   {
+    "chain": "zec",
+    "events": 7,
+    "unpricedEvents": 0,
+    "perDayUsd": 1711234
+   },
+   {
+    "chain": "bera",
+    "events": 1,
+    "unpricedEvents": 0,
+    "perDayUsd": 191871
+   },
+   {
+    "chain": "base",
+    "events": 36,
+    "unpricedEvents": 0,
+    "perDayUsd": 187783
+   },
+   {
+    "chain": "hood",
+    "events": 4,
+    "unpricedEvents": 0,
+    "perDayUsd": 176634
+   },
+   {
+    "chain": "near",
+    "events": 14,
+    "unpricedEvents": 0,
+    "perDayUsd": 157161
+   },
+   {
+    "chain": "omdep(bridged)",
+    "events": 16,
+    "unpricedEvents": 4,
+    "perDayUsd": 73365
+   },
+   {
+    "chain": "gnosis",
+    "events": 1,
+    "unpricedEvents": 1,
+    "perDayUsd": 0
+   },
+   {
+    "chain": "hot-chain-137",
+    "events": 9,
+    "unpricedEvents": 9,
+    "perDayUsd": 0
+   },
+   {
+    "chain": "hot-chain-1117",
+    "events": 8,
+    "unpricedEvents": 8,
+    "perDayUsd": 0
+   },
+   {
+    "chain": "qtc",
+    "events": 15,
+    "unpricedEvents": 15,
+    "perDayUsd": 0
+   },
+   {
+    "chain": "doge",
+    "events": 3,
+    "unpricedEvents": 3,
+    "perDayUsd": 0
+   },
+   {
+    "chain": "cardano",
+    "events": 1,
+    "unpricedEvents": 1,
+    "perDayUsd": 0
+   },
+   {
+    "chain": "prl",
+    "events": 3,
+    "unpricedEvents": 3,
+    "perDayUsd": 0
+   },
+   {
+    "chain": "bch",
+    "events": 2,
+    "unpricedEvents": 2,
+    "perDayUsd": 0
+   },
+   {
+    "chain": "xrp",
+    "events": 9,
+    "unpricedEvents": 9,
+    "perDayUsd": 0
+   },
+   {
+    "chain": "ltc",
+    "events": 3,
+    "unpricedEvents": 3,
+    "perDayUsd": 0
+   },
+   {
+    "chain": "hot-chain-56",
+    "events": 4,
+    "unpricedEvents": 4,
+    "perDayUsd": 0
+   },
+   {
+    "chain": "sui",
+    "events": 2,
+    "unpricedEvents": 2,
+    "perDayUsd": 0
+   },
+   {
+    "chain": "hot-chain-43114",
+    "events": 1,
+    "unpricedEvents": 1,
+    "perDayUsd": 0
+   },
+   {
+    "chain": "eth(rainbow)",
+    "events": 1,
+    "unpricedEvents": 1,
+    "perDayUsd": 0
+   }
+  ],
+  "depositsPerDayUsd": 162644386,
+  "withdrawalsPerDayUsd": 72583728,
+  "depositsCI95": [
+   71364932,
+   202185892
+  ],
+  "withdrawalsCI95": [
+   38106796,
+   101019347
+  ],
+  "largestDepositTxSharePct": 22.4,
+  "largestWithdrawalTxSharePct": 20.1,
+  "oneSampledTxEqualsTxsPerDay": 73,
+  "pricedEvents": 627,
+  "unpricedEvents": 142
+ },
+ "reconciliation": {
+  "defillamaDailyMeanUsd_2026_11_07_to_13": 139960091,
+  "defillamaDays": [
+   [
+    "2026-11-07",
+    114752674
+   ],
+   [
+    "2026-11-08",
+    87673580
+   ],
+   [
+    "2026-11-09",
+    166233299
+   ],
+   [
+    "2026-11-10",
+    152754904
+   ],
+   [
+    "2026-11-11",
+    113124728
+   ],
+   [
+    "2026-11-12",
+    176440686
+   ],
+   [
+    "2026-11-13",
+    168740766
+   ]
+  ],
+  "tokenDiffPricedUserVolumePerDayUsd": 1373172.23,
+  "tokenDiffShareOfDefillamaPct": 0.98,
+  "hubSentShareOfDefillamaPct": 62.7,
+  "largestHubSentTxSharePct": 19.6,
+  "allTransfersShareOfDefillamaPct": 152.2,
+  "defillamaCategory": "Bridge",
+  "defillamaMethodology": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/near-intents (not read: outside the allowed endpoints)"
+ }
+}

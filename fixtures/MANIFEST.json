@@ -1,0 +1,29 @@
+{
+ "writtenAt": "2026-11-14T17:33:46.541Z",
+ "files": {
+  "fixtures/chunk-authors.json": "dee816972c3e69373e45a2872c052999dbfabe713fbbfc6c4330b3979c0141ef",
+  "fixtures/data/intents-223455000-224500000/counts.json": "be7e04d29f58aad5dd40078621236bdcb5774b4fdc2b8417a182d718393aecb6",
+  "fixtures/data/intents-223455000-224500000/diffs.jsonl.gz": "3b3f3060d514d89c42fe00a2cbe188ee964088447321a72d94c505e6c6bee0ac",
+  "fixtures/data/intents-223455000-224500000/meta.json": "5f7f85cf260e87c2aa7c610eea0f0c11560514be70590e4c9329f1fc89ed4dc6",
+  "fixtures/data/run-223455000-224500000/counts.json": "9514910a6d4f27fb79dd2dd3be25f99e14bf293ca54c7be44d78ffeac88f97c1",
+  "fixtures/data/run-223455000-224500000/hops.jsonl.gz": "ce208017385585b019f2c7c2fccd61755810b29e57ddaaceaad3baa70cc19454",
+  "fixtures/data/run-223455000-224500000/meta.json": "7f275ba7c1ba2ead5dac91b55f3de0883faa1b2ac168bae47dbbefe10cbde2b8",
+  "fixtures/defillama-near-intents.json": "9e9bffb8ee169df27d846a24aad773a9c6a93df42cd3d86bb8e262ba7d240606",
+  "fixtures/hub-facts.json": "7c7e6f44d0e092720e9bd73c7101e42c11de8871f3eb613aff88186e8504b002",
+  "fixtures/hub-quotes.json.gz": "d4956173127ffd35401f14bdb7441a68d44d026c817aa4b01a860c97a8839041",
+  "fixtures/hub-sample-events.json.gz": "c4d5f7efe040fdd82f4ac679dd5bac3163f5f9e83d0c78a5eee9da2ab9e1bd75",
+  "fixtures/intents-klines.json": "fa47b9cd66ba2ed1c6c4760748b1a920ae13fe48db6f3f96114690e4427ac38a",
+  "fixtures/intents-meta-extra.json": "77641a944fa322703289d358f51609ad11df5674863239cc57875fe842173bc1",
+  "fixtures/intents-meta.json": "bfcd422640e88f663d06d723d2baf0211c0920dd48e8a4c64c9e3981d426c4d3",
+  "fixtures/intents-swap-events.json.gz": "43ae85b6bf5595b1c1111efb7869ba74ee2bea8e151c456861681a222fe08e1b",
+  "fixtures/rhea-decimals.json": "962bbc323041f43a9b630947dbfb042a617ad82077c833976016cb776e239af2",
+  "fixtures/rhea-klines.json": "beb722904de5ad17adce1dc45e21ebab3bad4855b6f594588db152ccd2e814b1"
+ },
+ "rawUncompressed": {
+  "fixtures/data/run-223455000-224500000/hops.jsonl": "8fdaf24ecda09aa0f17f5b4ddd704d88e83eef7f5f5b0fb75dc2f60ab12ec1c5",
+  "fixtures/data/intents-223455000-224500000/diffs.jsonl": "a449630465cad33b143c97a550a10f4ba9d2d906a24ac3ca0f1311991047942a"
+ },
+ "preregistration": {
+  "PREREGISTRATION.md": "751ca84ec592f49058ae6c2499e0a8b18200276bcfc7ddd3014f69c719ae3fe8"
+ }
+}

@@ -1,0 +1,92 @@
+{
+ "note": "Optional, post hoc. Restricted to heights >= 224,360,000 (the last ~23 of 168 windows; the public archival endpoint did not serve older chunks on 2026-11-14). Tests clustering, not intent: a null result means no detectable producer-level pattern, not proof that no order is sold.",
+ "coverage": {
+  "winningBackrunsTested": 142,
+  "failedComparators": 500,
+  "randomHeights": 150,
+  "shards": [
+   10,
+   13,
+   7,
+   8,
+   9,
+   11,
+   4,
+   12
+  ],
+  "sameLayoutAtRangeEnds": true,
+  "chunkErrors": 0
+ },
+ "T1_vsSchedule": {
+  "chiSquare": 58.4,
+  "monteCarloP": 0.5002,
+  "winnersWithProducerUnseenInBaseline": 0,
+  "topCells": [
+   {
+    "shardProducer": "13|astro-stakers.poolv1.near",
+    "observed": 21,
+    "expected": 14.4,
+    "ratio": 1.46
+   },
+   {
+    "shardProducer": "10|aca87218e28c41f5a693dee3dff12238.poolv1.near",
+    "observed": 12,
+    "expected": 8.4,
+    "ratio": 1.43
+   },
+   {
+    "shardProducer": "10|sumerian.poolv1.near",
+    "observed": 12,
+    "expected": 12,
+    "ratio": 1
+   },
+   {
+    "shardProducer": "10|cnear-2.poolv1.near",
+    "observed": 10,
+    "expected": 11.5,
+    "ratio": 0.87
+   },
+   {
+    "shardProducer": "4|bitwise_1.poolv1.near",
+    "observed": 9,
+    "expected": 8,
+    "ratio": 1.13
+   },
+   {
+    "shardProducer": "13|cnear-1.poolv1.near",
+    "observed": 8,
+    "expected": 5.2,
+    "ratio": 1.53
+   },
+   {
+    "shardProducer": "13|bitwise_2.poolv1.near",
+    "observed": 6,
+    "expected": 7.1,
+    "ratio": 0.85
+   },
+   {
+    "shardProducer": "7|svrn-luganodes.pool.near",
+    "observed": 5,
+    "expected": 2.3,
+    "ratio": 2.18
+   }
+  ]
+ },
+ "T2_vsFailedSameSigners": {
+  "chiSquare": 118.5,
+  "permutationP": 0.05,
+  "strata": "shard"
+ },
+ "T2b_vsFailedSameSigners_withinWindow": {
+  "chiSquare": 118.5,
+  "permutationP": 0.2294,
+  "strata": "shard x window",
+  "mixedStrata": 33,
+  "winnersInMixedStrata": 122
+ },
+ "inclusionProducerEqualsExecutionProducer": {
+  "n": 2,
+  "of": 142
+ },
+ "distinctProducersInWinners": 39
+}

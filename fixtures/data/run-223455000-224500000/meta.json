@@ -1,0 +1,11 @@
+{
+ "source": "https://tx.main.fastnear.com/v0",
+ "start": 223455000,
+ "end": 224500000,
+ "windows": 168,
+ "blocksPerWindow": 600,
+ "txs": 83290,
+ "batches": 4165,
+ "failedBatches": 0,
+ "finishedAt": "2026-11-14T12:03:09.445Z"
+}

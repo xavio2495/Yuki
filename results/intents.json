@@ -1,0 +1,1905 @@
+{
+ "generatedBy": "scripts/intents-analyze.mjs",
+ "original": {
+  "range": [
+   223455000,
+   224500000
+  ],
+  "windows": 168,
+  "days": 7,
+  "sample": {
+   "entries": 2696,
+   "swaps": 957,
+   "pricedSwapsWithSolver": 406,
+   "unpricedSwaps": 534,
+   "noSolverSwaps": 17,
+   "sampledTx": 97616,
+   "fullRangeTx": 1020025,
+   "scale": 10.449
+  },
+  "noMetadataTokens": 47,
+  "noMetadataEntries": 1070,
+  "solvers": {
+   "count": 14,
+   "top": [
+    [
+     "6247d9c671ca6a80cf2c75e26edb8cd75ebf00fcd3c56c39107d6ca20c9cfb29",
+     587.68,
+     75
+    ],
+    [
+     "solver-priv-liq.near",
+     141.72,
+     18.1
+    ],
+    [
+     "solver-multichain-asset.near",
+     48.91,
+     6.2
+    ],
+    [
+     "kipseli.near",
+     4.75,
+     0.6
+    ],
+    [
+     "solver-multichain-asset-2.near",
+     0.21,
+     0
+    ],
+    [
+     "2f09a4dc4b29cfdfe5d7a14afb04f0aa6c68e0b54f3bb606b168919b68085059",
+     0,
+     0
+    ],
+    [
+     "blockzen-near-intent.near",
+     0,
+     0
+    ],
+    [
+     "2da316c13fcafc3a6c957ca6a9143622119a1a747bae0975c41a579d21a4cb6e",
+     0,
+     0
+    ],
+    [
+     "nawr.near",
+     -0.13,
+     0
+    ],
+    [
+     "solver-multichain-asset-escrow.near",
+     -0.38,
+     0
+    ]
+   ],
+   "top3SharePct": 99.4
+  },
+  "perDay": {
+   "volumeUsd": 1373172.23,
+   "userCostUsd": 1111.3,
+   "solverCaptureUsd": 1107.58,
+   "solverCaptureCI95": [
+    -101.62,
+    2528.54
+   ],
+   "protocolFeesUsd": 3.72
+  },
+  "bps": {
+   "userCost": 8.09,
+   "solverCapture": 8.07,
+   "protocolFees": 0.03
+  },
+  "identity": {
+   "maxGapUsd": 0,
+   "note": "sanity check only: the contract enforces sum(diffs)+fees=0 per token, so this holds by construction"
+  },
+  "spike": {
+   "topWindowSharePct": 61.3,
+   "topWindowFrom": 224089464,
+   "medianWindowUsd": 0
+  },
+  "inputSha256": "a449630465cad33b143c97a550a10f4ba9d2d906a24ac3ca0f1311991047942a",
+  "flows": {
+   "netNearPerDay": -77,
+   "outwardSharePct": 1.2,
+   "inwardSharePct": 1.6,
+   "foreignToForeignSharePct": 96.7,
+   "nearSideSharePct": 0.5,
+   "outwardPerDayUsd": 16330.76,
+   "inwardPerDayUsd": 22079.74,
+   "foreignToForeignPerDayUsd": 1328425.67,
+   "nearSidePerDayUsd": 6336.06
+  },
+  "killCriteria": {
+   "KC6_solverCaptureUnder350PerDay": false,
+   "KC7_top3Under60": false,
+   "KC8_feesAtLeastSolverCapture": false,
+   "KC9_fewerThan200PricedSwaps": false,
+   "KC10_netNearFlowNonNegative": false,
+   "KC11_outwardShareAtLeast50": false,
+   "KC12_userCostAtLeast154bps": true
+  }
+ },
+ "extended": {
+  "note": "Post hoc additions (not pre-registered). App fee = transfer intent signed under a user-side intent hash of the same swap tx, to a receiver that is not a solver and not the sender. Fee-like by size pattern [judgment]; recipient identities unverified.",
+  "label": "base",
+  "feeRule": "notCounterparty",
+  "solverRule": ">= 20 entries",
+  "stack": {
+   "swaps": 406,
+   "volumePerDayUsd": 1373172.23,
+   "solverBps": 8.07,
+   "appFeeBps": 24.07,
+   "protocolBps": 0.027,
+   "totalBps": 32.16,
+   "solverPerDayUsd": 1107.58,
+   "appFeePerDayUsd": 3304.96,
+   "swapsWithAppFee": 260,
+   "protocolPerDayUsd": 3.72,
+   "userCostInclAppFeesPerDayUsd": 4416.26,
+   "appFeeCappedPerDayUsd": 3202.51,
+   "appFeeCappedBps": 23.32,
+   "appFeeTransfers": 496,
+   "appFeeTransfersUnpriced": 0,
+   "appFeeTransfersOver200bps": 16,
+   "appFeeTransfersOver200bpsUsdSample": 68.63,
+   "appFeeToSwapPartyTransfers": 0,
+   "appFeeCI95": [
+    1145.92,
+    6334.45
+   ],
+   "totalUserCostCI95": [
+    1416.41,
+    7872.77
+   ]
+  },
+  "recipients": [
+   {
+    "to": "c4d748df238e6b27fe90ca0e409a68a78d22baee0475796e81a51901d3ee3426",
+    "transfers": 13,
+    "swaps": 13,
+    "perDayUsd": 1817.53,
+    "medianBps": 139.93,
+    "maxBps": 147.1,
+    "refs": [
+     "1click:swapkit"
+    ]
+   },
+   {
+    "to": "5880ad2b362620fadf759cbceb1cd5737ce8c6ed7fb8e9942881e6731f9247dd",
+    "transfers": 124,
+    "swaps": 124,
+    "perDayUsd": 415.06,
+    "medianBps": 1,
+    "maxBps": 89.6,
+    "refs": [
+     "1click:rango",
+     "1click:unknown",
+     "1click:l2pass",
+     "1click:lifi",
+     "1click:gum",
+     "1click:intents.tg"
+    ]
+   },
+   {
+    "to": "8b8f06d79196f428774d8a1e35716799284053057c09232ff5bbea9f70d2cdde",
+    "transfers": 1,
+    "swaps": 1,
+    "perDayUsd": 258.12,
+    "medianBps": 134.79,
+    "maxBps": 134.8,
+    "refs": [
+     "1click:unknown"
+    ]
+   },
+   {
+    "to": "fee_collector.a11bd.near",
+    "transfers": 1,
+    "swaps": 1,
+    "perDayUsd": 181.42,
+    "medianBps": 5.01,
+    "maxBps": 5,
+    "refs": [
+     "1click:allbridgecore"
+    ]
+   },
+   {
+    "to": "143f2bb439575c286f4f585163f0e5fb4e464f8ce57ec06ae80741407d3cfb31",
+    "transfers": 70,
+    "swaps": 70,
+    "perDayUsd": 119.05,
+    "medianBps": 1.36,
+    "maxBps": 14.5,
+    "refs": [
+     "1click:rango",
+     "1click:swapkit",
+     "1click:l2pass",
+     "1click:unknown",
+     "1click:zodl",
+     "1click:lifi"
+    ]
+   },
+   {
+    "to": "2f09a4dc4b29cfdfe5d7a14afb04f0aa6c68e0b54f3bb606b168919b68085059",
+    "transfers": 61,
+    "swaps": 61,
+    "perDayUsd": 98.8,
+    "medianBps": 80.65,
+    "maxBps": 81.4,
+    "refs": [
+     "1click:swapkit"
+    ]
+   },
+   {
+    "to": "b2d6d5dfb2c2ead9f0ced70886c91b8cc32a12640e897b878a7d74afe0ca6a14",
+    "transfers": 2,
+    "swaps": 2,
+    "perDayUsd": 78.1,
+    "medianBps": 50.28,
+    "maxBps": 50.3,
+    "refs": [
+     "1click:swapkit"
+    ]
+   },
+   {
+    "to": "d78abd5477432c9d9c5e32c4a1a0056cd7b8be6580d3c49e1f97185b786592db",
+    "transfers": 9,
+    "swaps": 9,
+    "perDayUsd": 63.68,
+    "medianBps": 67.45,
+    "maxBps": 67.5,
+    "refs": [
+     "1click:zodl"
+    ]
+   },
+   {
+    "to": "acb0b29a7465980250d23e010f356ae16a264c38bdd9614b2a4184ff8636f898",
+    "transfers": 2,
+    "swaps": 2,
+    "perDayUsd": 61.39,
+    "medianBps": 235.78,
+    "maxBps": 235.8,
+    "refs": [
+     "1click:swapkit"
+    ]
+   },
+   {
+    "to": "41766af71288086e34b2075ab2eddc1c89ec8bed9007d765b7cb9d24700d86d1",
+    "transfers": 7,
+    "swaps": 7,
+    "perDayUsd": 45.49,
+    "medianBps": 126.67,
+    "maxBps": 126.7,
+    "refs": [
+     "1click:swapkit"
+    ]
+   },
+   {
+    "to": "fae85d13273d1648ef3aab18ae4426122cf6b13170b633dac849ef7d83e1ed19",
+    "transfers": 25,
+    "swaps": 25,
+    "perDayUsd": 33,
+    "medianBps": 1,
+    "maxBps": 5,
+    "refs": [
+     "1click:lifi"
+    ]
+   },
+   {
+    "to": "prathikrajsingh.tg",
+    "transfers": 1,
+    "swaps": 1,
+    "perDayUsd": 20.32,
+    "medianBps": 9996.32,
+    "maxBps": 9996.3,
+    "refs": [
+     "1click:intents.tg"
+    ]
+   }
+  ],
+  "recipientCount": 48,
+  "byIntegrator": [
+   {
+    "integrator": "1click:allbridgecore",
+    "swaps": 1,
+    "volumePerDayUsd": 362476.77,
+    "solverBps": 18.76,
+    "appFeeBps": 10.01,
+    "protocolBps": 0.02,
+    "totalBps": 28.79,
+    "solverPerDayUsd": 680.18,
+    "appFeePerDayUsd": 362.84,
+    "swapsWithAppFee": 1
+   },
+   {
+    "integrator": "1click:l2pass",
+    "swaps": 2,
+    "volumePerDayUsd": 318427.01,
+    "solverBps": 3.03,
+    "appFeeBps": 1,
+    "protocolBps": 0.03,
+    "totalBps": 4.06,
+    "solverPerDayUsd": 96.59,
+    "appFeePerDayUsd": 31.85,
+    "swapsWithAppFee": 2
+   },
+   {
+    "integrator": "1click:swapkit",
+    "swaps": 102,
+    "volumePerDayUsd": 188479.26,
+    "solverBps": 6.26,
+    "appFeeBps": 116.36,
+    "protocolBps": 0.026,
+    "totalBps": 122.65,
+    "solverPerDayUsd": 118.05,
+    "appFeePerDayUsd": 2193.08,
+    "swapsWithAppFee": 100
+   },
+   {
+    "integrator": "1click:lifi",
+    "swaps": 26,
+    "volumePerDayUsd": 133390.97,
+    "solverBps": 14.1,
+    "appFeeBps": 6.72,
+    "protocolBps": 0.026,
+    "totalBps": 20.85,
+    "solverPerDayUsd": 188.13,
+    "appFeePerDayUsd": 89.67,
+    "swapsWithAppFee": 25
+   },
+   {
+    "integrator": "(none)",
+    "swaps": 51,
+    "volumePerDayUsd": 115225.02,
+    "solverBps": -18.87,
+    "appFeeBps": 0,
+    "protocolBps": 0.052,
+    "totalBps": -18.81,
+    "solverPerDayUsd": -217.39,
+    "appFeePerDayUsd": 0,
+    "swapsWithAppFee": 0
+   },
+   {
+    "integrator": "1click:unknown",
+    "swaps": 111,
+    "volumePerDayUsd": 108327.67,
+    "solverBps": 21.58,
+    "appFeeBps": 43.32,
+    "protocolBps": 0.025,
+    "totalBps": 64.92,
+    "solverPerDayUsd": 233.8,
+    "appFeePerDayUsd": 469.23,
+    "swapsWithAppFee": 57
+   },
+   {
+    "integrator": "1click:rango",
+    "swaps": 25,
+    "volumePerDayUsd": 97923.27,
+    "solverBps": -0.43,
+    "appFeeBps": 1.77,
+    "protocolBps": 0.022,
+    "totalBps": 1.35,
+    "solverPerDayUsd": -4.26,
+    "appFeePerDayUsd": 17.29,
+    "swapsWithAppFee": 25
+   },
+   {
+    "integrator": "1click:zodl",
+    "swaps": 11,
+    "volumePerDayUsd": 16942.1,
+    "solverBps": -1.51,
+    "appFeeBps": 38.72,
+    "protocolBps": 0.017,
+    "totalBps": 37.22,
+    "solverPerDayUsd": -2.56,
+    "appFeePerDayUsd": 65.6,
+    "swapsWithAppFee": 9
+   },
+   {
+    "integrator": "1click:rhea_bridge",
+    "swaps": 1,
+    "volumePerDayUsd": 14122.82,
+    "solverBps": 9.49,
+    "appFeeBps": 1.05,
+    "protocolBps": 0.03,
+    "totalBps": 10.57,
+    "solverPerDayUsd": 13.41,
+    "appFeePerDayUsd": 1.48,
+    "swapsWithAppFee": 1
+   },
+   {
+    "integrator": "1click:layerzero-vt",
+    "swaps": 4,
+    "volumePerDayUsd": 6229.62,
+    "solverBps": -9.12,
+    "appFeeBps": 30.11,
+    "protocolBps": 0.02,
+    "totalBps": 21.01,
+    "solverPerDayUsd": -5.68,
+    "appFeePerDayUsd": 18.76,
+    "swapsWithAppFee": 4
+   },
+   {
+    "integrator": "1click:gum",
+    "swaps": 2,
+    "volumePerDayUsd": 3159.51,
+    "solverBps": 10.7,
+    "appFeeBps": 3.1,
+    "protocolBps": 0.039,
+    "totalBps": 13.84,
+    "solverPerDayUsd": 3.38,
+    "appFeePerDayUsd": 0.98,
+    "swapsWithAppFee": 2
+   },
+   {
+    "integrator": "1click:cow",
+    "swaps": 4,
+    "volumePerDayUsd": 2073.22,
+    "solverBps": 3.99,
+    "appFeeBps": 16.55,
+    "protocolBps": 0.044,
+    "totalBps": 20.58,
+    "solverPerDayUsd": 0.83,
+    "appFeePerDayUsd": 3.43,
+    "swapsWithAppFee": 4
+   },
+   {
+    "integrator": "1click:aurora (all)",
+    "swaps": 26,
+    "volumePerDayUsd": 1541.95,
+    "solverBps": 11.94,
+    "appFeeBps": 18.99,
+    "protocolBps": 0.026,
+    "totalBps": 30.95,
+    "solverPerDayUsd": 1.84,
+    "appFeePerDayUsd": 2.93,
+    "swapsWithAppFee": 11
+   },
+   {
+    "integrator": "1click:meteor",
+    "swaps": 2,
+    "volumePerDayUsd": 1528.63,
+    "solverBps": -0.83,
+    "appFeeBps": 21.15,
+    "protocolBps": 0.02,
+    "totalBps": 20.34,
+    "solverPerDayUsd": -0.13,
+    "appFeePerDayUsd": 3.23,
+    "swapsWithAppFee": 2
+   },
+   {
+    "integrator": "1click:(opaque id)",
+    "swaps": 2,
+    "volumePerDayUsd": 1369.32,
+    "solverBps": 8.17,
+    "appFeeBps": 150.28,
+    "protocolBps": 0.028,
+    "totalBps": 158.48,
+    "solverPerDayUsd": 1.12,
+    "appFeePerDayUsd": 20.58,
+    "swapsWithAppFee": 2
+   },
+   {
+    "integrator": "1click:intents.tg",
+    "swaps": 6,
+    "volumePerDayUsd": 1019.54,
+    "solverBps": -1.94,
+    "appFeeBps": 208.87,
+    "protocolBps": 0.028,
+    "totalBps": 206.95,
+    "solverPerDayUsd": -0.2,
+    "appFeePerDayUsd": 21.29,
+    "swapsWithAppFee": 6
+   },
+   {
+    "integrator": "1click:minisend",
+    "swaps": 1,
+    "volumePerDayUsd": 461.91,
+    "solverBps": 9.59,
+    "appFeeBps": 26.12,
+    "protocolBps": 0.03,
+    "totalBps": 35.74,
+    "solverPerDayUsd": 0.44,
+    "appFeePerDayUsd": 1.21,
+    "swapsWithAppFee": 1
+   },
+   {
+    "integrator": "1click:1cs",
+    "swaps": 3,
+    "volumePerDayUsd": 233.72,
+    "solverBps": -6.03,
+    "appFeeBps": 0.06,
+    "protocolBps": 0.067,
+    "totalBps": -5.9,
+    "solverPerDayUsd": -0.14,
+    "appFeePerDayUsd": 0,
+    "swapsWithAppFee": 1
+   },
+   {
+    "integrator": "1click:near-mobile",
+    "swaps": 1,
+    "volumePerDayUsd": 96.23,
+    "solverBps": 5,
+    "appFeeBps": 90.14,
+    "protocolBps": 0.02,
+    "totalBps": 95.16,
+    "solverPerDayUsd": 0.05,
+    "appFeePerDayUsd": 0.87,
+    "swapsWithAppFee": 1
+   },
+   {
+    "integrator": "1click:zeroex",
+    "swaps": 1,
+    "volumePerDayUsd": 68.14,
+    "solverBps": 5.87,
+    "appFeeBps": 20.04,
+    "protocolBps": 0.02,
+    "totalBps": 25.93,
+    "solverPerDayUsd": 0.04,
+    "appFeePerDayUsd": 0.14,
+    "swapsWithAppFee": 1
+   },
+   {
+    "integrator": "1click:vizor",
+    "swaps": 2,
+    "volumePerDayUsd": 46.71,
+    "solverBps": 14.1,
+    "appFeeBps": 46.11,
+    "protocolBps": 0.024,
+    "totalBps": 60.24,
+    "solverPerDayUsd": 0.07,
+    "appFeePerDayUsd": 0.22,
+    "swapsWithAppFee": 2
+   },
+   {
+    "integrator": "1click:gemwallet",
+    "swaps": 2,
+    "volumePerDayUsd": 28.09,
+    "solverBps": 4.95,
+    "appFeeBps": 101.01,
+    "protocolBps": 0.03,
+    "totalBps": 105.99,
+    "solverPerDayUsd": 0.01,
+    "appFeePerDayUsd": 0.28,
+    "swapsWithAppFee": 2
+   },
+   {
+    "integrator": "1click:sweat-app",
+    "swaps": 1,
+    "volumePerDayUsd": 0.76,
+    "solverBps": 3.7,
+    "appFeeBps": 20.05,
+    "protocolBps": 0.049,
+    "totalBps": 23.79,
+    "solverPerDayUsd": 0,
+    "appFeePerDayUsd": 0,
+    "swapsWithAppFee": 1
+   },
+   {
+    "integrator": "solver rebalancing",
+    "swaps": 19,
+    "volumePerDayUsd": 0,
+    "solverBps": null,
+    "appFeeBps": null,
+    "protocolBps": null,
+    "totalBps": null,
+    "solverPerDayUsd": 0,
+    "appFeePerDayUsd": 0,
+    "swapsWithAppFee": 0
+   }
+  ],
+  "bySize": [
+   {
+    "bucket": "<$100",
+    "swaps": 264,
+    "volumePerDayUsd": 6545.92,
+    "solverBps": 8.72,
+    "appFeeBps": 107.94,
+    "protocolBps": 0.447,
+    "totalBps": 117.1,
+    "solverPerDayUsd": 5.71,
+    "appFeePerDayUsd": 70.66,
+    "swapsWithAppFee": 152
+   },
+   {
+    "bucket": "$100-1k",
+    "swaps": 94,
+    "volumePerDayUsd": 49049.04,
+    "solverBps": 7.11,
+    "appFeeBps": 43.52,
+    "protocolBps": 0.026,
+    "totalBps": 50.65,
+    "solverPerDayUsd": 34.87,
+    "appFeePerDayUsd": 213.44,
+    "swapsWithAppFee": 75
+   },
+   {
+    "bucket": "$1k-10k",
+    "swaps": 35,
+    "volumePerDayUsd": 176055.16,
+    "solverBps": 1.91,
+    "appFeeBps": 37.6,
+    "protocolBps": 0.024,
+    "totalBps": 39.54,
+    "solverPerDayUsd": 33.67,
+    "appFeePerDayUsd": 662,
+    "swapsWithAppFee": 23
+   },
+   {
+    "bucket": "$10k-100k",
+    "swaps": 11,
+    "volumePerDayUsd": 461162.15,
+    "solverBps": 5.55,
+    "appFeeBps": 42.59,
+    "protocolBps": 0.026,
+    "totalBps": 48.17,
+    "solverPerDayUsd": 256.03,
+    "appFeePerDayUsd": 1964.23,
+    "swapsWithAppFee": 8
+   },
+   {
+    "bucket": ">=$100k",
+    "swaps": 2,
+    "volumePerDayUsd": 680359.97,
+    "solverBps": 11.42,
+    "appFeeBps": 5.8,
+    "protocolBps": 0.025,
+    "totalBps": 17.25,
+    "solverPerDayUsd": 777.3,
+    "appFeePerDayUsd": 394.63,
+    "swapsWithAppFee": 2
+   }
+  ],
+  "fragility": {
+   "topSwap": {
+    "tx": "FQcNTHHqEErb4m4RhJyc1RrrhjmNnxAyuVh7hon4xNeo",
+    "volumeUsd": 242799,
+    "solverUsd": 455.61,
+    "solverBps": 18.8,
+    "appFeeUsd": 243.04,
+    "ref": "1click-allbridgecore",
+    "sharePctOfSolverCapture": 61.4,
+    "tokens": [
+     "USDC",
+     "USDT"
+    ]
+   },
+   "top5SharePct": 109,
+   "exTopSwapSolverPerDayUsd": 427.4,
+   "exTopSwapSolverBps": 4.23,
+   "negativeSwaps": 139,
+   "topSolverAcct": "6247d9c671ca6a80cf2c75e26edb8cd75ebf00fcd3c56c39107d6ca20c9cfb29",
+   "topSolverEntries": 101
+  },
+  "coverage": {
+   "unpricedSwaps": 534,
+   "unpricedSwapsPricedLegUserVolPerDayUsd": 43695.63,
+   "pricedSwapsWithSolver": 406,
+   "pricedNoSolver": 17
+  },
+  "flowsFixedOmdep": {
+   "netNearPerDay": -77,
+   "outwardSharePct": 0.8,
+   "inwardSharePct": 1.3,
+   "foreignToForeignSharePct": 97.6,
+   "nearSideSharePct": 0.3,
+   "outwardPerDayUsd": 11255.72,
+   "inwardPerDayUsd": 18206.98,
+   "foreignToForeignPerDayUsd": 1339610.68,
+   "nearSidePerDayUsd": 4098.86
+  },
+  "flowsFixedKC11": false,
+  "perWindow": [
+   {
+    "i": 0,
+    "from": 223455000,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 1,
+    "from": 223461220,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 2,
+    "from": 223467440,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 3,
+    "from": 223473660,
+    "solverUsd": -1.633,
+    "appFeeUsd": 0.17
+   },
+   {
+    "i": 4,
+    "from": 223479880,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 5,
+    "from": 223486101,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 6,
+    "from": 223492321,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 7,
+    "from": 223498541,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 8,
+    "from": 223504761,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 9,
+    "from": 223510982,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 10,
+    "from": 223517202,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 11,
+    "from": 223523422,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 12,
+    "from": 223529642,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 13,
+    "from": 223535863,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 14,
+    "from": 223542083,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 15,
+    "from": 223548303,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 16,
+    "from": 223554523,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 17,
+    "from": 223560744,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 18,
+    "from": 223566964,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 19,
+    "from": 223573184,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 20,
+    "from": 223579404,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 21,
+    "from": 223585625,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 22,
+    "from": 223591845,
+    "solverUsd": -0.005,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 23,
+    "from": 223598065,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 24,
+    "from": 223604285,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 25,
+    "from": 223610506,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 26,
+    "from": 223616726,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 27,
+    "from": 223622946,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 28,
+    "from": 223629166,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 29,
+    "from": 223635387,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 30,
+    "from": 223641607,
+    "solverUsd": 0,
+    "appFeeUsd": 0.018
+   },
+   {
+    "i": 31,
+    "from": 223647827,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 32,
+    "from": 223654047,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 33,
+    "from": 223660268,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 34,
+    "from": 223666488,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 35,
+    "from": 223672708,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 36,
+    "from": 223678928,
+    "solverUsd": -92.937,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 37,
+    "from": 223685149,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 38,
+    "from": 223691369,
+    "solverUsd": -20.243,
+    "appFeeUsd": 258.544
+   },
+   {
+    "i": 39,
+    "from": 223697589,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 40,
+    "from": 223703809,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 41,
+    "from": 223710030,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 42,
+    "from": 223716250,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 43,
+    "from": 223722470,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 44,
+    "from": 223728690,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 45,
+    "from": 223734910,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 46,
+    "from": 223741131,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 47,
+    "from": 223747351,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 48,
+    "from": 223753571,
+    "solverUsd": 0.012,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 49,
+    "from": 223759791,
+    "solverUsd": -0.341,
+    "appFeeUsd": 0.767
+   },
+   {
+    "i": 50,
+    "from": 223766012,
+    "solverUsd": 0,
+    "appFeeUsd": 0.001
+   },
+   {
+    "i": 51,
+    "from": 223772232,
+    "solverUsd": 0.124,
+    "appFeeUsd": 0.098
+   },
+   {
+    "i": 52,
+    "from": 223778452,
+    "solverUsd": -3.719,
+    "appFeeUsd": 12.378
+   },
+   {
+    "i": 53,
+    "from": 223784672,
+    "solverUsd": 0.308,
+    "appFeeUsd": 0.214
+   },
+   {
+    "i": 54,
+    "from": 223790893,
+    "solverUsd": 2.67,
+    "appFeeUsd": 13.291
+   },
+   {
+    "i": 55,
+    "from": 223797113,
+    "solverUsd": 0.606,
+    "appFeeUsd": 2.664
+   },
+   {
+    "i": 56,
+    "from": 223803333,
+    "solverUsd": 0.009,
+    "appFeeUsd": 0.096
+   },
+   {
+    "i": 57,
+    "from": 223809553,
+    "solverUsd": 3.697,
+    "appFeeUsd": 31.59
+   },
+   {
+    "i": 58,
+    "from": 223815774,
+    "solverUsd": 0.141,
+    "appFeeUsd": 0.134
+   },
+   {
+    "i": 59,
+    "from": 223821994,
+    "solverUsd": 0.03,
+    "appFeeUsd": 0.158
+   },
+   {
+    "i": 60,
+    "from": 223828214,
+    "solverUsd": 0.046,
+    "appFeeUsd": 0.398
+   },
+   {
+    "i": 61,
+    "from": 223834434,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 62,
+    "from": 223840655,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 63,
+    "from": 223846875,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 64,
+    "from": 223853095,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 65,
+    "from": 223859315,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 66,
+    "from": 223865536,
+    "solverUsd": 0.006,
+    "appFeeUsd": 0.034
+   },
+   {
+    "i": 67,
+    "from": 223871756,
+    "solverUsd": 0.007,
+    "appFeeUsd": 0.04
+   },
+   {
+    "i": 68,
+    "from": 223877976,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 69,
+    "from": 223884196,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 70,
+    "from": 223890417,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 71,
+    "from": 223896637,
+    "solverUsd": 0.571,
+    "appFeeUsd": 0.508
+   },
+   {
+    "i": 72,
+    "from": 223902857,
+    "solverUsd": 3.917,
+    "appFeeUsd": 2.857
+   },
+   {
+    "i": 73,
+    "from": 223909077,
+    "solverUsd": 3.375,
+    "appFeeUsd": 174.922
+   },
+   {
+    "i": 74,
+    "from": 223915298,
+    "solverUsd": 3.329,
+    "appFeeUsd": 21.422
+   },
+   {
+    "i": 75,
+    "from": 223921518,
+    "solverUsd": 2.261,
+    "appFeeUsd": 9.971
+   },
+   {
+    "i": 76,
+    "from": 223927738,
+    "solverUsd": 43.228,
+    "appFeeUsd": 745.584
+   },
+   {
+    "i": 77,
+    "from": 223933958,
+    "solverUsd": 0.225,
+    "appFeeUsd": 10.901
+   },
+   {
+    "i": 78,
+    "from": 223940179,
+    "solverUsd": -65.289,
+    "appFeeUsd": 24.113
+   },
+   {
+    "i": 79,
+    "from": 223946399,
+    "solverUsd": 0.099,
+    "appFeeUsd": 1.563
+   },
+   {
+    "i": 80,
+    "from": 223952619,
+    "solverUsd": 2.072,
+    "appFeeUsd": 10.604
+   },
+   {
+    "i": 81,
+    "from": 223958839,
+    "solverUsd": -2.515,
+    "appFeeUsd": 38.098
+   },
+   {
+    "i": 82,
+    "from": 223965060,
+    "solverUsd": 0.682,
+    "appFeeUsd": 0.213
+   },
+   {
+    "i": 83,
+    "from": 223971280,
+    "solverUsd": 0.7,
+    "appFeeUsd": 1.32
+   },
+   {
+    "i": 84,
+    "from": 223977500,
+    "solverUsd": 0.019,
+    "appFeeUsd": 9.042
+   },
+   {
+    "i": 85,
+    "from": 223983720,
+    "solverUsd": -0.083,
+    "appFeeUsd": 0.122
+   },
+   {
+    "i": 86,
+    "from": 223989940,
+    "solverUsd": 0.018,
+    "appFeeUsd": 0.543
+   },
+   {
+    "i": 87,
+    "from": 223996161,
+    "solverUsd": -0.001,
+    "appFeeUsd": 0.021
+   },
+   {
+    "i": 88,
+    "from": 224002381,
+    "solverUsd": 0.076,
+    "appFeeUsd": 0.425
+   },
+   {
+    "i": 89,
+    "from": 224008601,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 90,
+    "from": 224014821,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 91,
+    "from": 224021042,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 92,
+    "from": 224027262,
+    "solverUsd": 0,
+    "appFeeUsd": 0.051
+   },
+   {
+    "i": 93,
+    "from": 224033482,
+    "solverUsd": 0,
+    "appFeeUsd": 0.093
+   },
+   {
+    "i": 94,
+    "from": 224039702,
+    "solverUsd": 0,
+    "appFeeUsd": 0.087
+   },
+   {
+    "i": 95,
+    "from": 224045923,
+    "solverUsd": 0.004,
+    "appFeeUsd": 0.01
+   },
+   {
+    "i": 96,
+    "from": 224052143,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 97,
+    "from": 224058363,
+    "solverUsd": 0.001,
+    "appFeeUsd": 0.067
+   },
+   {
+    "i": 98,
+    "from": 224064583,
+    "solverUsd": 0.017,
+    "appFeeUsd": 0.02
+   },
+   {
+    "i": 99,
+    "from": 224070804,
+    "solverUsd": 65.256,
+    "appFeeUsd": 21.295
+   },
+   {
+    "i": 100,
+    "from": 224077024,
+    "solverUsd": 0.296,
+    "appFeeUsd": 0.336
+   },
+   {
+    "i": 101,
+    "from": 224083244,
+    "solverUsd": -0.001,
+    "appFeeUsd": 0.064
+   },
+   {
+    "i": 102,
+    "from": 224089464,
+    "solverUsd": 454.959,
+    "appFeeUsd": 247.599
+   },
+   {
+    "i": 103,
+    "from": 224095685,
+    "solverUsd": 0.519,
+    "appFeeUsd": 1.6
+   },
+   {
+    "i": 104,
+    "from": 224101905,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 105,
+    "from": 224108125,
+    "solverUsd": -0.003,
+    "appFeeUsd": 0.011
+   },
+   {
+    "i": 106,
+    "from": 224114345,
+    "solverUsd": 9.009,
+    "appFeeUsd": 1.153
+   },
+   {
+    "i": 107,
+    "from": 224120566,
+    "solverUsd": 0,
+    "appFeeUsd": 0.013
+   },
+   {
+    "i": 108,
+    "from": 224126786,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 109,
+    "from": 224133006,
+    "solverUsd": 2.115,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 110,
+    "from": 224139226,
+    "solverUsd": 1.075,
+    "appFeeUsd": 5.661
+   },
+   {
+    "i": 111,
+    "from": 224145447,
+    "solverUsd": -0.002,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 112,
+    "from": 224151667,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 113,
+    "from": 224157887,
+    "solverUsd": 0.126,
+    "appFeeUsd": 0.446
+   },
+   {
+    "i": 114,
+    "from": 224164107,
+    "solverUsd": 0.117,
+    "appFeeUsd": 0.8
+   },
+   {
+    "i": 115,
+    "from": 224170328,
+    "solverUsd": -0.114,
+    "appFeeUsd": 0.046
+   },
+   {
+    "i": 116,
+    "from": 224176548,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 117,
+    "from": 224182768,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 118,
+    "from": 224188988,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 119,
+    "from": 224195209,
+    "solverUsd": -0.007,
+    "appFeeUsd": 0.053
+   },
+   {
+    "i": 120,
+    "from": 224201429,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 121,
+    "from": 224207649,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 122,
+    "from": 224213869,
+    "solverUsd": 0.001,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 123,
+    "from": 224220090,
+    "solverUsd": 0,
+    "appFeeUsd": 0.001
+   },
+   {
+    "i": 124,
+    "from": 224226310,
+    "solverUsd": 98.794,
+    "appFeeUsd": 10
+   },
+   {
+    "i": 125,
+    "from": 224232530,
+    "solverUsd": -0.952,
+    "appFeeUsd": 0.785
+   },
+   {
+    "i": 126,
+    "from": 224238750,
+    "solverUsd": 0,
+    "appFeeUsd": 0.11
+   },
+   {
+    "i": 127,
+    "from": 224244970,
+    "solverUsd": -0.006,
+    "appFeeUsd": 0.025
+   },
+   {
+    "i": 128,
+    "from": 224251191,
+    "solverUsd": 0.129,
+    "appFeeUsd": 0.138
+   },
+   {
+    "i": 129,
+    "from": 224257411,
+    "solverUsd": 0.003,
+    "appFeeUsd": 0.014
+   },
+   {
+    "i": 130,
+    "from": 224263631,
+    "solverUsd": 0.443,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 131,
+    "from": 224269851,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 132,
+    "from": 224276072,
+    "solverUsd": -0.001,
+    "appFeeUsd": 0.042
+   },
+   {
+    "i": 133,
+    "from": 224282292,
+    "solverUsd": 147.706,
+    "appFeeUsd": 102.172
+   },
+   {
+    "i": 134,
+    "from": 224288512,
+    "solverUsd": 0.01,
+    "appFeeUsd": 0.026
+   },
+   {
+    "i": 135,
+    "from": 224294732,
+    "solverUsd": -0.001,
+    "appFeeUsd": 0.109
+   },
+   {
+    "i": 136,
+    "from": 224300953,
+    "solverUsd": -0.002,
+    "appFeeUsd": 0.118
+   },
+   {
+    "i": 137,
+    "from": 224307173,
+    "solverUsd": 0.013,
+    "appFeeUsd": 0.022
+   },
+   {
+    "i": 138,
+    "from": 224313393,
+    "solverUsd": 0.013,
+    "appFeeUsd": 0.822
+   },
+   {
+    "i": 139,
+    "from": 224319613,
+    "solverUsd": 0.095,
+    "appFeeUsd": 0.019
+   },
+   {
+    "i": 140,
+    "from": 224325834,
+    "solverUsd": 0.144,
+    "appFeeUsd": 0.706
+   },
+   {
+    "i": 141,
+    "from": 224332054,
+    "solverUsd": -2.621,
+    "appFeeUsd": 8.296
+   },
+   {
+    "i": 142,
+    "from": 224338274,
+    "solverUsd": -0.338,
+    "appFeeUsd": 0.542
+   },
+   {
+    "i": 143,
+    "from": 224344494,
+    "solverUsd": 2.22,
+    "appFeeUsd": 0.425
+   },
+   {
+    "i": 144,
+    "from": 224350715,
+    "solverUsd": 0.631,
+    "appFeeUsd": 0.544
+   },
+   {
+    "i": 145,
+    "from": 224356935,
+    "solverUsd": 0.819,
+    "appFeeUsd": 0.642
+   },
+   {
+    "i": 146,
+    "from": 224363155,
+    "solverUsd": 1.882,
+    "appFeeUsd": 13.867
+   },
+   {
+    "i": 147,
+    "from": 224369375,
+    "solverUsd": 8.558,
+    "appFeeUsd": 0.2
+   },
+   {
+    "i": 148,
+    "from": 224375596,
+    "solverUsd": 1.492,
+    "appFeeUsd": 7.672
+   },
+   {
+    "i": 149,
+    "from": 224381816,
+    "solverUsd": 0.939,
+    "appFeeUsd": 5.541
+   },
+   {
+    "i": 150,
+    "from": 224388036,
+    "solverUsd": 19.865,
+    "appFeeUsd": 60.782
+   },
+   {
+    "i": 151,
+    "from": 224394256,
+    "solverUsd": 2.196,
+    "appFeeUsd": 9.295
+   },
+   {
+    "i": 152,
+    "from": 224400477,
+    "solverUsd": 0.217,
+    "appFeeUsd": 0.029
+   },
+   {
+    "i": 153,
+    "from": 224406697,
+    "solverUsd": 7.066,
+    "appFeeUsd": 87
+   },
+   {
+    "i": 154,
+    "from": 224412917,
+    "solverUsd": -0.78,
+    "appFeeUsd": 2.971
+   },
+   {
+    "i": 155,
+    "from": 224419137,
+    "solverUsd": 0.018,
+    "appFeeUsd": 0.286
+   },
+   {
+    "i": 156,
+    "from": 224425358,
+    "solverUsd": 0.123,
+    "appFeeUsd": 0.662
+   },
+   {
+    "i": 157,
+    "from": 224431578,
+    "solverUsd": 0.01,
+    "appFeeUsd": 0.01
+   },
+   {
+    "i": 158,
+    "from": 224437798,
+    "solverUsd": 0.02,
+    "appFeeUsd": 0.037
+   },
+   {
+    "i": 159,
+    "from": 224444018,
+    "solverUsd": 9.169,
+    "appFeeUsd": 147.966
+   },
+   {
+    "i": 160,
+    "from": 224450239,
+    "solverUsd": 0.649,
+    "appFeeUsd": 0.363
+   },
+   {
+    "i": 161,
+    "from": 224456459,
+    "solverUsd": -0.268,
+    "appFeeUsd": 0.064
+   },
+   {
+    "i": 162,
+    "from": 224462679,
+    "solverUsd": 2.809,
+    "appFeeUsd": 49.117
+   },
+   {
+    "i": 163,
+    "from": 224468899,
+    "solverUsd": 0,
+    "appFeeUsd": 0.018
+   },
+   {
+    "i": 164,
+    "from": 224475120,
+    "solverUsd": 0.24,
+    "appFeeUsd": 3.01
+   },
+   {
+    "i": 165,
+    "from": 224481340,
+    "solverUsd": 2.576,
+    "appFeeUsd": 4.433
+   },
+   {
+    "i": 166,
+    "from": 224487560,
+    "solverUsd": 0,
+    "appFeeUsd": 0
+   },
+   {
+    "i": 167,
+    "from": 224493780,
+    "solverUsd": 23.186,
+    "appFeeUsd": 42.666
+   }
+  ],
+  "solverList": [
+   [
+    "111-testing-funds.near",
+    44
+   ],
+   [
+    "2da316c13fcafc3a6c957ca6a9143622119a1a747bae0975c41a579d21a4cb6e",
+    20
+   ],
+   [
+    "2f09a4dc4b29cfdfe5d7a14afb04f0aa6c68e0b54f3bb606b168919b68085059",
+    20
+   ],
+   [
+    "6247d9c671ca6a80cf2c75e26edb8cd75ebf00fcd3c56c39107d6ca20c9cfb29",
+    101
+   ],
+   [
+    "bestswap.near",
+    42
+   ],
+   [
+    "blockzen-near-intent.near",
+    23
+   ],
+   [
+    "brlabs-solver.near",
+    152
+   ],
+   [
+    "intents.tg",
+    24
+   ],
+   [
+    "kipseli.near",
+    28
+   ],
+   [
+    "nawr.near",
+    23
+   ],
+   [
+    "solver-multichain-asset-2.near",
+    34
+   ],
+   [
+    "solver-multichain-asset-escrow.near",
+    123
+   ],
+   [
+    "solver-multichain-asset.near",
+    445
+   ],
+   [
+    "solver-priv-liq.near",
+    687
+   ]
+  ]
+ },
+ "sensitivity": [
+  {
+   "rule": ">= 5 entries",
+   "solvers": 26,
+   "pricedSwaps": 416,
+   "volumePerDayUsd": 1264556.93,
+   "solverCapturePerDayUsd": 1351.73,
+   "solverCI95": [
+    307.01,
+    2787.81
+   ],
+   "solverBps": 10.69,
+   "appFeeBps": 26.53,
+   "protocolBps": 0.03,
+   "totalUserBps": 37.25,
+   "top3Pct": 98.2
+  },
+  {
+   "rule": ">= 10 entries",
+   "solvers": 18,
+   "pricedSwaps": 415,
+   "volumePerDayUsd": 1259966.22,
+   "solverCapturePerDayUsd": 1336.21,
+   "solverCI95": [
+    286.35,
+    2779.95
+   ],
+   "solverBps": 10.61,
+   "appFeeBps": 26.31,
+   "protocolBps": 0.03,
+   "totalUserBps": 36.94,
+   "top3Pct": 99.3
+  },
+  {
+   "rule": ">= 20 entries (pre-registered)",
+   "solvers": 14,
+   "pricedSwaps": 406,
+   "volumePerDayUsd": 1373172.23,
+   "solverCapturePerDayUsd": 1107.58,
+   "solverCI95": [
+    -101.62,
+    2528.54
+   ],
+   "solverBps": 8.07,
+   "appFeeBps": 24.07,
+   "protocolBps": 0.027,
+   "totalUserBps": 32.16,
+   "top3Pct": 99.4
+  },
+  {
+   "rule": ">= 50 entries",
+   "solvers": 5,
+   "pricedSwaps": 376,
+   "volumePerDayUsd": 1400381.15,
+   "solverCapturePerDayUsd": 1279.18,
+   "solverCI95": [
+    -81.94,
+    2715.42
+   ],
+   "solverBps": 9.13,
+   "appFeeBps": 23.42,
+   "protocolBps": 0.026,
+   "totalUserBps": 32.58,
+   "top3Pct": 100
+  },
+  {
+   "rule": ">= 100 entries",
+   "solvers": 5,
+   "pricedSwaps": 376,
+   "volumePerDayUsd": 1400381.15,
+   "solverCapturePerDayUsd": 1279.18,
+   "solverCI95": [
+    -81.94,
+    2715.42
+   ],
+   "solverBps": 9.13,
+   "appFeeBps": 23.42,
+   "protocolBps": 0.026,
+   "totalUserBps": 32.58,
+   "top3Pct": 100
+  },
+  {
+   "rule": "curated by name",
+   "solvers": 20,
+   "pricedSwaps": 409,
+   "volumePerDayUsd": 1269026.36,
+   "solverCapturePerDayUsd": 1355.64,
+   "solverCI95": [
+    309.44,
+    2788.73
+   ],
+   "solverBps": 10.68,
+   "appFeeBps": 26.44,
+   "protocolBps": 0.029,
+   "totalUserBps": 37.16,
+   "top3Pct": 98.2
+  },
+  {
+   "rule": "top market maker 6247d9... as user",
+   "solvers": 13,
+   "pricedSwaps": 380,
+   "volumePerDayUsd": 1519751,
+   "solverCapturePerDayUsd": -246.14,
+   "solverCI95": [
+    -926.25,
+    306.32
+   ],
+   "solverBps": -1.62,
+   "appFeeBps": 18.16,
+   "protocolBps": 0.018,
+   "totalUserBps": 16.56,
+   "top3Pct": 100
+  }
+ ],
+ "feeRuleVariant": {
+  "rule": "notAnySolver (receiver not in the global >=20 solver set; the review appfees.mjs rule)",
+  "appFeePerDayUsd": 3204.7,
+  "appFeeBps": 23.34,
+  "transfers": 419
+ },
+ "pricingAsRegistered": {
+  "note": "v3 pricing exactly as registered: stables + NEAR/BTC/ETH/SOL only (no ZEC/TRX/BNB/TON). Stables still matched by symbol (contract-id list not in the pack).",
+  "pricedSwapsWithSolver": 328,
+  "volumePerDayUsd": 1184394.93,
+  "solverCapturePerDayUsd": 1101.23,
+  "solverCI95": [
+   212.71,
+   2561.9
+  ],
+  "solverBps": 9.3,
+  "appFeeBps": 25.57,
+  "protocolBps": 0.027,
+  "top3Pct": 99.3,
+  "killCriteria": {
+   "KC6_solverCaptureUnder350PerDay": false,
+   "KC7_top3Under60": false,
+   "KC8_feesAtLeastSolverCapture": false,
+   "KC9_fewerThan200PricedSwaps": false,
+   "KC10_netNearFlowNonNegative": false,
+   "KC11_outwardShareAtLeast50": false,
+   "KC12_userCostAtLeast154bps": true
+  }
+ }
+}

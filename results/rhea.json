@@ -1,0 +1,1687 @@
+{
+ "generatedBy": "scripts/rhea-analyze.mjs",
+ "original": {
+  "range": [
+   223455000,
+   224500000
+  ],
+  "windows": 168,
+  "blocksPerWindow": 600,
+  "days": 7,
+  "sample": {
+   "hops": 65203,
+   "okHops": 48210,
+   "failedHops": 16993,
+   "txsWithSwaps": 41762,
+   "sampledTxCount": 85216,
+   "fullRangeTxCount": 928462,
+   "scale": 10.895
+  },
+  "unpricedTokenCount": 247,
+  "volume": {
+   "sampledUsd": 5210437,
+   "perDayUsd": 8110743.27
+  },
+  "cyclicArb": {
+   "count": 1652,
+   "perDayCount": 2571.56,
+   "grossUsdSample": 801.17,
+   "netAfterGasUsdSample": 774.3,
+   "grossPerDayUsd": 1247.13,
+   "ci95PerDayUsd": [
+    216.37,
+    3084.97
+   ],
+   "bpsOfVolume": 1.54,
+   "losingCount": 62,
+   "gasUsdSample": 21.47,
+   "gasPctOfGross": 2.68,
+   "topSenders": [
+    [
+     "xoperfan.near",
+     253.45,
+     31.6
+    ],
+    [
+     "notest.near",
+     74.51,
+     9.3
+    ],
+    [
+     "whatdoyoumean.near",
+     74.26,
+     9.3
+    ],
+    [
+     "heron1.near",
+     73.45,
+     9.2
+    ],
+    [
+     "0wl1.near",
+     51.62,
+     6.4
+    ],
+    [
+     "walrus1.near",
+     49.83,
+     6.2
+    ],
+    [
+     "cosmosnock.near",
+     34.3,
+     4.3
+    ],
+    [
+     "otter1.near",
+     32.74,
+     4.1
+    ],
+    [
+     "derek1.near",
+     21.26,
+     2.7
+    ],
+    [
+     "via-trading.near",
+     20.64,
+     2.6
+    ]
+   ],
+   "top3SharePct": 50.2,
+   "distinctSenders": 44
+  },
+  "backruns": {
+   "count": 647,
+   "arbProfitFromBackrunsUsdSample": 314.74,
+   "sharePct": 39.3
+  },
+  "sandwiches": {
+   "candidates": 467,
+   "profitable": 246,
+   "strict": 1,
+   "strictList": [
+    {
+     "pool": "ref:6065",
+     "attacker": "closemeat6237.near",
+     "victim": "zoe1.near",
+     "txs": [
+      "B1dtxRU68dzWLwbqeEQrt2bigHeTXFxZApk5n9g1iXPV",
+      "FQA2KuwiczkBHHNPh5vXVmVpJACyMD5cr1UZNPt2FJfh",
+      "4wmdJzN2JpkM9nQD82Y2ZHXmg5t1nAvzrtTik5BSNrAX"
+     ],
+     "heights": [
+      224332240,
+      224332241,
+      224332242
+     ],
+     "idx": [
+      47,
+      100,
+      61
+     ],
+     "profitInToken": 2.5e-7,
+     "profitUsd": 0.00024651312250657456,
+     "token": "zec.omft.near",
+     "profitable": true,
+     "closesPosition": true,
+     "sameTxAB": false,
+     "victimSwaps": 15,
+     "attackerSwaps": 13789,
+     "strict": true
+    }
+   ],
+   "pairs": [
+    [
+     "vx-zec.near > closemeat6237.near",
+     223
+    ],
+    [
+     "wx-cruce.near > closemeat6237.near",
+     36
+    ],
+    [
+     "zorro7.near > closemeat6237.near",
+     15
+    ],
+    [
+     "7177d0d90632d6a45910786212382395ea6066461eaecddaf5e03642c96c44f0 > closemeat6237.near",
+     14
+    ],
+    [
+     "closemeat6237.near > 8f993a469b20827939f97b2354998210bb6b255727bcd81c89d6a272f5c7b91a",
+     11
+    ]
+   ]
+  },
+  "failedAttempts": {
+   "txs": 8380,
+   "cyclicShapedFailed": 1475,
+   "perDay": 13044.59,
+   "gasUsdSample": 51.04,
+   "gasUsdPerDay": 79.45,
+   "topSenders": [
+    [
+     "notest.near",
+     490
+    ],
+    [
+     "zerotest.near",
+     425
+    ],
+    [
+     "via-trading.near",
+     406
+    ],
+    [
+     "safenode8556.near",
+     386
+    ],
+    [
+     "00000000012.near",
+     358
+    ],
+    [
+     "youngibis2137.near",
+     299
+    ],
+    [
+     "whatdoyoumean.near",
+     291
+    ],
+    [
+     "0scar1.near",
+     291
+    ]
+   ]
+  },
+  "cexDexMarkout60s": {
+   "swaps": 20852,
+   "sumGainUsdSample": -603.97,
+   "positiveGainUsdSample": 3669.69,
+   "perDayNetUsd": -940.16,
+   "top": [
+    [
+     "ijustfuckingdestroyedthem.near",
+     203.94
+    ],
+    [
+     "wx-cruce.near",
+     139.65
+    ],
+    [
+     "hollowpine4417.near",
+     123.79
+    ],
+    [
+     "e6bb0ba0850ad9d5126e8b9790b6fc5688463e8bef963e7a3c06433907ebfd34",
+     93.88
+    ],
+    [
+     "bad24bdb0d5b2d0023e95fe721b51756706f83ade8b99cc550e9592a368838f7",
+     91.06
+    ],
+    [
+     "c7f30234b645491fcd2b70a27bfef7b8dba5743ed0feb4e1ca4de08239b7f1c1",
+     62.82
+    ],
+    [
+     "irisout.near",
+     58.52
+    ],
+    [
+     "hideon.near",
+     57.02
+    ]
+   ],
+   "volUsdSample": 3045356
+  },
+  "issuance": {
+   "supplyNear": 1311676443,
+   "maxInflation": 0.025,
+   "nearUsdMedian": 3.6,
+   "issuanceUsdPerYear": 118050880,
+   "arbGrossUsdPerYear": 455202,
+   "arbPctOfIssuance": 0.3856,
+   "x100PctOfIssuance": 38.56
+  },
+  "inputSha256": "8fdaf24ecda09aa0f17f5b4ddd704d88e83eef7f5f5b0fb75dc2f60ab12ec1c5",
+  "killCriteria": {
+   "KC1_fewerThan30Arbs": false,
+   "KC2_under100PerDay": false,
+   "KC3_strictSandwichCandidates": 1,
+   "KC4_top3Under50": false,
+   "KC5_x100AtLeast1pctIssuance": true
+  }
+ },
+ "extended": {
+  "note": "Post hoc additions (not pre-registered). Same input and pricing as the original section.",
+  "perWindow": [
+   {
+    "i": 0,
+    "from": 223455000,
+    "arbUsd": 0,
+    "volUsd": 11579
+   },
+   {
+    "i": 1,
+    "from": 223461220,
+    "arbUsd": 0.0255,
+    "volUsd": 21178
+   },
+   {
+    "i": 2,
+    "from": 223467440,
+    "arbUsd": 0.0324,
+    "volUsd": 13375
+   },
+   {
+    "i": 3,
+    "from": 223473660,
+    "arbUsd": 0.0201,
+    "volUsd": 21887
+   },
+   {
+    "i": 4,
+    "from": 223479880,
+    "arbUsd": 0.0001,
+    "volUsd": 22323
+   },
+   {
+    "i": 5,
+    "from": 223486101,
+    "arbUsd": 0,
+    "volUsd": 13774
+   },
+   {
+    "i": 6,
+    "from": 223492321,
+    "arbUsd": 0,
+    "volUsd": 4024
+   },
+   {
+    "i": 7,
+    "from": 223498541,
+    "arbUsd": 0.0133,
+    "volUsd": 6942
+   },
+   {
+    "i": 8,
+    "from": 223504761,
+    "arbUsd": 0.1182,
+    "volUsd": 6212
+   },
+   {
+    "i": 9,
+    "from": 223510982,
+    "arbUsd": 0,
+    "volUsd": 5350
+   },
+   {
+    "i": 10,
+    "from": 223517202,
+    "arbUsd": 0.2247,
+    "volUsd": 27855
+   },
+   {
+    "i": 11,
+    "from": 223523422,
+    "arbUsd": 0,
+    "volUsd": 4847
+   },
+   {
+    "i": 12,
+    "from": 223529642,
+    "arbUsd": 0,
+    "volUsd": 3129
+   },
+   {
+    "i": 13,
+    "from": 223535863,
+    "arbUsd": 0.2165,
+    "volUsd": 13861
+   },
+   {
+    "i": 14,
+    "from": 223542083,
+    "arbUsd": 0,
+    "volUsd": 10615
+   },
+   {
+    "i": 15,
+    "from": 223548303,
+    "arbUsd": 0,
+    "volUsd": 8388
+   },
+   {
+    "i": 16,
+    "from": 223554523,
+    "arbUsd": 0.058,
+    "volUsd": 7901
+   },
+   {
+    "i": 17,
+    "from": 223560744,
+    "arbUsd": 0,
+    "volUsd": 3974
+   },
+   {
+    "i": 18,
+    "from": 223566964,
+    "arbUsd": 4.8172,
+    "volUsd": 12960
+   },
+   {
+    "i": 19,
+    "from": 223573184,
+    "arbUsd": 0,
+    "volUsd": 3323
+   },
+   {
+    "i": 20,
+    "from": 223579404,
+    "arbUsd": 0.0512,
+    "volUsd": 3213
+   },
+   {
+    "i": 21,
+    "from": 223585625,
+    "arbUsd": 0,
+    "volUsd": 3100
+   },
+   {
+    "i": 22,
+    "from": 223591845,
+    "arbUsd": 0.0734,
+    "volUsd": 4219
+   },
+   {
+    "i": 23,
+    "from": 223598065,
+    "arbUsd": 0.0303,
+    "volUsd": 3874
+   },
+   {
+    "i": 24,
+    "from": 223604285,
+    "arbUsd": 0.0304,
+    "volUsd": 3283
+   },
+   {
+    "i": 25,
+    "from": 223610506,
+    "arbUsd": 0.0163,
+    "volUsd": 5526
+   },
+   {
+    "i": 26,
+    "from": 223616726,
+    "arbUsd": 0,
+    "volUsd": 7822
+   },
+   {
+    "i": 27,
+    "from": 223622946,
+    "arbUsd": 0.47,
+    "volUsd": 14886
+   },
+   {
+    "i": 28,
+    "from": 223629166,
+    "arbUsd": 1.4355,
+    "volUsd": 45044
+   },
+   {
+    "i": 29,
+    "from": 223635387,
+    "arbUsd": 3.0243,
+    "volUsd": 58220
+   },
+   {
+    "i": 30,
+    "from": 223641607,
+    "arbUsd": 9.2921,
+    "volUsd": 89683
+   },
+   {
+    "i": 31,
+    "from": 223647827,
+    "arbUsd": 0,
+    "volUsd": 7075
+   },
+   {
+    "i": 32,
+    "from": 223654047,
+    "arbUsd": 0.0962,
+    "volUsd": 28726
+   },
+   {
+    "i": 33,
+    "from": 223660268,
+    "arbUsd": 0.0828,
+    "volUsd": 19457
+   },
+   {
+    "i": 34,
+    "from": 223666488,
+    "arbUsd": 0,
+    "volUsd": 9088
+   },
+   {
+    "i": 35,
+    "from": 223672708,
+    "arbUsd": 0,
+    "volUsd": 6510
+   },
+   {
+    "i": 36,
+    "from": 223678928,
+    "arbUsd": 0.209,
+    "volUsd": 32222
+   },
+   {
+    "i": 37,
+    "from": 223685149,
+    "arbUsd": 0.7593,
+    "volUsd": 39099
+   },
+   {
+    "i": 38,
+    "from": 223691369,
+    "arbUsd": 0.0546,
+    "volUsd": 64157
+   },
+   {
+    "i": 39,
+    "from": 223697589,
+    "arbUsd": 2.7155,
+    "volUsd": 55522
+   },
+   {
+    "i": 40,
+    "from": 223703809,
+    "arbUsd": 0.1315,
+    "volUsd": 15290
+   },
+   {
+    "i": 41,
+    "from": 223710030,
+    "arbUsd": 0.1369,
+    "volUsd": 21270
+   },
+   {
+    "i": 42,
+    "from": 223716250,
+    "arbUsd": 0.0391,
+    "volUsd": 11669
+   },
+   {
+    "i": 43,
+    "from": 223722470,
+    "arbUsd": 0,
+    "volUsd": 13616
+   },
+   {
+    "i": 44,
+    "from": 223728690,
+    "arbUsd": 0,
+    "volUsd": 19307
+   },
+   {
+    "i": 45,
+    "from": 223734910,
+    "arbUsd": 0,
+    "volUsd": 27122
+   },
+   {
+    "i": 46,
+    "from": 223741131,
+    "arbUsd": 0.378,
+    "volUsd": 24813
+   },
+   {
+    "i": 47,
+    "from": 223747351,
+    "arbUsd": 0.2691,
+    "volUsd": 21920
+   },
+   {
+    "i": 48,
+    "from": 223753571,
+    "arbUsd": 0.654,
+    "volUsd": 42147
+   },
+   {
+    "i": 49,
+    "from": 223759791,
+    "arbUsd": 29.6314,
+    "volUsd": 222446
+   },
+   {
+    "i": 50,
+    "from": 223766012,
+    "arbUsd": 5.163,
+    "volUsd": 143009
+   },
+   {
+    "i": 51,
+    "from": 223772232,
+    "arbUsd": 0,
+    "volUsd": 27166
+   },
+   {
+    "i": 52,
+    "from": 223778452,
+    "arbUsd": 0.1799,
+    "volUsd": 19747
+   },
+   {
+    "i": 53,
+    "from": 223784672,
+    "arbUsd": 0.2165,
+    "volUsd": 19192
+   },
+   {
+    "i": 54,
+    "from": 223790893,
+    "arbUsd": 0.0254,
+    "volUsd": 38792
+   },
+   {
+    "i": 55,
+    "from": 223797113,
+    "arbUsd": 0.563,
+    "volUsd": 69944
+   },
+   {
+    "i": 56,
+    "from": 223803333,
+    "arbUsd": 0.2319,
+    "volUsd": 16209
+   },
+   {
+    "i": 57,
+    "from": 223809553,
+    "arbUsd": 0,
+    "volUsd": 13664
+   },
+   {
+    "i": 58,
+    "from": 223815774,
+    "arbUsd": 0.0269,
+    "volUsd": 20165
+   },
+   {
+    "i": 59,
+    "from": 223821994,
+    "arbUsd": 0.2919,
+    "volUsd": 19908
+   },
+   {
+    "i": 60,
+    "from": 223828214,
+    "arbUsd": 4.1353,
+    "volUsd": 94632
+   },
+   {
+    "i": 61,
+    "from": 223834434,
+    "arbUsd": 0.0255,
+    "volUsd": 4771
+   },
+   {
+    "i": 62,
+    "from": 223840655,
+    "arbUsd": 0,
+    "volUsd": 5587
+   },
+   {
+    "i": 63,
+    "from": 223846875,
+    "arbUsd": 0,
+    "volUsd": 9830
+   },
+   {
+    "i": 64,
+    "from": 223853095,
+    "arbUsd": 0.38,
+    "volUsd": 26425
+   },
+   {
+    "i": 65,
+    "from": 223859315,
+    "arbUsd": 8.7148,
+    "volUsd": 12163
+   },
+   {
+    "i": 66,
+    "from": 223865536,
+    "arbUsd": 0.0839,
+    "volUsd": 6956
+   },
+   {
+    "i": 67,
+    "from": 223871756,
+    "arbUsd": 0.0254,
+    "volUsd": 7477
+   },
+   {
+    "i": 68,
+    "from": 223877976,
+    "arbUsd": 0,
+    "volUsd": 16794
+   },
+   {
+    "i": 69,
+    "from": 223884196,
+    "arbUsd": 0.0173,
+    "volUsd": 8888
+   },
+   {
+    "i": 70,
+    "from": 223890417,
+    "arbUsd": 0.1805,
+    "volUsd": 20458
+   },
+   {
+    "i": 71,
+    "from": 223896637,
+    "arbUsd": 0,
+    "volUsd": 5801
+   },
+   {
+    "i": 72,
+    "from": 223902857,
+    "arbUsd": 0,
+    "volUsd": 9818
+   },
+   {
+    "i": 73,
+    "from": 223909077,
+    "arbUsd": 0.0276,
+    "volUsd": 12831
+   },
+   {
+    "i": 74,
+    "from": 223915298,
+    "arbUsd": 0.0709,
+    "volUsd": 9592
+   },
+   {
+    "i": 75,
+    "from": 223921518,
+    "arbUsd": 0,
+    "volUsd": 11289
+   },
+   {
+    "i": 76,
+    "from": 223927738,
+    "arbUsd": 0.4073,
+    "volUsd": 40415
+   },
+   {
+    "i": 77,
+    "from": 223933958,
+    "arbUsd": 3.4594,
+    "volUsd": 90982
+   },
+   {
+    "i": 78,
+    "from": 223940179,
+    "arbUsd": 2.2821,
+    "volUsd": 73209
+   },
+   {
+    "i": 79,
+    "from": 223946399,
+    "arbUsd": 0.0758,
+    "volUsd": 15600
+   },
+   {
+    "i": 80,
+    "from": 223952619,
+    "arbUsd": 1.6849,
+    "volUsd": 47913
+   },
+   {
+    "i": 81,
+    "from": 223958839,
+    "arbUsd": 0.6974,
+    "volUsd": 53270
+   },
+   {
+    "i": 82,
+    "from": 223965060,
+    "arbUsd": 0.2034,
+    "volUsd": 15770
+   },
+   {
+    "i": 83,
+    "from": 223971280,
+    "arbUsd": 0.0984,
+    "volUsd": 15450
+   },
+   {
+    "i": 84,
+    "from": 223977500,
+    "arbUsd": 0.0723,
+    "volUsd": 12212
+   },
+   {
+    "i": 85,
+    "from": 223983720,
+    "arbUsd": 0.1567,
+    "volUsd": 25303
+   },
+   {
+    "i": 86,
+    "from": 223989940,
+    "arbUsd": 0.1293,
+    "volUsd": 8236
+   },
+   {
+    "i": 87,
+    "from": 223996161,
+    "arbUsd": 0.3803,
+    "volUsd": 16810
+   },
+   {
+    "i": 88,
+    "from": 224002381,
+    "arbUsd": 0.2823,
+    "volUsd": 33521
+   },
+   {
+    "i": 89,
+    "from": 224008601,
+    "arbUsd": 0.0371,
+    "volUsd": 13227
+   },
+   {
+    "i": 90,
+    "from": 224014821,
+    "arbUsd": 0.5527,
+    "volUsd": 23099
+   },
+   {
+    "i": 91,
+    "from": 224021042,
+    "arbUsd": 0.1222,
+    "volUsd": 23295
+   },
+   {
+    "i": 92,
+    "from": 224027262,
+    "arbUsd": 0.0234,
+    "volUsd": 12033
+   },
+   {
+    "i": 93,
+    "from": 224033482,
+    "arbUsd": 0.5747,
+    "volUsd": 48794
+   },
+   {
+    "i": 94,
+    "from": 224039702,
+    "arbUsd": 0.384,
+    "volUsd": 20138
+   },
+   {
+    "i": 95,
+    "from": 224045923,
+    "arbUsd": 0.4298,
+    "volUsd": 28132
+   },
+   {
+    "i": 96,
+    "from": 224052143,
+    "arbUsd": 0.9257,
+    "volUsd": 51810
+   },
+   {
+    "i": 97,
+    "from": 224058363,
+    "arbUsd": 0,
+    "volUsd": 11963
+   },
+   {
+    "i": 98,
+    "from": 224064583,
+    "arbUsd": 8.4618,
+    "volUsd": 70675
+   },
+   {
+    "i": 99,
+    "from": 224070804,
+    "arbUsd": 0.0665,
+    "volUsd": 18275
+   },
+   {
+    "i": 100,
+    "from": 224077024,
+    "arbUsd": 0.1153,
+    "volUsd": 22680
+   },
+   {
+    "i": 101,
+    "from": 224083244,
+    "arbUsd": 0.2366,
+    "volUsd": 70941
+   },
+   {
+    "i": 102,
+    "from": 224089464,
+    "arbUsd": 0.2447,
+    "volUsd": 37047
+   },
+   {
+    "i": 103,
+    "from": 224095685,
+    "arbUsd": 0.3938,
+    "volUsd": 25701
+   },
+   {
+    "i": 104,
+    "from": 224101905,
+    "arbUsd": 0.0745,
+    "volUsd": 17293
+   },
+   {
+    "i": 105,
+    "from": 224108125,
+    "arbUsd": 0,
+    "volUsd": 15326
+   },
+   {
+    "i": 106,
+    "from": 224114345,
+    "arbUsd": 1.5617,
+    "volUsd": 34427
+   },
+   {
+    "i": 107,
+    "from": 224120566,
+    "arbUsd": 0.2636,
+    "volUsd": 30347
+   },
+   {
+    "i": 108,
+    "from": 224126786,
+    "arbUsd": 0.5903,
+    "volUsd": 24778
+   },
+   {
+    "i": 109,
+    "from": 224133006,
+    "arbUsd": 1.1488,
+    "volUsd": 41571
+   },
+   {
+    "i": 110,
+    "from": 224139226,
+    "arbUsd": 0.0907,
+    "volUsd": 24433
+   },
+   {
+    "i": 111,
+    "from": 224145447,
+    "arbUsd": 0,
+    "volUsd": 18928
+   },
+   {
+    "i": 112,
+    "from": 224151667,
+    "arbUsd": 0.28,
+    "volUsd": 16734
+   },
+   {
+    "i": 113,
+    "from": 224157887,
+    "arbUsd": 0.0145,
+    "volUsd": 15004
+   },
+   {
+    "i": 114,
+    "from": 224164107,
+    "arbUsd": 2.3544,
+    "volUsd": 68448
+   },
+   {
+    "i": 115,
+    "from": 224170328,
+    "arbUsd": 0,
+    "volUsd": 26999
+   },
+   {
+    "i": 116,
+    "from": 224176548,
+    "arbUsd": 0,
+    "volUsd": 8525
+   },
+   {
+    "i": 117,
+    "from": 224182768,
+    "arbUsd": 0.0146,
+    "volUsd": 6055
+   },
+   {
+    "i": 118,
+    "from": 224188988,
+    "arbUsd": 0.6612,
+    "volUsd": 30723
+   },
+   {
+    "i": 119,
+    "from": 224195209,
+    "arbUsd": 0.2129,
+    "volUsd": 17619
+   },
+   {
+    "i": 120,
+    "from": 224201429,
+    "arbUsd": 0.3669,
+    "volUsd": 21758
+   },
+   {
+    "i": 121,
+    "from": 224207649,
+    "arbUsd": 0.0942,
+    "volUsd": 13942
+   },
+   {
+    "i": 122,
+    "from": 224213869,
+    "arbUsd": 0.3629,
+    "volUsd": 19354
+   },
+   {
+    "i": 123,
+    "from": 224220090,
+    "arbUsd": 4.3924,
+    "volUsd": 39602
+   },
+   {
+    "i": 124,
+    "from": 224226310,
+    "arbUsd": 0.2827,
+    "volUsd": 87873
+   },
+   {
+    "i": 125,
+    "from": 224232530,
+    "arbUsd": 4.955,
+    "volUsd": 89182
+   },
+   {
+    "i": 126,
+    "from": 224238750,
+    "arbUsd": 0.8685,
+    "volUsd": 28585
+   },
+   {
+    "i": 127,
+    "from": 224244970,
+    "arbUsd": 0.5045,
+    "volUsd": 31309
+   },
+   {
+    "i": 128,
+    "from": 224251191,
+    "arbUsd": 0.2916,
+    "volUsd": 44238
+   },
+   {
+    "i": 129,
+    "from": 224257411,
+    "arbUsd": 0.1652,
+    "volUsd": 13678
+   },
+   {
+    "i": 130,
+    "from": 224263631,
+    "arbUsd": 0.6688,
+    "volUsd": 15982
+   },
+   {
+    "i": 131,
+    "from": 224269851,
+    "arbUsd": 0,
+    "volUsd": 22803
+   },
+   {
+    "i": 132,
+    "from": 224276072,
+    "arbUsd": 0.0715,
+    "volUsd": 7704
+   },
+   {
+    "i": 133,
+    "from": 224282292,
+    "arbUsd": 0.1481,
+    "volUsd": 12015
+   },
+   {
+    "i": 134,
+    "from": 224288512,
+    "arbUsd": 0.1847,
+    "volUsd": 34281
+   },
+   {
+    "i": 135,
+    "from": 224294732,
+    "arbUsd": 0.0212,
+    "volUsd": 23115
+   },
+   {
+    "i": 136,
+    "from": 224300953,
+    "arbUsd": 16.4098,
+    "volUsd": 60765
+   },
+   {
+    "i": 137,
+    "from": 224307173,
+    "arbUsd": 0.2935,
+    "volUsd": 81246
+   },
+   {
+    "i": 138,
+    "from": 224313393,
+    "arbUsd": 16.0162,
+    "volUsd": 96961
+   },
+   {
+    "i": 139,
+    "from": 224319613,
+    "arbUsd": 0.1291,
+    "volUsd": 32545
+   },
+   {
+    "i": 140,
+    "from": 224325834,
+    "arbUsd": 0.1804,
+    "volUsd": 23662
+   },
+   {
+    "i": 141,
+    "from": 224332054,
+    "arbUsd": 3.5058,
+    "volUsd": 90770
+   },
+   {
+    "i": 142,
+    "from": 224338274,
+    "arbUsd": 0.2353,
+    "volUsd": 25397
+   },
+   {
+    "i": 143,
+    "from": 224344494,
+    "arbUsd": 0.0064,
+    "volUsd": 19905
+   },
+   {
+    "i": 144,
+    "from": 224350715,
+    "arbUsd": 0.2195,
+    "volUsd": 16473
+   },
+   {
+    "i": 145,
+    "from": 224356935,
+    "arbUsd": 0.017,
+    "volUsd": 29266
+   },
+   {
+    "i": 146,
+    "from": 224363155,
+    "arbUsd": 0.4275,
+    "volUsd": 23401
+   },
+   {
+    "i": 147,
+    "from": 224369375,
+    "arbUsd": 1.3914,
+    "volUsd": 136428
+   },
+   {
+    "i": 148,
+    "from": 224375596,
+    "arbUsd": 0.1127,
+    "volUsd": 41426
+   },
+   {
+    "i": 149,
+    "from": 224381816,
+    "arbUsd": 0.2074,
+    "volUsd": 84743
+   },
+   {
+    "i": 150,
+    "from": 224388036,
+    "arbUsd": 1.2048,
+    "volUsd": 82669
+   },
+   {
+    "i": 151,
+    "from": 224394256,
+    "arbUsd": 0,
+    "volUsd": 28508
+   },
+   {
+    "i": 152,
+    "from": 224400477,
+    "arbUsd": 14.6995,
+    "volUsd": 209784
+   },
+   {
+    "i": 153,
+    "from": 224406697,
+    "arbUsd": 0.0732,
+    "volUsd": 20794
+   },
+   {
+    "i": 154,
+    "from": 224412917,
+    "arbUsd": 578.1503,
+    "volUsd": 113246
+   },
+   {
+    "i": 155,
+    "from": 224419137,
+    "arbUsd": 0.3928,
+    "volUsd": 24985
+   },
+   {
+    "i": 156,
+    "from": 224425358,
+    "arbUsd": 0.0718,
+    "volUsd": 31315
+   },
+   {
+    "i": 157,
+    "from": 224431578,
+    "arbUsd": 31.0037,
+    "volUsd": 28459
+   },
+   {
+    "i": 158,
+    "from": 224437798,
+    "arbUsd": 0,
+    "volUsd": 12383
+   },
+   {
+    "i": 159,
+    "from": 224444018,
+    "arbUsd": 0.193,
+    "volUsd": 16811
+   },
+   {
+    "i": 160,
+    "from": 224450239,
+    "arbUsd": 0.8667,
+    "volUsd": 45503
+   },
+   {
+    "i": 161,
+    "from": 224456459,
+    "arbUsd": 15.5993,
+    "volUsd": 46813
+   },
+   {
+    "i": 162,
+    "from": 224462679,
+    "arbUsd": 0.2116,
+    "volUsd": 49923
+   },
+   {
+    "i": 163,
+    "from": 224468899,
+    "arbUsd": 0.1564,
+    "volUsd": 23300
+   },
+   {
+    "i": 164,
+    "from": 224475120,
+    "arbUsd": 0.052,
+    "volUsd": 15475
+   },
+   {
+    "i": 165,
+    "from": 224481340,
+    "arbUsd": 0.7188,
+    "volUsd": 46838
+   },
+   {
+    "i": 166,
+    "from": 224487560,
+    "arbUsd": 0.0148,
+    "volUsd": 12622
+   },
+   {
+    "i": 167,
+    "from": 224493780,
+    "arbUsd": 0,
+    "volUsd": 13951
+   }
+  ],
+  "robust": {
+   "spikeWindowIndex": 154,
+   "spikeWindowFrom": 224412917,
+   "spikeSharePct": 72.2,
+   "secondWindowSharePct": 3.9,
+   "thirdWindowSharePct": 3.7,
+   "medianWindowUsd": 0.14,
+   "exSpikePerDayUsd": 347.16,
+   "exTop2PerDayUsd": 298.9,
+   "exSpikeCI95PerDayUsd": [
+    170.82,
+    564.17
+   ],
+   "exSpikeCINote": "bootstrap over the 167 non-spike windows, rescaled to the full range (same seed 42)",
+   "exSpikeBpsOfVolume": 0.44,
+   "windowsWithAnyArbProfit": 133
+  },
+  "concentration": {
+   "bySender": {
+    "top3Pct": 50.2,
+    "top1Pct": 31.6,
+    "hhi": 1411,
+    "distinct": 44,
+    "top10": [
+     [
+      "xoperfan.near",
+      31.6
+     ],
+     [
+      "notest.near",
+      9.3
+     ],
+     [
+      "whatdoyoumean.near",
+      9.3
+     ],
+     [
+      "heron1.near",
+      9.2
+     ],
+     [
+      "0wl1.near",
+      6.4
+     ],
+     [
+      "walrus1.near",
+      6.2
+     ],
+     [
+      "cosmosnock.near",
+      4.3
+     ],
+     [
+      "otter1.near",
+      4.1
+     ],
+     [
+      "derek1.near",
+      2.7
+     ],
+     [
+      "via-trading.near",
+      2.6
+     ]
+    ]
+   },
+   "bySigner": {
+    "top3Pct": 50.2,
+    "distinct": 44
+   },
+   "exSpikeBySender": {
+    "top3Pct": 61.6,
+    "top3": [
+     [
+      "whatdoyoumean.near",
+      32.3
+     ],
+     [
+      "notest.near",
+      19.8
+     ],
+     [
+      "derek1.near",
+      9.5
+     ]
+    ],
+    "hhi": 1726
+   },
+   "animal1FamilyPct": 38.2,
+   "animal1FamilyMembers": [
+    "heron1.near",
+    "0wl1.near",
+    "walrus1.near",
+    "otter1.near",
+    "derek1.near",
+    "toad1.near",
+    "ferret1.near",
+    "bison1.near",
+    "addax1.near",
+    "0scar1.near",
+    "zoe1.near",
+    "fredrik1.near",
+    "abel1.near",
+    "paula1.near",
+    "viola1.near",
+    "jolene1.near"
+   ],
+   "animal1FamilyExSpikePct": 20.2,
+   "familyRule": "name matches ^[a-z0-9]+1\\.near$ (naming only, no funding-graph check) [judgment]"
+  },
+  "spike": {
+   "window": [
+    224412917,
+    224413516
+   ],
+   "hopsOk": 1291,
+   "hopsAll": 3563,
+   "nearUsdMinMax": [
+    3.537,
+    3.549
+   ],
+   "routerTxs": 156,
+   "routerTxsFailed": 5,
+   "routerFirst10": [
+    {
+     "tx": "CsRY5e4FaKTEEH3pBq1o3EDKEMkoB4zGQgpzNgiGjDT5",
+     "h": 224412934,
+     "ok": false,
+     "inUsd": 10000,
+     "signer": "euwest1-fwd.near-meme-router.near"
+    },
+    {
+     "tx": "5cvtGuvbx2BBdZ5d4EcnnqvdPQoZuHftJZQDrTKs4RE3",
+     "h": 224412982,
+     "ok": true,
+     "inUsd": 1000,
+     "signer": "euwest1-fwd.near-meme-router.near"
+    },
+    {
+     "tx": "7B645v37nzuGYeZQCdpQy42WAc2qnHJ78ML7rXBwtTT6",
+     "h": 224413042,
+     "ok": true,
+     "inUsd": 117,
+     "signer": "home-fwd.near-meme-router.near"
+    },
+    {
+     "tx": "8KVBg2YizqNXmAwg8zhwvUieoP1qEVdQxigyjX8uH9zt",
+     "h": 224413048,
+     "ok": true,
+     "inUsd": 100,
+     "signer": "home-fwd.near-meme-router.near"
+    },
+    {
+     "tx": "12pnbCtNdWYn1Kv8wLUfwRmZCgMyYzu5Fo8CsADYBYdQ",
+     "h": 224413053,
+     "ok": false,
+     "inUsd": 3921,
+     "signer": "home-fwd.near-meme-router.near"
+    },
+    {
+     "tx": "Gy8nqL2fYvvFnCCFkSUca5TkkvPZSrHQ7wzwmhf5NLNx",
+     "h": 224413053,
+     "ok": true,
+     "inUsd": 398,
+     "signer": "euwest1-fwd.near-meme-router.near"
+    },
+    {
+     "tx": "CqZhBCYVLam54VPrLCH3zhamqHic9KV1V8jwmdmeJmso",
+     "h": 224413053,
+     "ok": true,
+     "inUsd": 24,
+     "signer": "euwest1-fwd.near-meme-router.near"
+    },
+    {
+     "tx": "XTm5Wj4AmddatpEtdnd3pdDLMqZW4RfYNLNnS5s2AXj",
+     "h": 224413053,
+     "ok": true,
+     "inUsd": 41,
+     "signer": "home-fwd.near-meme-router.near"
+    },
+    {
+     "tx": "ARvjs2PNH4A4xQjaHDyguVDu1NhkM8BUKZfe3UtnuEmE",
+     "h": 224413054,
+     "ok": true,
+     "inUsd": 199,
+     "signer": "euwest1-fwd.near-meme-router.near"
+    },
+    {
+     "tx": "PrS2nzgeFeLUc1Y7XxrNYvC48zLkx34xpFtHYxF6fYF",
+     "h": 224413054,
+     "ok": true,
+     "inUsd": 25,
+     "signer": "euwest1-fwd.near-meme-router.near"
+    }
+   ],
+   "routerLargestOk": [
+    {
+     "tx": "EAekM46AQHR6HuJNS16LG8yEpiMEAMz7Au3iRT6gdVr8",
+     "h": 224413068,
+     "inUsd": 2374
+    },
+    {
+     "tx": "GQXfMw7mHKCeTH1jJTVyQuYxiizGYt6V7FZVofuLvKET",
+     "h": 224413131,
+     "inUsd": 2240
+    },
+    {
+     "tx": "FWohQPJmDsoR9W7YL1ouLyYzQSyhufzvQDnmqk57SVRt",
+     "h": 224413134,
+     "inUsd": 1333
+    },
+    {
+     "tx": "5cvtGuvbx2BBdZ5d4EcnnqvdPQoZuHftJZQDrTKs4RE3",
+     "h": 224412982,
+     "inUsd": 1000
+    },
+    {
+     "tx": "GsuC6jqJzM2b7SrXSq2a9DrsVJNRnX17XkatMq73s2QM",
+     "h": 224413093,
+     "inUsd": 776
+    }
+   ],
+   "arbs": 138,
+   "arbProfitUsdSample": 578.15,
+   "backrunSharePctOfWindow": 38.7,
+   "bySender": [
+    [
+     "xoperfan.near",
+     253.22,
+     43.8
+    ],
+    [
+     "heron1.near",
+     72.57,
+     12.6
+    ],
+    [
+     "0wl1.near",
+     51.45,
+     8.9
+    ],
+    [
+     "walrus1.near",
+     49.21,
+     8.5
+    ],
+    [
+     "otter1.near",
+     31.48,
+     5.4
+    ],
+    [
+     "cosmosnock.near",
+     31.43,
+     5.4
+    ],
+    [
+     "notest.near",
+     30.33,
+     5.2
+    ],
+    [
+     "toad1.near",
+     17.46,
+     3
+    ]
+   ],
+   "topArbs": [
+    {
+     "tx": "ZNRqvoRqCYiuWHG2LoUJcx95TPQZuzcD1xx7wWbizkr",
+     "sender": "walrus1.near",
+     "h": 224413134,
+     "profitUsd": 36.31,
+     "hops": 3
+    },
+    {
+     "tx": "DaxDXgYX2urAirpko9Jjxe7khK6AWauBTeHVxHXMkDyu",
+     "sender": "0wl1.near",
+     "h": 224413093,
+     "profitUsd": 33.5,
+     "hops": 3
+    },
+    {
+     "tx": "FEbckSUAgNDfyLJPymswjU6j8NDLkywA2ZgizCZf9cRR",
+     "sender": "xoperfan.near",
+     "h": 224413134,
+     "profitUsd": 31.17,
+     "hops": 3
+    },
+    {
+     "tx": "Fg6yAxXfCAiV2jJ2WuANCuDRuyh6vd6nATfV8rBzxKVG",
+     "sender": "xoperfan.near",
+     "h": 224412985,
+     "profitUsd": 31.15,
+     "hops": 3
+    },
+    {
+     "tx": "6g4m1uUqWZXyFwEDGga3ugKhobXPvMemXZw5SKv3cf4Q",
+     "sender": "heron1.near",
+     "h": 224413093,
+     "profitUsd": 30.57,
+     "hops": 3
+    },
+    {
+     "tx": "EdK1YMzPv7c2DHqZyGmvP4LWGtN9fBTfzSo2DhKq1wzw",
+     "sender": "xoperfan.near",
+     "h": 224413134,
+     "profitUsd": 26.1,
+     "hops": 3
+    }
+   ],
+   "firstArbHeight": 224412985,
+   "lastArbHeight": 224413513
+  },
+  "largestArbs": [
+   {
+    "tx": "ZNRqvoRqCYiuWHG2LoUJcx95TPQZuzcD1xx7wWbizkr",
+    "sender": "walrus1.near",
+    "profitUsd": 36.31,
+    "hops": 3,
+    "h": 224413134
+   },
+   {
+    "tx": "DaxDXgYX2urAirpko9Jjxe7khK6AWauBTeHVxHXMkDyu",
+    "sender": "0wl1.near",
+    "profitUsd": 33.5,
+    "hops": 3,
+    "h": 224413093
+   },
+   {
+    "tx": "FEbckSUAgNDfyLJPymswjU6j8NDLkywA2ZgizCZf9cRR",
+    "sender": "xoperfan.near",
+    "profitUsd": 31.17,
+    "hops": 3,
+    "h": 224413134
+   },
+   {
+    "tx": "Fg6yAxXfCAiV2jJ2WuANCuDRuyh6vd6nATfV8rBzxKVG",
+    "sender": "xoperfan.near",
+    "profitUsd": 31.15,
+    "hops": 3,
+    "h": 224412985
+   },
+   {
+    "tx": "4Uvs881fE3mh6opt1o8uT7sBM3zzkbeGfTFSQBLUTGNW",
+    "sender": "notest.near",
+    "profitUsd": 30.65,
+    "hops": 3,
+    "h": 224431627
+   }
+  ],
+  "markout": {
+   "h60": {
+    "netPerDayUsd": -940.16,
+    "swaps": 20852
+   },
+   "h300": {
+    "netPerDayUsd": -515.09,
+    "swaps": 20852
+   },
+   "positiveTail300": {
+    "accountsWith10PlusSwaps": 46,
+    "netPositiveAccounts": 28,
+    "netPositiveSumPerDayUsd": 1924.51,
+    "top5": [
+     {
+      "acct": "hollowpine4417.near",
+      "swaps": 3138,
+      "volUsd": 531646,
+      "gainUsd": 174.62,
+      "bps": 3.3
+     },
+     {
+      "acct": "ijustfuckingdestroyedthem.near",
+      "swaps": 89,
+      "volUsd": 67654,
+      "gainUsd": 172.59,
+      "bps": 25.5
+     },
+     {
+      "acct": "wx-cruce.near",
+      "swaps": 1956,
+      "volUsd": 313845,
+      "gainUsd": 154.45,
+      "bps": 4.9
+     },
+     {
+      "acct": "closemeat6237.near",
+      "swaps": 4976,
+      "volUsd": 675754,
+      "gainUsd": 109.48,
+      "bps": 1.6
+     },
+     {
+      "acct": "bad24bdb0d5b2d0023e95fe721b51756706f83ade8b99cc550e9592a368838f7",
+      "swaps": 88,
+      "volUsd": 62655,
+      "gainUsd": 74.92,
+      "bps": 12
+     }
+    ]
+   },
+   "splitHalf300": {
+    "note": "accounts with >=5 swaps in both halves (windows 1-84 vs 85-168); do first-half winners keep winning?",
+    "accounts": 33,
+    "firstHalfWinners": 25,
+    "alsoWinSecondHalf": 15,
+    "firstHalfWinnersSecondHalfSumUsdSample": 321.67,
+    "firstHalfWinnersSecondHalfPerDayUsd": 1001,
+    "firstHalfLosersSecondHalfSumUsdSample": -645.48
+   },
+   "note": "Binance 1-minute closes only, so horizons below 60 s (e.g. 5 s) are not measurable from these fixtures"
+  },
+  "gas": {
+   "arbGasPctOfGross": 2.68,
+   "failedGasPctOfGross": 6.4
+  }
+ }
+}
