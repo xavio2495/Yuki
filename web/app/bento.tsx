@@ -43,13 +43,16 @@ const GROUP_LABEL: Record<OutKind, string> = { code: "Code", results: "Results",
 // Rects are computed here and tiles transition their box. Only the state picks a layout; content never does.
 type TileId = "brand" | "big" | "faq" | "hero" | "sum" | "val" | "proof" | "check" | "out" | "index" | "tabs";
 type Place = [number, number, number, number] | null;
-type Layout = { cols: number[]; rows: number[]; tiles: Record<TileId, Place> };
+// splits: two tiles stacked in one column share their combined height at a given ratio (other tiles unaffected)
+type Layout = { cols: number[]; rows: number[]; tiles: Record<TileId, Place>; splits?: { top: TileId; bottom: TileId; ratio: number }[] };
 const TILES: TileId[] = ["brand", "big", "faq", "hero", "sum", "val", "proof", "check", "out", "index", "tabs"];
 const HOME: Layout = {
   cols: [1, 1, 1, 1, 1.05], rows: [1.12, 0.68, 0.85, 0.9, 1.2],
   tiles: { brand: [0, 0, 1, 1], big: [0, 1, 1, 2], faq: [0, 3, 1, 2], hero: [1, 0, 3, 4], sum: [4, 0, 1, 2], val: [4, 2, 1, 2], proof: [1, 4, 1, 1], check: [2, 4, 1, 1], out: [3, 4, 2, 1], index: null, tabs: null },
+  // the thesis card gets room for all five points; the questions card for every question
+  splits: [{ top: "sum", bottom: "val", ratio: 0.62 }, { top: "big", bottom: "faq", ratio: 0.38 }],
 };
-const BOOT: Layout = { ...HOME, tiles: { brand: null, big: null, faq: null, hero: [1, 0, 3, 4], sum: null, val: null, proof: null, check: null, out: null, index: null, tabs: null } };
+const BOOT: Layout = { ...HOME, splits: [], tiles: { brand: null, big: null, faq: null, hero: [1, 0, 3, 4], sum: null, val: null, proof: null, check: null, out: null, index: null, tabs: null } };
 // the reading layout from the mock: brand + index on the left, tab bar + content on the right
 const READ = (H: number, gap: number): Layout => {
   const bar = 56, brand = 150;
@@ -80,9 +83,17 @@ function compute(layout: Layout, W: number, H: number, gap: number): Record<Tile
     const pl = layout.tiles[id];
     out[id] = pl ? { x: c.pos[pl[0]], y: r.pos[pl[1]], w: span(c, pl[0], pl[2]), h: span(r, pl[1], pl[3]) } : null;
   }
+  for (const sp of layout.splits ?? []) {
+    const a = out[sp.top], b = out[sp.bottom];
+    if (!a || !b) continue;
+    const total = b.y + b.h - a.y - gap;
+    a.h = total * sp.ratio;
+    b.y = a.y + a.h + gap;
+    b.h = total - a.h;
+  }
   return out;
 }
-const MOBILE_H: Partial<Record<TileId, number>> = { brand: 150, big: 210, val: 170, sum: 330, faq: 330, out: 300, proof: 180, check: 230 };
+const MOBILE_H: Partial<Record<TileId, number>> = { brand: 150, big: 200, val: 170, sum: 400, faq: 400, out: 260, proof: 180, check: 230 };
 const MOBILE_ORDER: TileId[] = ["brand", "hero", "big", "val", "sum", "faq", "out", "proof", "check"];
 
 const subscribeTheme = (cb: () => void) => { addEventListener("yuki-theme", cb); return () => removeEventListener("yuki-theme", cb); };
