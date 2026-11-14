@@ -209,7 +209,7 @@ body {
   gap: 8px;
 }
 .wordmark {
-  height: clamp(78px, 50cqh, 150px);
+  height: clamp(56px, calc(100cqh - 135px), 150px); /* whatever the question leaves */
   width: auto;
   margin: -6px 0 0 -8px;
 }

@@ -56,7 +56,7 @@ const HOME: Layout = {
 const BOOT: Layout = { ...HOME, splits: [], tiles: { brand: null, big: null, faq: null, hero: [1, 0, 3, 4], sum: null, val: null, proof: null, check: null, out: null, index: null, tabs: null } };
 // the reading layout from the mock: brand + index on the left, tab bar + content on the right
 const READ = (H: number, gap: number): Layout => {
-  const bar = 56, brand = 150;
+  const bar = 56, brand = 200;
   return {
     cols: [1.15, 1, 1, 1, 1], rows: [bar, brand - bar - gap, Math.max(1, H - brand - gap)],
     tiles: { brand: [0, 0, 1, 2], index: [0, 2, 1, 1], tabs: [1, 0, 4, 1], hero: [1, 1, 4, 2], big: null, faq: null, sum: null, val: null, proof: null, check: null, out: null },
@@ -94,7 +94,7 @@ function compute(layout: Layout, W: number, H: number, gap: number): Record<Tile
   }
   return out;
 }
-const MOBILE_H: Partial<Record<TileId, number>> = { brand: 150, big: 210, val: 210, sum: 270, faq: 400, out: 230, proof: 210, check: 250 };
+const MOBILE_H: Partial<Record<TileId, number>> = { brand: 200, big: 210, val: 210, sum: 270, faq: 400, out: 230, proof: 210, check: 250 };
 const MOBILE_ORDER: TileId[] = ["brand", "hero", "sum", "out", "big", "faq", "val", "proof", "check"];
 
 const subscribeTheme = (cb: () => void) => { addEventListener("yuki-theme", cb); return () => removeEventListener("yuki-theme", cb); };
