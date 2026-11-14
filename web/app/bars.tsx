@@ -17,6 +17,11 @@ export default function Bars({ series, running }: { series: number[]; running: b
     let w = 0, h = 0, dpr = 1, raf = 0;
     const t0 = performance.now();
     const pointer = { x: -1e4, y: -1e4, active: false };
+    // palette from the theme (3 colours): accent for the rods, background for the floor fade
+    const rgb = (v: string) => { const h = v.trim().replace("#", ""); const n = parseInt(h.length === 3 ? h.replace(/./g, c => c + c) : h, 16); return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; };
+    const pal = { a: [111, 139, 255], bg: [5, 7, 10], fg: [185, 216, 224] };
+    const readPalette = () => { const cs = getComputedStyle(document.documentElement); pal.a = rgb(cs.getPropertyValue("--accent") || "#6f8bff"); pal.bg = rgb(cs.getPropertyValue("--bg") || "#05070a"); pal.fg = rgb(cs.getPropertyValue("--fg") || "#b9d8e0"); if (reduce) draw(0); };
+    const c = (k: "a" | "bg" | "fg", alpha: number) => `rgba(${pal[k][0]},${pal[k][1]},${pal[k][2]},${alpha})`;
 
     // group windows into rods
     const ROD_TARGET = 28;
@@ -73,19 +78,19 @@ export default function Bars({ series, running }: { series: number[]; running: b
 
         // rod: bright top fading to the floor
         const g = ctx.createLinearGradient(0, 0, 0, h);
-        g.addColorStop(0, "rgba(96,128,255,0.95)");
-        g.addColorStop(0.55, "rgba(58,86,200,0.55)");
-        g.addColorStop(1, "rgba(20,28,70,0.08)");
+        g.addColorStop(0, c("a", 0.95));
+        g.addColorStop(0.55, c("a", 0.45));
+        g.addColorStop(1, c("a", 0.05));
         ctx.fillStyle = g;
         ctx.fillRect(x - rodW / 2, 0, rodW, h);
 
         // capsule
         const cg = ctx.createLinearGradient(0, y0, 0, y1);
-        cg.addColorStop(0, "rgba(120,150,255,1)");
-        cg.addColorStop(0.5, `rgba(78,108,240,${0.75 + 0.25 * r.frac})`);
-        cg.addColorStop(1, "rgba(40,60,160,0.35)");
+        cg.addColorStop(0, c("fg", 0.95));
+        cg.addColorStop(0.3, c("a", 1));
+        cg.addColorStop(1, c("a", 0.3));
         ctx.fillStyle = cg;
-        ctx.shadowColor = "rgba(90,120,255,0.55)";
+        ctx.shadowColor = c("a", 0.55);
         ctx.shadowBlur = 18 * r.frac + 4;
         capsule(x, y0, y1, capHalf * r.width * (0.7 + 0.5 * near));
         ctx.fill();
@@ -93,8 +98,8 @@ export default function Bars({ series, running }: { series: number[]; running: b
       }
       // floor fade
       const f = ctx.createLinearGradient(0, h * 0.55, 0, h);
-      f.addColorStop(0, "rgba(0,0,0,0)");
-      f.addColorStop(1, "rgba(0,0,0,0.85)");
+      f.addColorStop(0, c("bg", 0));
+      f.addColorStop(1, c("bg", 0.9));
       ctx.fillStyle = f;
       ctx.fillRect(0, h * 0.55, w, h * 0.45);
     };
@@ -103,13 +108,15 @@ export default function Bars({ series, running }: { series: number[]; running: b
       if (runRef.current && !document.hidden) draw(now);
       raf = requestAnimationFrame(loop);
     };
+    readPalette();
+    addEventListener("yuki-theme", readPalette);
     if (reduce) draw(0); else raf = requestAnimationFrame(loop);
 
     const move = (e: PointerEvent) => { const b = cv.getBoundingClientRect(); pointer.x = e.clientX - b.left; pointer.y = e.clientY - b.top; pointer.active = true; };
     const leave = () => { pointer.active = false; };
     cv.addEventListener("pointermove", move);
     cv.addEventListener("pointerleave", leave);
-    return () => { cancelAnimationFrame(raf); ro.disconnect(); cv.removeEventListener("pointermove", move); cv.removeEventListener("pointerleave", leave); };
+    return () => { cancelAnimationFrame(raf); ro.disconnect(); removeEventListener("yuki-theme", readPalette); cv.removeEventListener("pointermove", move); cv.removeEventListener("pointerleave", leave); };
   }, [series]);
 
   return <canvas ref={ref} className="bars" aria-hidden="true" />;

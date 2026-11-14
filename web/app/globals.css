@@ -1,78 +1,37 @@
 @import "tailwindcss";
 
-/* ------------------------------------------------------------------ theme: dark by default, light on request */
+/* ------------------------------------------------------------------ theme: three colours per theme
+   --bg, --fg and --accent are the whole palette. Every other shade below is a mix of those three. */
 :root {
   --bg: #05070a;
-  --surface: #0d1216;
-  --surface-2: #151c22;
-  --surface-3: #1d262e;
-  --text: #e8eff1;
-  --text-2: #a3b1b7;
-  --text-3: #6b7a81;
-  --line: rgba(255, 255, 255, 0.08);
-  --ice: #b9d8e0;
-  --accent: #8fa6ff;
-  --strong: #000;
-  --strong-text: #b9d8e0;
-  --proof: #0f1a26;
-  --invert-bg: #b9d8e0;
-  --invert-text: #05070a;
-  --check-bg: #b9d8e0;
-  --check-fg: #05070a;
-  --paper-bg: #0e1317;
-  --paper-text: #e3e8ea;
-  --paper-muted: #9aa7ad;
-  --paper-rule: rgba(255, 255, 255, 0.18);
-  --paper-strong: rgba(255, 255, 255, 0.75);
-  --paper-code-bg: #182027;
-  --paper-link: #9cc6d2;
-  --todo: #ff8a80;
-  --code-text: #d5dde1;
-  --code-no: #4f5c63;
-  --code-cm: #7fa9b5;
-  --code-hover: #141c22;
-  --file-head-bg: rgba(14, 19, 23, 0.92);
-  --scroll: rgba(185, 216, 224, 0.28);
+  --fg: #b9d8e0;
+  --accent: #6f8bff;
+  color-scheme: dark;
+}
+:root[data-theme="light"] {
+  --bg: #f2f5f6;
+  --fg: #0b0f12;
+  --accent: #3552d6;
+  color-scheme: light;
+}
+:root {
+  --surface: color-mix(in oklab, var(--fg) 6%, var(--bg));
+  --surface-2: color-mix(in oklab, var(--fg) 11%, var(--bg));
+  --surface-3: color-mix(in oklab, var(--fg) 17%, var(--bg));
+  --text: var(--fg);
+  --text-2: color-mix(in oklab, var(--fg) 74%, var(--bg));
+  --text-3: color-mix(in oklab, var(--fg) 52%, var(--bg));
+  --line: color-mix(in oklab, var(--fg) 13%, transparent);
+  --soft: color-mix(in oklab, var(--accent) 14%, var(--bg));
+  --strong: color-mix(in oklab, var(--accent) 9%, var(--bg));
+  --scroll: color-mix(in oklab, var(--fg) 30%, transparent);
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --morph: 1150ms;
   --gap: 14px;
   --radius: 22px;
   --serif: "Times New Roman", Times, "Liberation Serif", serif;
   --sans: var(--font-giphurs), ui-sans-serif, system-ui, sans-serif;
-  color-scheme: dark;
-}
-:root[data-theme="light"] {
-  --bg: #edf1f2;
-  --surface: #ffffff;
-  --surface-2: #edf1f2;
-  --surface-3: #dfecef;
-  --text: #0b0f12;
-  --text-2: #3d474d;
-  --text-3: #78858c;
-  --line: rgba(11, 15, 18, 0.1);
-  --accent: #1d6375;
-  --strong: #0b0f12;
-  --strong-text: #b9d8e0;
-  --proof: #dfecef;
-  --invert-bg: #0b0f12;
-  --invert-text: #b9d8e0;
-  --check-bg: #0b0f12;
-  --check-fg: #b9d8e0;
-  --paper-bg: #ffffff;
-  --paper-text: #111111;
-  --paper-muted: #555555;
-  --paper-rule: #cccccc;
-  --paper-strong: #111111;
-  --paper-code-bg: #f1f4f5;
-  --paper-link: #1d4f5c;
-  --todo: #b42318;
-  --code-text: #1b2328;
-  --code-no: #a3adb2;
-  --code-cm: #4f7f8c;
-  --code-hover: #f3f7f8;
-  --file-head-bg: rgba(255, 255, 255, 0.92);
-  --scroll: rgba(11, 15, 18, 0.25);
-  color-scheme: light;
+  --mono: ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
 
 html,
@@ -88,7 +47,6 @@ body {
 }
 
 /* ------------------------------------------------------------------ near-invisible scrollbars */
-/* WebKit/Blink: a 3px rail whose thumb only shows while the scroller is hovered */
 ::-webkit-scrollbar {
   width: 3px;
   height: 3px;
@@ -109,7 +67,6 @@ body {
 *:hover::-webkit-scrollbar-thumb {
   background: var(--scroll);
 }
-/* Firefox has no ::-webkit-scrollbar: use its thinnest standard bar */
 @supports not selector(::-webkit-scrollbar) {
   * {
     scrollbar-width: thin;
@@ -156,21 +113,20 @@ body {
     background 400ms ease,
     color 400ms ease;
 }
-.tile.dark {
+.tile.strong {
   background: var(--strong);
-  color: var(--strong-text);
   box-shadow: inset 0 0 0 1px var(--line);
 }
-/* the ice card is the accent in both themes */
-.tile.ice {
-  background: var(--ice);
-  color: #0b0f12;
+/* the inverted card: foreground as fill, background as ink (ice card in dark, ink card in light) */
+.tile.accent-card {
+  background: var(--fg);
+  color: var(--bg);
 }
-.tile.ice .cap {
-  color: rgba(11, 15, 18, 0.7);
+.tile.accent-card .cap {
+  color: color-mix(in oklab, var(--bg) 72%, var(--fg));
 }
-.tile.frost {
-  background: var(--proof);
+.tile.soft {
+  background: var(--soft);
 }
 .tile button:focus-visible,
 .tile a:focus-visible {
@@ -185,6 +141,15 @@ body {
   display: flex;
   flex-direction: column;
 }
+.as-button {
+  width: 100%;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
 .label {
   font-size: 0.72rem;
   font-weight: 560;
@@ -196,9 +161,6 @@ body {
   font-size: clamp(0.72rem, 0.85vw, 0.86rem);
   line-height: 1.35;
   color: var(--text-2);
-}
-.dark .cap {
-  color: rgba(185, 216, 224, 0.7);
 }
 
 /* ------------------------------------------------------------------ brand */
@@ -299,8 +261,6 @@ body {
   opacity: 1;
   height: 16px;
 }
-
-/* stat carousel in the big left tile */
 .stat-big {
   font-weight: 900;
   letter-spacing: -0.05em;
@@ -336,11 +296,14 @@ body {
   min-height: 3.9em;
 }
 
-/* ------------------------------------------------------------------ hero (dark in both themes) */
+/* ------------------------------------------------------------------ hero (artwork follows the theme) */
 .hero {
-  background: #000;
-  color: #fff;
+  background: var(--bg);
   box-shadow: inset 0 0 0 1px var(--line);
+}
+.hero.reading {
+  background: var(--surface);
+  box-shadow: none;
 }
 .bars {
   position: absolute;
@@ -361,7 +324,7 @@ body {
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: rgba(185, 216, 224, 0.75);
+  color: var(--text-2);
 }
 .hero-title h1 {
   margin: 8px 0 0;
@@ -369,11 +332,12 @@ body {
   letter-spacing: -0.035em;
   line-height: 0.98;
   font-size: min(6.4cqw, 9cqh);
-  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.6);
+  color: var(--fg);
+  text-shadow: 0 2px 30px var(--bg);
 }
 .hero-title p {
   margin: 12px 0 0;
-  color: rgba(225, 235, 255, 0.72);
+  color: var(--text-2);
   font-size: clamp(0.78rem, 1.5cqw, 0.95rem);
   line-height: 1.45;
 }
@@ -385,18 +349,28 @@ body {
   font-size: 0.8rem;
   padding: 8px 14px;
   border-radius: 999px;
-  background: var(--invert-bg);
-  color: var(--invert-text);
-  transition: transform 200ms var(--ease), background 200ms;
+  background: var(--fg);
+  color: var(--bg);
+  transition: transform 200ms var(--ease), opacity 200ms;
 }
-.pill:hover {
+.pill.ghost {
+  background: var(--surface-2);
+  color: var(--text);
+}
+.pill:hover:not(:disabled) {
   transform: translateY(-1px);
 }
+.pill:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
 
-/* hero ↔ reader cross-morph (fade, drift, blur) */
+/* hero ↔ content cross-morph (fade, drift, blur) */
 .layer {
   position: absolute;
   inset: 0;
+  display: flex;
+  flex-direction: column;
   transition:
     opacity 700ms var(--ease),
     transform 900ms var(--ease),
@@ -408,23 +382,20 @@ body {
   filter: blur(6px);
   pointer-events: none;
 }
-
-/* ------------------------------------------------------------------ reader */
-.reader {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  background: var(--paper-bg);
-  color: var(--text);
+.scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scroll-behavior: smooth;
 }
-.reader-bar {
-  flex: none;
+
+/* ------------------------------------------------------------------ reader: tab bar + index */
+.tabs-tile {
   display: flex;
   align-items: center;
   gap: 10px;
-  height: 56px;
-  padding: 0 18px;
-  border-bottom: 1px solid var(--line);
+  padding: 0 10px 0 8px;
 }
 .seg {
   display: inline-flex;
@@ -432,7 +403,6 @@ body {
   border-radius: 999px;
   background: var(--surface-2);
   overflow-x: auto;
-  max-width: 76%;
 }
 .seg::-webkit-scrollbar {
   display: none;
@@ -441,17 +411,18 @@ body {
   border: 0;
   background: transparent;
   font: inherit;
-  font-size: 0.8rem;
-  font-weight: 600;
-  padding: 6px 12px;
+  font-size: 0.86rem;
+  font-weight: 650;
+  padding: 7px 16px;
   border-radius: 999px;
   cursor: pointer;
   color: var(--text-2);
   white-space: nowrap;
+  transition: background 200ms, color 200ms;
 }
-.seg button[aria-pressed="true"] {
-  background: var(--invert-bg);
-  color: var(--invert-text);
+.seg button[aria-selected="true"] {
+  background: var(--fg);
+  color: var(--bg);
 }
 .close {
   margin-left: auto;
@@ -465,113 +436,168 @@ body {
   display: inline-flex;
   gap: 6px;
   align-items: center;
+  padding: 8px 10px;
 }
 .close:hover {
   color: var(--text);
 }
-.reader-body {
-  flex: 1;
+.index-list {
+  margin-top: 12px;
   min-height: 0;
-  display: grid;
-  grid-template-columns: minmax(150px, 220px) 1fr;
-}
-.toc {
   overflow-y: auto;
-  border-right: 1px solid var(--line);
-  padding: 22px 14px 22px 18px;
-  font-size: 0.78rem;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8rem;
   line-height: 1.35;
 }
-.toc a {
+.index-list a {
   display: block;
-  padding: 4px 0;
+  padding: 5px 0;
   color: var(--text-3);
   text-decoration: none;
+  transition: color 150ms;
 }
-.toc a.l3 {
-  padding-left: 10px;
-}
-.toc a:hover {
+.index-list a:hover,
+.index-list a.on {
   color: var(--text);
 }
-.scroll {
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  scroll-behavior: smooth;
+.index-list a.l3 {
+  padding-left: 12px;
+}
+.index-list .group + .group {
+  margin-top: 4px;
+}
+.group-head {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-weight: 650;
+  color: var(--text-2);
+  padding: 7px 0;
+  cursor: pointer;
+  border-top: 1px solid var(--line);
+}
+.group-head.on {
+  color: var(--accent);
+}
+.group-head span {
+  opacity: 0.6;
+  font-weight: 500;
+}
+.index-list a.file {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  padding-left: 10px;
+  word-break: break-all;
+}
+.index-list a.file.on {
+  color: var(--accent);
+}
+.slide-link {
+  display: flex !important;
+  gap: 10px;
+  border-top: 1px solid var(--line);
+  padding: 8px 0 !important;
+}
+.slide-link span {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  opacity: 0.6;
+  padding-top: 1px;
+}
+.slide-link.on {
+  color: var(--accent) !important;
 }
 
-/* ------------------------------------------------------------------ the papers: Times New Roman */
+/* ------------------------------------------------------------------ the papers: Times New Roman, full measure */
 .paper {
   font-family: var(--serif);
-  color: var(--paper-text);
-  max-width: 74ch;
+  color: var(--text);
+  max-width: min(100%, 1000px);
   margin: 0 auto;
-  padding: clamp(24px, 4vh, 48px) clamp(20px, 3vw, 48px) 80px;
-  font-size: 1.08rem;
-  line-height: 1.55;
-}
-.paper .paper-title {
-  font-size: 1.75rem;
-  line-height: 1.2;
-  text-align: center;
-  font-weight: 700;
-  margin: 0 0 6px;
+  padding: clamp(28px, 5cqh, 56px) clamp(22px, 3.2cqw, 44px) 96px;
+  font-size: clamp(1.08rem, 0.82rem + 0.42vw, 1.32rem);
+  line-height: 1.6;
 }
 .paper .paper-kind {
   text-align: center;
   font-variant: small-caps;
-  letter-spacing: 0.08em;
-  color: var(--paper-muted);
-  margin-bottom: 26px;
+  letter-spacing: 0.1em;
+  color: var(--text-3);
+  margin-bottom: 10px;
+}
+.paper .paper-title {
+  font-size: 1.85em;
+  line-height: 1.18;
+  text-align: center;
+  font-weight: 700;
+  margin: 0 auto 1.4em;
+  max-width: 30ch;
 }
 .paper h2 {
-  font-size: 1.15rem;
+  font-size: 1.12em;
   font-variant: small-caps;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   text-align: center;
-  margin: 2em 0 0.8em;
+  margin: 2.2em 0 0.9em;
 }
 .paper h3 {
-  font-size: 1.05rem;
+  font-size: 1.03em;
   font-style: italic;
   font-weight: 400;
-  margin: 1.6em 0 0.5em;
+  margin: 1.7em 0 0.55em;
 }
 .paper h4 {
-  font-size: 1rem;
-  margin: 1.2em 0 0.4em;
+  font-size: 1em;
+  margin: 1.3em 0 0.4em;
 }
 .paper p {
-  margin: 0 0 0.85em;
+  margin: 0 0 0.9em;
   text-align: justify;
   hyphens: auto;
 }
 .paper ul,
 .paper ol {
-  margin: 0 0 0.9em;
-  padding-left: 1.4em;
+  margin: 0.2em 0 1em;
+  padding-left: 1.5em;
+}
+.paper ul {
+  list-style: disc outside;
+}
+.paper ol {
+  list-style: decimal outside;
+}
+.paper ul ul {
+  list-style-type: circle;
 }
 .paper li {
-  margin: 0.2em 0;
+  margin: 0.25em 0;
+  padding-left: 0.2em;
+}
+.paper li::marker {
+  color: var(--text-3);
 }
 .paper a {
-  color: var(--paper-link);
+  color: var(--accent);
   word-break: break-word;
 }
 .paper code {
-  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
-  font-size: 0.82em;
-  background: var(--paper-code-bg);
+  font-family: var(--mono);
+  font-size: 0.78em;
+  background: var(--surface-2);
   padding: 0.05em 0.3em;
   border-radius: 4px;
   word-break: break-word;
 }
 .paper pre {
-  background: var(--paper-code-bg);
+  background: var(--surface-2);
   padding: 12px 14px;
   border-radius: 8px;
   overflow-x: auto;
-  font-size: 0.8rem;
+  font-size: 0.78em;
 }
 .paper pre code {
   background: none;
@@ -579,31 +605,31 @@ body {
 }
 .paper .tbl {
   overflow-x: auto;
-  margin: 1em 0 1.2em;
+  margin: 1.1em 0 1.3em;
 }
 .paper table {
   border-collapse: collapse;
   width: 100%;
-  font-size: 0.9rem;
+  font-size: 0.88em;
 }
 .paper th,
 .paper td {
-  border-top: 1px solid var(--paper-rule);
-  border-bottom: 1px solid var(--paper-rule);
-  padding: 5px 8px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 6px 9px;
   vertical-align: top;
   text-align: left;
 }
 .paper th {
-  border-top: 2px solid var(--paper-strong);
-  border-bottom: 1px solid var(--paper-strong);
+  border-top: 2px solid var(--text-2);
+  border-bottom: 1px solid var(--text-2);
 }
 .paper tbody tr:last-child td {
-  border-bottom: 2px solid var(--paper-strong);
+  border-bottom: 2px solid var(--text-2);
 }
 .paper .eq {
   position: relative;
-  margin: 1em 0;
+  margin: 1.1em 0;
   overflow-x: auto;
 }
 .paper .eqn {
@@ -613,82 +639,157 @@ body {
   translate: 0 -50%;
 }
 .paper .todo {
-  color: var(--todo);
+  color: var(--accent);
   font-style: italic;
 }
 .paper .cite {
-  color: var(--paper-link);
+  color: var(--accent);
 }
 .paper hr {
   border: 0;
-  border-top: 1px solid var(--paper-rule);
-  margin: 2em 0;
+  border-top: 1px solid var(--line);
+  margin: 2.2em 0;
 }
 .paper blockquote {
   margin: 1em 0;
   padding-left: 1em;
-  border-left: 3px solid var(--ice);
-  color: var(--paper-muted);
+  border-left: 3px solid var(--accent);
+  color: var(--text-2);
 }
 
-/* finding answers (site font, not a paper) */
-.answer {
-  max-width: 62ch;
-  margin: 0 auto;
-  padding: clamp(24px, 5vh, 56px) clamp(20px, 3vw, 48px) 60px;
+/* ------------------------------------------------------------------ summary deck */
+.deck {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
 }
-.answer .kicker {
-  font-size: 0.75rem;
+.slide {
+  max-width: min(100%, 1000px);
+  margin: 0 auto;
+  padding: clamp(28px, 6cqh, 64px) clamp(24px, 6cqw, 72px) 40px;
+}
+.slide .kicker {
+  font-size: 0.76rem;
   font-weight: 650;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--text-3);
+  color: var(--accent);
 }
-.answer h2 {
-  font-size: clamp(1.6rem, 2.6vw, 2.6rem);
+.slide h2 {
+  font-size: clamp(1.8rem, 3.4cqw, 3rem);
   font-weight: 860;
   letter-spacing: -0.035em;
   line-height: 1;
-  margin: 10px 0 18px;
+  margin: 12px 0 20px;
 }
-.answer .lead {
-  font-size: 1.05rem;
+.slide .lead {
+  font-size: clamp(1rem, 1.4cqw, 1.2rem);
   line-height: 1.5;
   color: var(--text-2);
+  max-width: 62ch;
 }
-.answer .nums {
+.slide p {
+  line-height: 1.55;
+  color: var(--text-2);
+  max-width: 68ch;
+}
+.slide .nums {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
   gap: 10px;
-  margin: 22px 0;
+  margin: 24px 0;
 }
-.answer .num {
+.slide .num {
   background: var(--surface-2);
   border-radius: 16px;
-  padding: 14px 16px;
+  padding: 16px 18px;
 }
-.answer .num b {
+.slide .num b {
   display: block;
-  font-size: 1.45rem;
+  font-size: 1.6rem;
   white-space: nowrap;
   font-weight: 860;
   letter-spacing: -0.03em;
 }
-.answer .num span {
-  font-size: 0.78rem;
+.slide .num span {
+  font-size: 0.8rem;
   color: var(--text-2);
 }
-.answer p {
-  line-height: 1.55;
-  color: var(--text-2);
+.slide-sum .sum-list {
+  font-size: clamp(1rem, 1.6cqw, 1.3rem);
+  gap: 16px;
+  max-width: 60ch;
 }
-.answer .src {
-  margin-top: 18px;
-  font-size: 0.78rem;
+.deck-bar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 18px;
+  border-top: 1px solid var(--line);
+}
+.deck-count {
+  font-family: var(--mono);
+  font-size: 0.8rem;
   color: var(--text-3);
 }
-.answer .more {
-  margin-top: 20px;
+
+/* ------------------------------------------------------------------ charts (palette only) */
+.chart {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 8px 0 6px;
+  font-family: var(--sans);
+}
+.chart .grid {
+  stroke: var(--line);
+}
+.chart .tick {
+  fill: var(--text-3);
+  font-size: 13px;
+}
+.chart .lab {
+  fill: var(--text-2);
+  font-size: 15px;
+}
+.chart .note {
+  fill: var(--text);
+  font-size: 14px;
+  font-weight: 650;
+}
+.chart .bar {
+  fill: color-mix(in oklab, var(--accent) 55%, var(--bg));
+}
+.chart .bar.hot {
+  fill: var(--accent);
+}
+.chart .bar:hover,
+.chart rect:hover {
+  opacity: 0.8;
+}
+.chart .callout {
+  stroke: var(--text-2);
+  stroke-dasharray: 3 3;
+}
+.chart .s1 {
+  fill: var(--accent);
+}
+.chart .s2 {
+  fill: var(--fg);
+}
+.chart .s3 {
+  fill: var(--text-3);
+}
+.chart .ci {
+  stroke: var(--fg);
+  stroke-width: 2;
+}
+.chart-note {
+  font-size: 0.86rem;
+  color: var(--text-3) !important;
 }
 
 /* ------------------------------------------------------------------ lists */
@@ -714,8 +815,7 @@ body {
   justify-content: space-between;
   gap: 8px;
 }
-.faq-list button:hover,
-.faq-list button[aria-current="true"] {
+.faq-list button:hover {
   color: var(--accent);
 }
 .faq-list button::after {
@@ -745,8 +845,8 @@ body {
   width: 18px;
   height: 18px;
   border-radius: 99px;
-  background: var(--check-bg);
-  color: var(--check-fg);
+  background: var(--fg);
+  color: var(--bg);
   font-size: 0.66rem;
 }
 
@@ -763,7 +863,7 @@ body {
   gap: min(1.6cqh, 12px);
   font-size: clamp(0.74rem, 5.2cqw, 0.92rem);
   line-height: 1.38;
-  color: rgba(185, 216, 224, 0.78);
+  color: var(--text-2);
 }
 .sum-list li {
   counter-increment: s;
@@ -775,10 +875,10 @@ body {
   left: 0;
   content: counter(s);
   font-weight: 800;
-  color: var(--ice);
+  color: var(--accent);
 }
 .sum-list b {
-  color: #fff;
+  color: var(--text);
   font-weight: 700;
 }
 
@@ -804,10 +904,10 @@ body {
   transition: background 200ms;
 }
 .val .half + .half {
-  border-top: 1px solid rgba(11, 15, 18, 0.12);
+  border-top: 1px solid color-mix(in oklab, var(--bg) 18%, transparent);
 }
 .val .half:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: color-mix(in oklab, var(--bg) 8%, transparent);
 }
 .val .label {
   margin-bottom: auto;
@@ -852,8 +952,8 @@ body {
   transform: translateY(-1px);
 }
 .out.on {
-  background: var(--invert-bg);
-  color: var(--invert-text);
+  background: var(--fg);
+  color: var(--bg);
 }
 .out-l {
   font-weight: 700;
@@ -865,15 +965,6 @@ body {
 }
 
 /* ------------------------------------------------------------------ code / file viewer */
-.files-nav a {
-  font-family: ui-monospace, Menlo, monospace;
-  font-size: 0.72rem;
-  word-break: break-all;
-}
-.files-nav a.on {
-  color: var(--text);
-  font-weight: 700;
-}
 .file-head {
   position: sticky;
   top: 0;
@@ -881,11 +972,11 @@ body {
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  padding: 10px 18px;
-  background: var(--file-head-bg);
+  padding: 12px 22px;
+  background: color-mix(in oklab, var(--surface) 92%, transparent);
   backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--line);
-  font: 600 0.78rem/1.3 ui-monospace, Menlo, monospace;
+  font: 600 0.8rem/1.3 var(--mono);
 }
 .file-head span {
   color: var(--text-3);
@@ -893,39 +984,38 @@ body {
 }
 .code {
   margin: 0;
-  padding: 12px 0 40px;
-  font: 0.76rem/1.55 ui-monospace, "SFMono-Regular", Menlo, monospace;
-  color: var(--code-text);
+  padding: 14px 0 48px;
+  font: 0.8rem/1.6 var(--mono);
+  color: var(--text-2);
   tab-size: 2;
 }
 .code .ln {
   display: grid;
-  grid-template-columns: 4.2em 1fr;
+  grid-template-columns: 4.6em 1fr;
   white-space: pre-wrap;
   word-break: break-word;
-  padding-right: 18px;
+  padding-right: 22px;
 }
 .code .ln:hover {
-  background: var(--code-hover);
+  background: var(--surface-2);
 }
 .code .no {
-  color: var(--code-no);
+  color: var(--text-3);
+  opacity: 0.6;
   text-align: right;
-  padding-right: 1.2em;
+  padding-right: 1.4em;
   user-select: none;
 }
 .code .cm {
-  color: var(--code-cm);
+  color: var(--accent);
   font-style: italic;
 }
 
 /* ------------------------------------------------------------------ small screens (layout comes from the engine) */
 @media (max-width: 860px) {
-  .reader-body {
-    grid-template-columns: 1fr;
-  }
-  .toc {
-    display: none;
+  .seg button {
+    padding: 6px 10px;
+    font-size: 0.78rem;
   }
 }
 

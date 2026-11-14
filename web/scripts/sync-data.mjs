@@ -129,12 +129,20 @@ const outputs = {
   verify: verifyLog ? [{ path: 'node scripts/verify.mjs', lang: 'text', text: verifyLog }] : [],
   prereg: exists('PREREGISTRATION.md') ? [{ path: 'PREREGISTRATION.md', lang: 'text', text: read('PREREGISTRATION.md') }] : [],
 };
-const series = { arbPerWindow: R.extended.perWindow.map(w => +w.arbUsd.toFixed(2)) };
+const series = {
+  arbPerWindow: R.extended.perWindow.map(w => +w.arbUsd.toFixed(2)),
+  solverPerWindow: I.extended.perWindow.map(w => +w.solverUsd.toFixed(2)),
+  spike: { index: R.extended.robust.spikeWindowIndex, sharePct: R.extended.robust.spikeSharePct },
+  solverTop: { index: I.extended.perWindow.reduce((m, p) => (p.solverUsd > m.solverUsd ? p : m)).i, sharePct: I.extended.fragility.topSwap.sharePctOfSolverCapture },
+  stack: [{ label: 'All priced swaps', app: I.extended.stack.appFeeBps ?? 24.07, solver: I.extended.stack.solverBps ?? 8.07, protocol: I.extended.stack.protocolBps ?? 0.027 },
+    ...I.extended.bySize.map(b => ({ label: b.bucket, app: b.appFeeBps, solver: b.solverBps, protocol: b.protocolBps }))],
+  treasury: H ? [['All priced', H.all], ['Same asset, cross-chain', H.sameAssetCrossChain], ['Stable to stable', H.stableToStable], ['Other pairs', H.other], ...Object.entries(H.bySize).map(([k, v]) => [k, v])].map(([label, b]) => ({ label, bps: b.totalBps, ci: b.ci95, quotes: b.quotes })) : [],
+};
 
 const DATA = path.join(import.meta.dirname, '..', 'app', '_data', 'site.json');
 const prev = fs.existsSync(DATA) ? JSON.parse(fs.readFileSync(DATA, 'utf8')) : null;
 // a checkout without the papers keeps the last rendered copies instead of dropping them
-const out = { generatedAt: new Date().toISOString(), numbers, papers: { lite: paper('PAPER.md') ?? prev?.papers?.lite ?? null, white: paper('THESIS.md') ?? prev?.papers?.white ?? null }, outputs: { ...outputs, prereg: outputs.prereg.length ? outputs.prereg : prev?.outputs?.prereg ?? [] }, series };
+const out = { generatedAt: new Date().toISOString(), numbers, papers: { lite: paper('PAPER.md') ?? prev?.papers?.lite ?? null, white: paper('WHITEPAPER.md') ?? paper('THESIS.md') ?? prev?.papers?.white ?? null }, outputs: { ...outputs, prereg: outputs.prereg.length ? outputs.prereg : prev?.outputs?.prereg ?? [] }, series };
 fs.mkdirSync(path.join(import.meta.dirname, '..', 'app', '_data'), { recursive: true });
 fs.writeFileSync(DATA, JSON.stringify(out));
 console.log('site.json:', Object.keys(out.papers).map(k => `${k} ${out.papers[k]?.words ?? 0} words`).join(', '), '| verify', numbers.verify.passed, '| code', code.length, 'results', results.length, '| bytes', JSON.stringify(out).length);
