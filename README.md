@@ -423,7 +423,7 @@ The full list is in whitepaper §11, and the observations that would change our 
 
 <h3>Built By
 
-[Immanuel](https://github.com/xavio2495) and Charles, independent researchers
+[Immanuel](https://github.com/xavio2495) and [Charles](https://github.com/charlesms1246)
 
 </h3>
 </div>
