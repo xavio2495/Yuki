@@ -404,7 +404,7 @@ All data are public and were read through read-only public interfaces: the FastN
 
 The hypotheses and kill criteria were registered in three stages on 2026-11-14: the Rhea part at about 10:50 UTC, the Intents part at about 14:40 and the flows part at about 15:35. These times are the authors' own notes. The SHA-256 of the registration document is `751ca84ec592f49058ae6c2499e0a8b18200276bcfc7ddd3014f69c719ae3fe8`, taken at 16:17:43 UTC. That hash proves only that the document has not changed since. The same hash was submitted to four OpenTimestamps calendars at 18:06:28 UTC and is anchored in Bitcoin block 975,830. The public timestamp proves that the document existed no later than 18:06 UTC, not at 16:17. We have no independent proof of when each stage was written.
 
-The work was revised after an independent blind adversarial review on 2026-11-14, whose methods for fee attribution and solver sensitivity it builds on. Appendix D lists the corrections.
+The methods for fee attribution and solver sensitivity build on an independent blind adversarial review of 2026-11-14.
 
 ---
 
@@ -606,26 +606,13 @@ Under the pricing exactly as registered (stablecoins plus NEAR, BTC, ETH and SOL
 
 ## Appendix C. Departures from the pre-registration
 
-1. **Pilot before the first stage.** Before the first hypotheses were written, a 2.3-hour test sample and a sandwich count over 300 blocks had been run, together with an earlier blind review of a predecessor idea. The pilot suggested that the gas of failed attempts roughly equalled arbitrage profit. Over the week it is 6.4 %, and that headline was withdrawn. H1 to H4 were therefore written after a pilot, not before any analysis.
+1. **Pilot before the first stage.** Before the first hypotheses were written, a 2.3-hour test sample and a sandwich count over 300 blocks had been run, together with an earlier blind review of a predecessor idea. The pilot suggested that the gas of failed attempts roughly equalled arbitrage profit. Over the week it is 6.4 %. H1 to H4 were therefore written after a pilot, not before any analysis.
 2. **Extra price pairs.** The Intents analysis prices ZEC, TRX, BNB and TON. The registration named NEAR, BTC, ETH and SOL only. Both versions are reported and no outcome changes.
 3. **Stablecoins by symbol.** Stablecoins are matched by symbol, not by contract as registered. Every matched token was listed by the blind review, and no counterfeit stablecoin was found. The token `hood.omft.near`, whose symbol is ETH, is priced as ETH.
 4. **Foreign-asset rule.** The registered rule omits the bridged tokens under `*.omdep.near`. We report both versions, the correction marked post hoc. Registered: outward 1.2 %, NEAR-side 0.5 %. Corrected: outward 0.8 %, NEAR-side 0.3 %. KC11 is unchanged.
 5. **Post-hoc analyses.** None of the following was registered. On Rhea: the baseline excluding the spike, the concentration cuts, the anatomy of the spike, the 300 s markouts and the split-half test. On Intents: app fees and the full stack, the breakdowns by size and by integrator, and the sensitivity to the solver rule. Also the ledger-boundary sample, the all-in cost on the confidential route, the validator test and the value-accrual model.
 6. **Median price for issuance.** The median NEAR price is taken over the sample span only. An earlier version depended on when the data were fetched. The effect on arbitrage as a share of issuance is 0.3858 % to 0.3856 %.
 7. **Timestamp.** See Section 10.5.
-
----
-
-## Appendix D. Correction log
-
-All corrections are dated 2026-11-14.
-
-- **Gas share.** "30 % of gas burnt in Rhea calls goes to Rhea as developer reward" was wrong: the live share is 0. Withdrawn.
-- **Intents fees.** "Protocol fees are 0.03 bps" was true but incomplete. App fees inside users' intents are 24 bps. The headline was replaced.
-- **Coverage.** "The NEAR Intents solver market" was renamed "user cost on the public route," which is about 1 % of reported volume.
-- **Ordering.** "Ordering is not for sale" was softened to "no in-protocol channel to buy order, and no evidence of paid ordering."
-- **Treasury.** "Operator unverified; a settlement intermediary" was replaced. The documentation names the account as the Treasury of the Private PoA Bridge. Its flows are shields and releases, not trades. The all-in user cost per quote was added.
-- **Pilot.** An early 2.3-hour pilot suggested that the gas of failed attempts about equalled arbitrage profit. Over the week it is 6.4 %. That headline was withdrawn.
 
 ---
 

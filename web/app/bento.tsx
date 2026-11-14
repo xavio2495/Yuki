@@ -154,11 +154,11 @@ export default function Bento({ site }: { site: Site }) {
   });
   const thesis = md ? (
     <ol className="sum-list">
-      <li><b>One stream is large against issuance.</b> NEAR is bought back into holder-aligned wallets at ≈ {f1(md.walletPct ?? md.offsetBuyback)} % of issuance, measured on chain, and held there.</li>
-      <li><b>Selling order would not change that.</b> All on-chain arbitrage is ≈ {md.offsetArb.toFixed(1)} % of issuance, and validators get none of the fees.</li>
-      <li><b>Users pay for distribution.</b> {f1(n.intents.totalBps)} bps on public swaps{t ? `, ≈ ${f1(t.allBps)} bps all-in on the confidential route` : ""}; holders keep {Math.round(md.holderShareOfUserCost.tokenDiff)}–{Math.round(md.holderShareOfUserCost.treasuryValueWeighted)} % of it.</li>
-      <li><b>The lever is Intents volume.</b> At today’s fee rate and share, ≈ {f1(md.breakevenMultiple)}× today’s volume would offset issuance.</li>
-      <li><b>The risk is policy.</b> The buyback is not a protocol rule, and most fee splits happen off the public chain.</li>
+      <li><b>Holders gain through one stream.</b> NEAR is bought back into holder-aligned wallets at ≈ {f1(md.walletPct ?? md.offsetBuyback)} % of issuance, measured on chain.</li>
+      <li><b>Selling order would add little.</b> All on-chain arbitrage is ≈ {md.offsetArb.toFixed(1)} % of issuance, and validators get no fee share.</li>
+      <li><b>Users pay for distribution.</b> {f1(n.intents.totalBps)} bps on public swaps{t ? `, ≈ ${f1(t.allBps)} bps on the confidential route` : ""}; holders keep {Math.round(md.holderShareOfUserCost.tokenDiff)}–{Math.round(md.holderShareOfUserCost.treasuryValueWeighted)} %.</li>
+      <li><b>Intents volume is the lever.</b> ≈ {f1(md.breakevenMultiple)}× today’s volume would let buybacks match issuance.</li>
+      <li><b>The buyback is a policy.</b> It is not a protocol rule, and most fee splits happen off chain.</li>
     </ol>
   ) : (
     <ol className="sum-list">
@@ -331,7 +331,7 @@ export default function Bento({ site }: { site: Site }) {
 
   return (
     <main className={`frame${mobile ? " mobile" : ""}${mobile && reading ? " locked" : ""}`} ref={frameRef}>
-      <Preloader />
+      <Preloader series={se.arbPerWindow} />
       {mobile && reading && <div className="backdrop" aria-hidden />}
       <div className="stage" style={{ height: mobile ? innerH : "100%" }} data-state={state}>
         {/* brand + tagline (stays in the reader) */}
@@ -419,6 +419,7 @@ export default function Bento({ site }: { site: Site }) {
         <section className={`tile hero${reading ? " reading" : ""}`} style={tileStyle("hero")}>
           <div className="layer" data-on={!reading}>
             <Bars series={se.arbPerWindow} running={!reading && state !== "boot"} />
+            <div className="hero-fade" aria-hidden />
             <div className="hero-title">
               <h1>Order isn’t for sale.<br />So who gets paid?</h1>
               <p>Each rod is a slice of the week; its glowing capsule is that slice’s on-chain arbitrage profit. The longest is a single six-minute router event.</p>
@@ -483,13 +484,13 @@ export default function Bento({ site }: { site: Site }) {
           <button className="pad as-button" onClick={() => open({ tab: "summary", slide: slideIdx("live") })}>
             <h2 className="card-title">What to watch</h2>
             {md && (
-              <dl className="watch">
-                <div><dt>Intents volume</dt><dd>${(md.volumePerDay / 1e6).toFixed(0)}M/day</dd></div>
-                <div><dt>Fee rate</dt><dd>{f1(md.feeBps)} bps</dd></div>
-                <div><dt>Holders’ share of fees</dt><dd>{f1(md.holdersSharePct)} %</dd></div>
-              </dl>
+              <ul className="watch">
+                <li><b>${(md.volumePerDay / 1e6).toFixed(0)}M<small>/day</small></b><span>Intents volume</span></li>
+                <li><b>{f1(md.feeBps)}<small> bps</small></b><span>fee rate</span></li>
+                <li><b>{f1(md.holdersSharePct)}<small> %</small></b><span>of fees to holders</span></li>
+              </ul>
             )}
-            <span className="cap watch-link">30-day averages · open live data →</span>
+            <span className="cap watch-link">30-day averages, live data →</span>
           </button>
         </section>
         <section className="tile" style={tileStyle("check")}>
