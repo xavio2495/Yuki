@@ -49,7 +49,21 @@ export function analyzeModel() {
   const holderShareOfUserCost = Object.fromEntries(Object.entries(measuredAllInBps).filter(([, v]) => v != null).map(([k, v]) => [k, round(base.holdersBpsOfVolume / v * 100, 1)]));
   const growth = [1, 2, 3, 5, 10].map(g => ({ volumeMultiple: g, intentsVolumePerDay: Math.round(base.intentsVolumePerDay * g), offsetPctOfIssuance: round((base.holdersRevenuePerDay * g + base.gasBurnPerDay) / issuancePerDay * 100, 1) }));
   const priceSensitivity = [2, price, 6, 10].map(p => ({ nearUsd: p, offsetPctOfIssuance: round((base.holdersRevenuePerDay + base.gasBurnPerDay) / (iss.supplyNear * iss.maxInflation / 365 * p) * 100, 1) }));
+  // NEAR accumulated in the revenue wallets between two blocks: on-chain, net of outflows, independent of any price or label
+  let walletAccumulation = null;
+  if (fs.existsSync('fixtures/buyback-wallets.json')) {
+    const W = readJson('fixtures/buyback-wallets.json');
+    const days = (Number(W.blocks.to.timestampNs) - Number(W.blocks.from.timestampNs)) / 86400e9;
+    const issuanceNearPerDay = W.totalSupplyNearAtTo * iss.maxInflation / 365;
+    const wallets = Object.fromEntries(Object.entries(W.wallets).filter(([, v]) => v.fromYocto && v.toYocto).map(([k, v]) => {
+      const d = Number(BigInt(v.toYocto) - BigInt(v.fromYocto)) / 1e24;
+      return [k, { netNear: Math.round(d), nearPerDay: Math.round(d / days), pctOfIssuance: round(d / days / issuanceNearPerDay * 100, 2) }];
+    }));
+    const total = Object.values(wallets).reduce((a, w) => a + w.netNear, 0);
+    walletAccumulation = { fromHeight: W.blocks.from.height, toHeight: W.blocks.to.height, days: round(days, 2), issuanceNearPerDay: Math.round(issuanceNearPerDay), wallets, totalNearPerDay: Math.round(total / days), totalPctOfIssuance: round(total / days / issuanceNearPerDay * 100, 2) };
+  }
   return {
+    walletAccumulation,
     note: 'Post hoc. DefiLlama series are [secondary]: volume and fees from NEAR-uploaded datasets, holders revenue = NEAR swept into buyback/treasury wallets from 2026-02-23, gas burn estimated by DefiLlama (70 % of gas before protocol v87 on 2026-11-04, 100 % after). Issuance = supply x max inflation, priced at the study week median NEAR price; offsets scale with 1/price.',
     fetchedAt: L.fetchedAt,
     issuance: { supplyNear: iss.supplyNear, maxInflation: iss.maxInflation, nearUsd: price, perDayUsd: Math.round(issuancePerDay), perYearUsd: Math.round(issuancePerDay * 365) },

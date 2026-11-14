@@ -23,7 +23,7 @@ export type Site = {
     treasury: { allBps: number; allCI: number[]; otherBps: number; otherCI: number[]; sameBps: number; sameCI: number[]; quotes: number; medianQuoteBps: number; costPerDay: number; robustBps: number } | null;
     validators: { feeSharePct: number; chunkT1p: number; chunkT2bp: number; winnersTested: number; fullWeek: boolean };
     verify: { passed: number | null; failed: number };
-    model: { fetchedAt: string; issuancePerDay: number; supplyNear: number; inflationPct: number; nearUsd: number; volumePerDay: number; feeBps: number; holdersSharePct: number; holdersBps: number; buybackPerDay: number; gasBurnPerDay: number; offsetBuyback: number; offsetBurn: number; offsetArb: number; offsetArbMean: number; buybackVsBurn: number; buybackVsArb: number; breakevenMultiple: number; breakevenVolume: number; sinceBuybackOffset: number; holderShareOfUserCost: Record<string, number> } | null;
+    model: { fetchedAt: string; issuancePerDay: number; supplyNear: number; inflationPct: number; nearUsd: number; volumePerDay: number; feeBps: number; holdersSharePct: number; holdersBps: number; buybackPerDay: number; gasBurnPerDay: number; offsetBuyback: number; offsetBurn: number; offsetArb: number; offsetArbMean: number; buybackVsBurn: number; buybackVsArb: number; breakevenMultiple: number; breakevenVolume: number; sinceBuybackOffset: number; holderShareOfUserCost: Record<string, number>; walletPct: number | null; walletNearPerDay: number | null } | null;
     prereg: { sha256: string; hashedAt: string; stampedAt: string };
     range: { from: number; to: number; dates: string; windows: number };
   };
@@ -46,7 +46,7 @@ type Place = [number, number, number, number] | null;
 type Layout = { cols: number[]; rows: number[]; tiles: Record<TileId, Place> };
 const TILES: TileId[] = ["brand", "big", "faq", "hero", "sum", "val", "proof", "check", "out", "index", "tabs"];
 const HOME: Layout = {
-  cols: [1, 1, 1, 1, 1.05], rows: [0.8, 1, 0.85, 0.9, 1.2],
+  cols: [1, 1, 1, 1, 1.05], rows: [1.12, 0.68, 0.85, 0.9, 1.2],
   tiles: { brand: [0, 0, 1, 1], big: [0, 1, 1, 2], faq: [0, 3, 1, 2], hero: [1, 0, 3, 4], sum: [4, 0, 1, 2], val: [4, 2, 1, 2], proof: [1, 4, 1, 1], check: [2, 4, 1, 1], out: [3, 4, 2, 1], index: null, tabs: null },
 };
 const BOOT: Layout = { ...HOME, tiles: { brand: null, big: null, faq: null, hero: [1, 0, 3, 4], sum: null, val: null, proof: null, check: null, out: null, index: null, tabs: null } };
@@ -145,7 +145,7 @@ export default function Bento({ site }: { site: Site }) {
       <li><b>Arbitrage is small.</b> About {usd(n.rhea.baselinePerDay)} a day on Rhea, half of it to three bots.</li>
       <li><b>Public swaps cost {f1(n.intents.totalBps)} bps,</b> {f1(n.intents.appFeeBps)} of it app fees in the user’s own intent.</li>
       {t && <li><b>The confidential route costs about {f1(t.allBps)} bps</b> all-in, {usd(t.costPerDay)} a day, and the chain can’t say who gets it.</li>}
-      {md ? <li><b>So the long-term case is Intents.</b> Its fee buyback offsets ≈ {f1(md.offsetBuyback)} % of issuance, ≈ {Math.round(md.buybackVsArb)}× what selling order could; ≈ {f1(md.breakevenMultiple)}× today’s volume would offset it all.</li>
+      {md ? <li><b>So the long-term case is Intents.</b> Its fee buyback returns ≈ {f1(md.walletPct ?? md.offsetBuyback)} % of issuance on chain, ≈ {Math.round(md.buybackVsArb)}× what selling order could; ≈ {f1(md.breakevenMultiple)}× today’s volume would offset it all.</li>
         : <li><b>So value goes to distribution,</b> not to order. Selling order would capture little.</li>}
     </ol>
   );
@@ -154,7 +154,7 @@ export default function Bento({ site }: { site: Site }) {
     ...(md ? [
       finding("long-term", "The long-term case", "Investment thesis", "Value accrues through the Intents fee layer",
         `For a long-term NEAR holder, the investable quantity is Intents volume × fee rate × holders' share. Over the last 30 days the share of Intents fees swept to NEAR buybacks offset ${f1(md.offsetBuyback)} % of issuance at the study week's price; burnt gas offset ${f1(md.offsetBurn)} % and all on-chain arbitrage, the most an order auction could capture, ${md.offsetArb.toFixed(2)} %.`,
-        [[f1(md.offsetBuyback) + " %", "of issuance offset by the buyback"], [Math.round(md.buybackVsArb) + "×", "the buyback vs on-chain arbitrage"], [f1(md.holdersBps) + " bps", `of volume reaches holders (${Math.round(md.holderShareOfUserCost.tokenDiff)}–${Math.round(md.holderShareOfUserCost.treasuryValueWeighted)} % of what users pay)`], [f1(md.breakevenMultiple) + "×", "today's volume to offset issuance"]],
+        [...(md.walletPct != null ? [[f1(md.walletPct) + " %", "of issuance accumulated on chain in the revenue wallets"] as [string, string]] : []), [f1(md.offsetBuyback) + " %", "of issuance, DefiLlama's attribution of the buyback"], [Math.round(md.buybackVsArb) + "×", "the buyback vs on-chain arbitrage"], [f1(md.holdersBps) + " bps", `of volume reaches holders (${Math.round(md.holderShareOfUserCost.tokenDiff)}–${Math.round(md.holderShareOfUserCost.treasuryValueWeighted)} % of what users pay)`], [f1(md.breakevenMultiple) + "×", "today's volume to offset issuance"]],
         [`Risks: the buyback is a policy, not a protocol rule (since it began it has averaged ${f1(md.sinceBuybackOffset)} % of issuance); most volume settles on a confidential ledger whose fee split the chain cannot show; and the volume, fee and revenue series are DefiLlama's [secondary]. The buyback wallets exist on chain (buybacks.multisignature.near holds ≈ 2.29 M NEAR).`]),
       { id: "model", short: "Model: re-run it", kicker: "Model · re-run it", title: "Move the inputs, see the offset", body: (<><p className="lead">The same arithmetic as the papers’ value-accrual model. Defaults are the last 30 days and the study week’s NEAR price; every input can be changed.</p><ModelSlide base={{ volumePerDay: md.volumePerDay, feeBps: md.feeBps, holdersSharePct: md.holdersSharePct, gasBurnPerDay: md.gasBurnPerDay, supplyNear: md.supplyNear, inflationPct: md.inflationPct, nearUsd: md.nearUsd }} /></>) },
       { id: "live", short: "Live dashboard", kicker: "Live · pulled now", title: "The model on today's data", body: <LiveSlide base={{ volumePerDay: md.volumePerDay, feeBps: md.feeBps, holdersSharePct: md.holdersSharePct, gasBurnPerDay: md.gasBurnPerDay, supplyNear: md.supplyNear, inflationPct: md.inflationPct, nearUsd: md.nearUsd }} snapshot={{ offsetPct: md.offsetBuyback + md.offsetBurn, fetchedAt: md.fetchedAt }} /> },
@@ -301,11 +301,11 @@ export default function Bento({ site }: { site: Site }) {
   const file = files[Math.min(view.file, Math.max(0, files.length - 1))];
   const slide = slides[Math.min(view.slide, slides.length - 1)];
 
-  const outputs: { label: string; meta: string; go: Partial<View>; on: boolean }[] = [
-    { label: "Litepaper", meta: `${site.papers.lite?.words.toLocaleString("en-US") ?? 0} words`, go: { tab: "lite" }, on: view.tab === "lite" },
-    { label: "Whitepaper", meta: `${site.papers.white?.words.toLocaleString("en-US") ?? 0} words`, go: { tab: "white" }, on: view.tab === "white" },
-    { label: "Summary", meta: `${slides.length} slides`, go: { tab: "summary", slide: 0 }, on: view.tab === "summary" },
-    ...groups.map(g => ({ label: GROUP_LABEL[g], meta: g === "verify" ? `${n.verify.passed}/${(n.verify.passed ?? 0) + n.verify.failed} pass` : g === "prereg" ? `sha ${n.prereg.sha256.slice(0, 8)}…` : `${o[g].length} file${o[g].length > 1 ? "s" : ""}`, go: { tab: "code" as Tab, group: g, file: 0 }, on: view.tab === "code" && view.group === g })),
+  const pages: { label: string; meta: string; go: Partial<View>; on: boolean }[] = [
+    { label: "Litepaper", meta: `${site.papers.lite?.words.toLocaleString("en-US") ?? 0} words, journal form`, go: { tab: "lite" }, on: view.tab === "lite" },
+    { label: "Whitepaper", meta: `${site.papers.white?.words.toLocaleString("en-US") ?? 0} words, full record`, go: { tab: "white" }, on: view.tab === "white" },
+    { label: "Code", meta: `${groups.reduce((k, g) => k + o[g].length, 0)} files: code, results, proofs, log`, go: { tab: "code", group: "code", file: 0 }, on: view.tab === "code" },
+    { label: "Summary", meta: `${slides.length} slides, model and live data`, go: { tab: "summary", slide: 0 }, on: view.tab === "summary" },
   ];
 
   return (
@@ -320,7 +320,6 @@ export default function Bento({ site }: { site: Site }) {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img className="wordmark wm-light" src="/yuki-wordmark-ink.svg" alt="" />
               <span className="brand-tools">
-                <span className="chip">NEAR ’26</span>
                 <button className="theme-toggle" onClick={toggleTheme} aria-label={light ? "Switch to dark mode" : "Switch to light mode"} title={light ? "Dark mode" : "Light mode"}>
                   {light ? (
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" /></svg>
@@ -347,7 +346,6 @@ export default function Bento({ site }: { site: Site }) {
         {/* reader: index */}
         <section className="tile" style={tileStyle("index")} aria-hidden={!reading}>
           <div className="pad index">
-            <span className="label">{view.tab === "code" ? "Files" : view.tab === "summary" ? "Slides" : "Contents"}</span>
             <nav className="index-list">
               {paper && paper.toc.map(h => (
                 <a key={h.id} href={"#" + h.id} className={"l" + h.level} onClick={e => { e.preventDefault(); scrollRef.current?.querySelector("#" + CSS.escape(h.id))?.scrollIntoView({ behavior: "smooth" }); }}>{h.text}</a>
@@ -370,7 +368,6 @@ export default function Bento({ site }: { site: Site }) {
         {/* stat carousel: content only */}
         <section className="tile" style={tileStyle("big")}>
           <div className="pad">
-            <span className="label">This week on NEAR</span>
             <div key={stat} className="swap-in stat-slot">
               <div className="stat-big">{stats[stat].value}</div>
               <p className="cap">{stats[stat].caption}</p>
@@ -384,7 +381,6 @@ export default function Bento({ site }: { site: Site }) {
         {/* findings → summary slides */}
         <section className="tile" style={tileStyle("faq")}>
           <div className="pad">
-            <span className="label">Findings</span>
             <ul className="faq-list">
               {[["long-term", "What’s the long-term case?"], ["arb", "Who captures arbitrage?"], ["validators", "Do validators get any?"], ["intents", "What do swaps cost users?"], ["treasury", "And the confidential route?"], ["order", "Would selling order help?"], ["trust", "How do we know it’s right?"]].filter(([id]) => slides.some(s => s.id === id)).map(([id, q]) => (
                 <li key={id}><button onClick={() => open({ tab: "summary", slide: slideIdx(id) })}>{q}</button></li>
@@ -398,7 +394,6 @@ export default function Bento({ site }: { site: Site }) {
           <div className="layer" data-on={!reading}>
             <Bars series={se.arbPerWindow} running={!reading && state !== "boot"} />
             <div className="hero-title">
-              <span className="hero-kicker">Yuki · thesis track · {n.range.dates}</span>
               <h1>Order isn’t for sale.<br />So who gets paid?</h1>
               <p>Each rod is a slice of the week; its glowing capsule is that slice’s on-chain arbitrage profit. The longest is a single six-minute router event.</p>
             </div>
@@ -421,7 +416,6 @@ export default function Bento({ site }: { site: Site }) {
               <div className="deck">
                 <div className="scroll slide-scroll" ref={scrollRef}>
                   <article className="slide swap-in" key={slide.id}>
-                    <div className="kicker">{slide.kicker}</div>
                     <h2>{slide.title}</h2>
                     {slide.body}
                   </article>
@@ -437,25 +431,22 @@ export default function Bento({ site }: { site: Site }) {
         </section>
 
         {/* thesis summary */}
-        <section className="tile strong" style={tileStyle("sum")}>
+        <section className="tile accent-card" style={tileStyle("sum")}>
           <button className="pad as-button" onClick={() => open({ tab: "summary", slide: 0 })}>
-            <span className="label">The thesis in five lines</span>
             {thesis}
           </button>
         </section>
 
         {/* validators + checks, one card */}
-        <section className="tile accent-card" style={tileStyle("val")}>
+        <section className="tile strong" style={tileStyle("val")}>
           <div className="val">
             <button className="half" onClick={() => open({ tab: "summary", slide: slideIdx("validators") })}>
-              <span className="label">To validators</span>
               <span className="big-num">0 %</span>
-              <span className="cap">of the fee stream</span>
+              <span className="cap">of fees go to validators</span>
             </button>
             <button className="half" onClick={() => open({ tab: "code", group: "verify", file: 0 })}>
-              <span className="label">Offline checks</span>
               <span className="big-num">{n.verify.passed ?? "—"}<span style={{ opacity: 0.45 }}>/{(n.verify.passed ?? 0) + n.verify.failed}</span></span>
-              <span className="cap">recomputed from hashed data</span>
+              <span className="cap">checks recomputed offline from hashed data</span>
             </button>
           </div>
         </section>
@@ -463,10 +454,8 @@ export default function Bento({ site }: { site: Site }) {
         {/* bottom row */}
         <section className="tile soft" style={tileStyle("proof")}>
           <div className="pad">
-            <span className="label">★ A traced quote</span>
             <span className="big-num" style={{ marginTop: "auto", fontSize: "min(20cqw, 30cqh)" }}>21.7<span style={{ fontSize: "0.4em", marginLeft: 4 }}>bps</span></span>
-            <p className="cap" style={{ marginTop: 8 }}>$57k NBTC → USDT: shielded, released 9 s later, withdrawn.</p>
-            <span className="cap">— account e464353c…, on-chain</span>
+            <p className="cap" style={{ marginTop: 8 }}>All-in cost of one traced quote: $57k NBTC to USDT, shielded, released 9 s later and withdrawn (account e464353c…).</p>
           </div>
         </section>
         <section className="tile" style={tileStyle("check")}>
@@ -482,18 +471,15 @@ export default function Bento({ site }: { site: Site }) {
           </div>
         </section>
 
-        {/* papers & outputs: the one section for documents and artefacts */}
+        {/* the four main pages, as a 2 x 2 matrix */}
         <section className="tile" style={tileStyle("out")}>
-          <div className="pad">
-            <span className="label">Papers &amp; outputs</span>
-            <div className="outs">
-              {outputs.map(x => (
-                <button key={x.label} className={`out${reading && x.on ? " on" : ""}`} onClick={() => open(x.go)}>
-                  <span className="out-l">{x.label}</span>
-                  <span className="out-m">{x.meta}</span>
-                </button>
-              ))}
-            </div>
+          <div className="quad">
+            {pages.map(x => (
+              <button key={x.label} className={`cell${reading && x.on ? " on" : ""}`} onClick={() => open(x.go)}>
+                <span className="out-l">{x.label}</span>
+                <span className="out-m">{x.meta}</span>
+              </button>
+            ))}
           </div>
         </section>
       </div>

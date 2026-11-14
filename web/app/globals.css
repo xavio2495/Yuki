@@ -924,16 +924,12 @@ body {
   font-size: clamp(0.72rem, 0.88vw, 0.9rem);
 }
 .checks li::before {
-  content: "✓";
+  content: "";
   flex: none;
-  display: grid;
-  place-items: center;
-  width: 18px;
-  height: 18px;
+  width: 7px;
+  height: 7px;
   border-radius: 99px;
-  background: var(--fg);
-  color: var(--bg);
-  font-size: 0.66rem;
+  background: var(--accent);
 }
 
 /* ------------------------------------------------------------------ thesis summary */
@@ -968,6 +964,17 @@ body {
   font-weight: 700;
 }
 
+.accent-card .sum-list {
+  color: color-mix(in oklab, var(--bg) 74%, var(--fg));
+}
+.accent-card .sum-list b {
+  color: var(--bg);
+}
+.accent-card .sum-list li::before {
+  color: var(--bg);
+  opacity: 0.55;
+}
+
 /* ------------------------------------------------------------------ validators + checks */
 .val {
   height: 100%;
@@ -990,10 +997,10 @@ body {
   transition: background 200ms;
 }
 .val .half + .half {
-  border-top: 1px solid color-mix(in oklab, var(--bg) 18%, transparent);
+  border-top: 1px solid var(--line);
 }
 .val .half:hover {
-  background: color-mix(in oklab, var(--bg) 8%, transparent);
+  background: var(--surface-2);
 }
 .val .label {
   margin-bottom: auto;
@@ -1048,6 +1055,46 @@ body {
 .out-m {
   font-size: 0.72rem;
   opacity: 0.65;
+}
+
+.quad {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+.quad .cell {
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  padding: clamp(12px, 3.5cqw, 22px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 3px;
+  min-width: 0;
+  transition: background 200ms;
+}
+.quad .cell:nth-child(odd) {
+  border-right: 1px solid var(--line);
+}
+.quad .cell:nth-child(-n + 2) {
+  border-bottom: 1px solid var(--line);
+}
+.quad .cell:hover {
+  background: var(--surface-2);
+}
+.quad .cell.on {
+  background: var(--fg);
+  color: var(--bg);
+}
+.quad .out-l {
+  font-size: clamp(1rem, 3.4cqw, 1.35rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
 /* ------------------------------------------------------------------ code / file viewer */

@@ -1,4 +1,29 @@
 {
+ "walletAccumulation": {
+  "fromHeight": 220090000,
+  "toHeight": 224566803,
+  "days": 30.26,
+  "issuanceNearPerDay": 89843,
+  "wallets": {
+   "buybacks.multisignature.near": {
+    "netNear": 293275,
+    "nearPerDay": 9691,
+    "pctOfIssuance": 10.79
+   },
+   "fefundsadmin.sputnik-dao.near": {
+    "netNear": 115550,
+    "nearPerDay": 3818,
+    "pctOfIssuance": 4.25
+   },
+   "1csfundsadmin.sputnik-dao.near": {
+    "netNear": 0,
+    "nearPerDay": 0,
+    "pctOfIssuance": 0
+   }
+  },
+  "totalNearPerDay": 13509,
+  "totalPctOfIssuance": 15.04
+ },
  "note": "Post hoc. DefiLlama series are [secondary]: volume and fees from NEAR-uploaded datasets, holders revenue = NEAR swept into buyback/treasury wallets from 2026-02-23, gas burn estimated by DefiLlama (70 % of gas before protocol v87 on 2026-11-04, 100 % after). Issuance = supply x max inflation, priced at the study week median NEAR price; offsets scale with 1/price.",
  "fetchedAt": "2026-11-14T19:27:24.929Z",
  "issuance": {

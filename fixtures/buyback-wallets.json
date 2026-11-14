@@ -1,0 +1,33 @@
+{
+ "fetchedAt": "2026-11-14T20:51:12.397Z",
+ "source": [
+  "https://archival-rpc.mainnet.fastnear.com",
+  "https://archival-rpc.mainnet.near.org",
+  "https://free.rpc.fastnear.com"
+ ],
+ "blocks": {
+  "from": {
+   "height": 220090000,
+   "timestampNs": "1792074706477732311"
+  },
+  "to": {
+   "height": 224566803,
+   "timestampNs": "1794689467692378457"
+  }
+ },
+ "totalSupplyNearAtTo": 1311701472.556,
+ "wallets": {
+  "buybacks.multisignature.near": {
+   "fromYocto": "1994585214652863785277637129354",
+   "toYocto": "2287860627292920454202984744502"
+  },
+  "fefundsadmin.sputnik-dao.near": {
+   "fromYocto": "1903929123317412543527018235170",
+   "toYocto": "2019478808993519955986093583256"
+  },
+  "1csfundsadmin.sputnik-dao.near": {
+   "fromYocto": "270875891412420848813311023",
+   "toYocto": "270875891412420848813311023"
+  }
+ }
+}

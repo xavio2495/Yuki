@@ -1,0 +1,92 @@
+{
+ "note": "Optional, post hoc. Full week: all 168 windows (archival RPC https://archival-rpc.mainnet.fastnear.com + https://archival-rpc.mainnet.near.org chunk). Tests clustering, not intent: a null result means no detectable producer-level pattern, not proof that no order is sold.",
+ "coverage": {
+  "winningBackrunsTested": 500,
+  "failedComparators": 1431,
+  "randomHeights": 300,
+  "shards": [
+   13,
+   4,
+   10,
+   7,
+   8,
+   9,
+   11,
+   12
+  ],
+  "sameLayoutAtRangeEnds": true,
+  "chunkErrors": 170
+ },
+ "T1_vsSchedule": {
+  "chiSquare": 84.6,
+  "monteCarloP": 0.08,
+  "winnersWithProducerUnseenInBaseline": 0,
+  "topCells": [
+   {
+    "shardProducer": "13|astro-stakers.poolv1.near",
+    "observed": 74,
+    "expected": 69.3,
+    "ratio": 1.07
+   },
+   {
+    "shardProducer": "4|bitwise_1.poolv1.near",
+    "observed": 36,
+    "expected": 29.3,
+    "ratio": 1.23
+   },
+   {
+    "shardProducer": "13|liver.pool.near",
+    "observed": 33,
+    "expected": 30.1,
+    "ratio": 1.09
+   },
+   {
+    "shardProducer": "13|bitwise_2.poolv1.near",
+    "observed": 30,
+    "expected": 31.6,
+    "ratio": 0.95
+   },
+   {
+    "shardProducer": "13|cnear-1.poolv1.near",
+    "observed": 28,
+    "expected": 28.6,
+    "ratio": 0.98
+   },
+   {
+    "shardProducer": "13|cnear-3.poolv1.near",
+    "observed": 26,
+    "expected": 29.4,
+    "ratio": 0.88
+   },
+   {
+    "shardProducer": "10|sumerian.poolv1.near",
+    "observed": 23,
+    "expected": 20.1,
+    "ratio": 1.15
+   },
+   {
+    "shardProducer": "12|nearvana.poolv1.near",
+    "observed": 22,
+    "expected": 23.4,
+    "ratio": 0.94
+   }
+  ]
+ },
+ "T2_vsFailedSameSigners": {
+  "chiSquare": 217.9,
+  "permutationP": 0.02,
+  "strata": "shard"
+ },
+ "T2b_vsFailedSameSigners_withinWindow": {
+  "chiSquare": 217.9,
+  "permutationP": 0.2284,
+  "strata": "shard x window",
+  "mixedStrata": 148,
+  "winnersInMixedStrata": 391
+ },
+ "inclusionProducerEqualsExecutionProducer": {
+  "n": 5,
+  "of": 500
+ },
+ "distinctProducersInWinners": 57
+}

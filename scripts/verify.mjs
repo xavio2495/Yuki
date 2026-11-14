@@ -93,6 +93,12 @@ if (fs.existsSync('fixtures/defillama-accrual.json') && fs.existsSync('results/m
   checks.push(['Model: issuance $/day at week median price', md.issuance.perDayUsd, MD.issuance.perDayUsd], ['Model 30d: Intents buyback % of issuance', a.offsetPctOfIssuance.intentsBuyback, A.offsetPctOfIssuance.intentsBuyback],
     ['Model 30d: gas burn % of issuance', a.offsetPctOfIssuance.gasBurn, A.offsetPctOfIssuance.gasBurn], ['Model 30d: breakeven Intents volume multiple', a.breakevenGrowthMultiple, A.breakevenGrowthMultiple],
     ['Model 30d: holders bps of Intents volume', a.holdersBpsOfVolume, A.holdersBpsOfVolume], ['Model: holders share of measured user cost %', md.holderShareOfUserCostPct.treasuryValueWeighted, MD.holderShareOfUserCostPct.treasuryValueWeighted]);
+  if (MD.walletAccumulation) checks.push(['Model: NEAR accumulated in revenue wallets, % of issuance', md.walletAccumulation.totalPctOfIssuance, MD.walletAccumulation.totalPctOfIssuance], ['Model: buyback wallet NEAR per day', md.walletAccumulation.wallets['buybacks.multisignature.near'].nearPerDay, MD.walletAccumulation.wallets['buybacks.multisignature.near'].nearPerDay]);
+}
+if (fs.existsSync('fixtures/chunk-authors-fullweek.json') && fs.existsSync('results/chunk-producers-fullweek.json')) {
+  const cf = analyzeChunks('fixtures/chunk-authors-fullweek.json'), CF = readJson('results/chunk-producers-fullweek.json');
+  checks.push(['Chunk producers, full week: winners tested', cf.coverage.winningBackrunsTested, CF.coverage.winningBackrunsTested], ['Chunk producers, full week: T1 Monte Carlo p', cf.T1_vsSchedule.monteCarloP, CF.T1_vsSchedule.monteCarloP],
+    ['Chunk producers, full week: T2 permutation p', cf.T2_vsFailedSameSigners.permutationP, CF.T2_vsFailedSameSigners.permutationP], ['Chunk producers, full week: T2b (within window) p', cf.T2b_vsFailedSameSigners_withinWindow.permutationP, CF.T2b_vsFailedSameSigners_withinWindow.permutationP]);
 }
 lines.push('== 2. recomputed from fixtures vs committed results/*.json (tol max(0.01, 1e-6 rel))');
 for (const [w, a, b] of checks) row(near(a, b), w, fmt(a), fmt(b));
