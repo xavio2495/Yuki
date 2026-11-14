@@ -36,6 +36,7 @@ const f1 = (v: number) => (Math.round(v * 10) / 10).toString();
 type Tab = "lite" | "white" | "code" | "summary";
 type OutKind = keyof Site["outputs"];
 type View = { tab: Tab; group: OutKind; file: number; slide: number };
+const REPO = "https://github.com/xavio2495/Yuki";
 const TAB_LABEL: Record<Tab, string> = { lite: "Litepaper", white: "Whitepaper", code: "Code", summary: "Summary" };
 const GROUP_LABEL: Record<OutKind, string> = { code: "Code", results: "Results", proofs: "Lean proofs", verify: "Verify log", prereg: "Pre-registration" };
 
@@ -436,7 +437,7 @@ export default function Bento({ site }: { site: Site }) {
               </div>
             ) : view.tab === "code" && file ? (
               <div className="scroll" ref={scrollRef}>
-                <div className="file-head">{file.path}<span>{file.text.split("\n").length.toLocaleString("en-US")} lines</span></div>
+                <div className="file-head"><b className="file-path">{file.path}</b><span className="file-meta">{file.text.split("\n").length.toLocaleString("en-US")} lines<a className="pill gh" href={/^[\w./-]+$/.test(file.path) ? `${REPO}/blob/main/${file.path}` : REPO} target="_blank" rel="noopener noreferrer">View on GitHub ↗</a></span></div>
                 <CodeView file={file} />
               </div>
             ) : view.tab === "summary" && slide ? (
