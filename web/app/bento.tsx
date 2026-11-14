@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
 import Bars from "./bars";
 import { SliceBars, StackBars, WindowBars } from "./charts";
+import { LiveSlide, ModelSlide } from "./model";
 
 type Paper = { title: string; html: string; toc: { id: string; level: number; text: string }[]; words: number } | null;
 type OutFile = { path: string; lang: string; text: string };
@@ -22,6 +23,7 @@ export type Site = {
     treasury: { allBps: number; allCI: number[]; otherBps: number; otherCI: number[]; sameBps: number; sameCI: number[]; quotes: number; medianQuoteBps: number; costPerDay: number; robustBps: number } | null;
     validators: { feeSharePct: number; chunkT1p: number; chunkT2bp: number; winnersTested: number; fullWeek: boolean };
     verify: { passed: number | null; failed: number };
+    model: { fetchedAt: string; issuancePerDay: number; supplyNear: number; inflationPct: number; nearUsd: number; volumePerDay: number; feeBps: number; holdersSharePct: number; holdersBps: number; buybackPerDay: number; gasBurnPerDay: number; offsetBuyback: number; offsetBurn: number; offsetArb: number; offsetArbMean: number; buybackVsBurn: number; buybackVsArb: number; breakevenMultiple: number; breakevenVolume: number; sinceBuybackOffset: number; holderShareOfUserCost: Record<string, number> } | null;
     prereg: { sha256: string; hashedAt: string; stampedAt: string };
     range: { from: number; to: number; dates: string; windows: number };
   };
@@ -106,7 +108,7 @@ function CodeView({ file }: { file: OutFile }) {
 type Slide = { id: string; short: string; kicker: string; title: string; body: ReactNode };
 
 export default function Bento({ site }: { site: Site }) {
-  const n = site.numbers, t = n.treasury, o = site.outputs, se = site.series;
+  const n = site.numbers, t = n.treasury, o = site.outputs, se = site.series, md = n.model;
   const [state, setState] = useState<"boot" | "home" | "read">("boot");
   const [view, setView] = useState<View>({ tab: "lite", group: "code", file: 0, slide: 0 });
   const [stat, setStat] = useState(0);
@@ -128,6 +130,7 @@ export default function Bento({ site }: { site: Site }) {
     { value: <>{usd(n.rhea.baselinePerDay)}<span className="unit">/day</span></>, caption: "On-chain arbitrage on Rhea at baseline. Small, and taken by a few bots." },
     { value: <>{f1(n.intents.totalBps)}<span className="unit">bps</span></>, caption: `What users pay on public Intents swaps; ${f1(n.intents.appFeeBps)} bps of it is app fees.` },
     ...(t ? [{ value: <>{usd(t.costPerDay / 1000)}k<span className="unit">/day</span></>, caption: `All-in user cost on the confidential route: ${f1(t.allBps)} bps over ${t.quotes} priced quotes.` }] : []),
+    ...(md ? [{ value: <>{f1(md.offsetBuyback)}<span className="unit">%</span></>, caption: `Of NEAR issuance offset by the Intents-fee buyback (last 30 days); gas burn adds ${f1(md.offsetBurn)} %.` }] : []),
   ];
 
   const Nums = ({ items }: { items: [string, string][] }) => (
@@ -142,11 +145,20 @@ export default function Bento({ site }: { site: Site }) {
       <li><b>Arbitrage is small.</b> About {usd(n.rhea.baselinePerDay)} a day on Rhea, half of it to three bots.</li>
       <li><b>Public swaps cost {f1(n.intents.totalBps)} bps,</b> {f1(n.intents.appFeeBps)} of it app fees in the user’s own intent.</li>
       {t && <li><b>The confidential route costs about {f1(t.allBps)} bps</b> all-in, {usd(t.costPerDay)} a day, and the chain can’t say who gets it.</li>}
-      <li><b>So value goes to distribution,</b> not to order. Selling order would capture little.</li>
+      {md ? <li><b>So the long-term case is Intents.</b> Its fee buyback offsets ≈ {f1(md.offsetBuyback)} % of issuance, ≈ {Math.round(md.buybackVsArb)}× what selling order could; ≈ {f1(md.breakevenMultiple)}× today’s volume would offset it all.</li>
+        : <li><b>So value goes to distribution,</b> not to order. Selling order would capture little.</li>}
     </ol>
   );
   const slides: Slide[] = [
     { id: "overview", short: "The thesis", kicker: "Summary", title: "The thesis in five lines", body: <div className="slide-sum">{thesis}</div> },
+    ...(md ? [
+      finding("long-term", "The long-term case", "Investment thesis", "Value accrues through the Intents fee layer",
+        `For a long-term NEAR holder, the investable quantity is Intents volume × fee rate × holders' share. Over the last 30 days the share of Intents fees swept to NEAR buybacks offset ${f1(md.offsetBuyback)} % of issuance at the study week's price; burnt gas offset ${f1(md.offsetBurn)} % and all on-chain arbitrage, the most an order auction could capture, ${md.offsetArb.toFixed(2)} %.`,
+        [[f1(md.offsetBuyback) + " %", "of issuance offset by the buyback"], [Math.round(md.buybackVsArb) + "×", "the buyback vs on-chain arbitrage"], [f1(md.holdersBps) + " bps", `of volume reaches holders (${Math.round(md.holderShareOfUserCost.tokenDiff)}–${Math.round(md.holderShareOfUserCost.treasuryValueWeighted)} % of what users pay)`], [f1(md.breakevenMultiple) + "×", "today's volume to offset issuance"]],
+        [`Risks: the buyback is a policy, not a protocol rule (since it began it has averaged ${f1(md.sinceBuybackOffset)} % of issuance); most volume settles on a confidential ledger whose fee split the chain cannot show; and the volume, fee and revenue series are DefiLlama's [secondary]. The buyback wallets exist on chain (buybacks.multisignature.near holds ≈ 2.29 M NEAR).`]),
+      { id: "model", short: "Model: re-run it", kicker: "Model · re-run it", title: "Move the inputs, see the offset", body: (<><p className="lead">The same arithmetic as the papers’ value-accrual model. Defaults are the last 30 days and the study week’s NEAR price; every input can be changed.</p><ModelSlide base={{ volumePerDay: md.volumePerDay, feeBps: md.feeBps, holdersSharePct: md.holdersSharePct, gasBurnPerDay: md.gasBurnPerDay, supplyNear: md.supplyNear, inflationPct: md.inflationPct, nearUsd: md.nearUsd }} /></>) },
+      { id: "live", short: "Live dashboard", kicker: "Live · pulled now", title: "The model on today's data", body: <LiveSlide base={{ volumePerDay: md.volumePerDay, feeBps: md.feeBps, holdersSharePct: md.holdersSharePct, gasBurnPerDay: md.gasBurnPerDay, supplyNear: md.supplyNear, inflationPct: md.inflationPct, nearUsd: md.nearUsd }} snapshot={{ offsetPct: md.offsetBuyback + md.offsetBurn, fetchedAt: md.fetchedAt }} /> },
+    ] : []),
     finding("arb", "Arbitrage", "Rhea · on-chain AMM", "A few bots, competing on speed",
       `Cyclic arbitrage on Rhea earns about ${usd(n.rhea.baselinePerDay)} a day outside one six-minute router-driven event, which alone held ${f1(n.rhea.spikeSharePct)} % of the week's profit.`,
       [[usd(n.rhea.baselinePerDay) + "/day", `baseline (95 % CI ${usd(n.rhea.baselineCI[0])}–${usd(n.rhea.baselineCI[1])})`], [f1(n.rhea.top3Pct) + " %", "taken by the top three senders"], [f1(n.rhea.backrunPct) + " %", "of profit from back-runs"], ["0", `confirmed sandwiches of ${n.rhea.sandwichPatterns} patterns`]],
@@ -374,7 +386,7 @@ export default function Bento({ site }: { site: Site }) {
           <div className="pad">
             <span className="label">Findings</span>
             <ul className="faq-list">
-              {[["arb", "Who captures arbitrage?"], ["validators", "Do validators get any?"], ["intents", "What do swaps cost users?"], ["treasury", "And the confidential route?"], ["order", "Would selling order help?"], ["trust", "How do we know it’s right?"]].filter(([id]) => slides.some(s => s.id === id)).map(([id, q]) => (
+              {[["long-term", "What’s the long-term case?"], ["arb", "Who captures arbitrage?"], ["validators", "Do validators get any?"], ["intents", "What do swaps cost users?"], ["treasury", "And the confidential route?"], ["order", "Would selling order help?"], ["trust", "How do we know it’s right?"]].filter(([id]) => slides.some(s => s.id === id)).map(([id, q]) => (
                 <li key={id}><button onClick={() => open({ tab: "summary", slide: slideIdx(id) })}>{q}</button></li>
               ))}
             </ul>

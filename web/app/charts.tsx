@@ -3,7 +3,7 @@
 
 const fmtUsd = (v: number) => "$" + (v >= 100 ? Math.round(v).toLocaleString("en-US") : v.toFixed(2));
 
-export function WindowBars({ values, mark, label }: { values: number[]; mark: { index: number; text: string }; label: string }) {
+export function WindowBars({ values, mark, label, axis = ["window 1 (2026-11-07)", `window ${values.length} (2026-11-14)`], unit = "window" }: { values: number[]; mark: { index: number; text: string }; label: string; axis?: [string, string]; unit?: string }) {
   const W = 1000, H = 340, padL = 64, padR = 12, padT = 34, padB = 34;
   const iw = W - padL - padR, ih = H - padT - padB;
   const max = Math.max(...values) || 1;
@@ -21,13 +21,13 @@ export function WindowBars({ values, mark, label }: { values: number[]; mark: { 
       ))}
       {values.map((v, i) => (
         <rect key={i} x={padL + i * bw + 0.6} y={y(v)} width={Math.max(bw - 1.2, 0.8)} height={Math.max(padT + ih - y(v), v > 0 ? 1 : 0)} className={i === mark.index ? "bar hot" : "bar"}>
-          <title>{`window ${i + 1}: ${fmtUsd(v)}`}</title>
+          <title>{`${unit} ${i + 1}: ${fmtUsd(v)}`}</title>
         </rect>
       ))}
       <line x1={mx} x2={mx} y1={padT - 16} y2={y(values[mark.index])} className="callout" />
       <text x={Math.min(mx, W - padR)} y={padT - 20} textAnchor={mx > W * 0.6 ? "end" : "start"} className="note">{mark.text}</text>
-      <text x={padL} y={H - 8} className="tick">window 1 (2026-11-07)</text>
-      <text x={W - padR} y={H - 8} textAnchor="end" className="tick">window {values.length} (2026-11-14)</text>
+      <text x={padL} y={H - 8} className="tick">{axis[0]}</text>
+      <text x={W - padR} y={H - 8} textAnchor="end" className="tick">{axis[1]}</text>
     </svg>
   );
 }

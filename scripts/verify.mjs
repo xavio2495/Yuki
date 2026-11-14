@@ -16,6 +16,7 @@ import { loadIntents, sensitivity } from './intents-analyze.mjs';
 import { analyzeCoverage } from './hub-analyze.mjs';
 import { analyzeChunks } from './chunk-analyze.mjs';
 import { analyzeHubQuotes } from './hub-quotes-analyze.mjs';
+import { analyzeModel } from './model-analyze.mjs';
 globalThis.fetch = () => { throw new Error('network is disabled inside verify'); };
 const t0 = Date.now();
 let pass = 0, fail = 0; const lines = [];
@@ -86,6 +87,12 @@ if (hq) {
   checks.push(['Treasury path: priced swaps (quotes)', hq.all.quotes, HQ.all.quotes], ['Treasury path: all-in user cost bps', hq.all.totalBps, HQ.all.totalBps], ['Treasury path: all-in 95% CI', hq.all.ci95, HQ.all.ci95],
     ['Treasury path: non-stable pairs bps', hq.other.totalBps, HQ.other.totalBps], ['Treasury path: same-asset cross-chain bps', hq.sameAssetCrossChain.totalBps, HQ.sameAssetCrossChain.totalBps], ['Treasury path: user cost $/day', hq.perDay.userCostUsd, HQ.perDay.userCostUsd]);
   if (HQ.robustness) checks.push(['Treasury path, extra pairs + USDC at market: all bps', hq.robustness.all.totalBps, HQ.robustness.all.totalBps], ['Treasury path, extra pairs + USDC at market: stable bps', hq.robustness.stableToStable.totalBps, HQ.robustness.stableToStable.totalBps]);
+}
+if (fs.existsSync('fixtures/defillama-accrual.json') && fs.existsSync('results/model.json')) {
+  const md = analyzeModel(), MD = readJson('results/model.json'), a = md.windows.last30d, A = MD.windows.last30d;
+  checks.push(['Model: issuance $/day at week median price', md.issuance.perDayUsd, MD.issuance.perDayUsd], ['Model 30d: Intents buyback % of issuance', a.offsetPctOfIssuance.intentsBuyback, A.offsetPctOfIssuance.intentsBuyback],
+    ['Model 30d: gas burn % of issuance', a.offsetPctOfIssuance.gasBurn, A.offsetPctOfIssuance.gasBurn], ['Model 30d: breakeven Intents volume multiple', a.breakevenGrowthMultiple, A.breakevenGrowthMultiple],
+    ['Model 30d: holders bps of Intents volume', a.holdersBpsOfVolume, A.holdersBpsOfVolume], ['Model: holders share of measured user cost %', md.holderShareOfUserCostPct.treasuryValueWeighted, MD.holderShareOfUserCostPct.treasuryValueWeighted]);
 }
 lines.push('== 2. recomputed from fixtures vs committed results/*.json (tol max(0.01, 1e-6 rel))');
 for (const [w, a, b] of checks) row(near(a, b), w, fmt(a), fmt(b));

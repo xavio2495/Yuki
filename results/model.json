@@ -1,0 +1,156 @@
+{
+ "note": "Post hoc. DefiLlama series are [secondary]: volume and fees from NEAR-uploaded datasets, holders revenue = NEAR swept into buyback/treasury wallets from 2026-02-23, gas burn estimated by DefiLlama (70 % of gas before protocol v87 on 2026-11-04, 100 % after). Issuance = supply x max inflation, priced at the study week median NEAR price; offsets scale with 1/price.",
+ "fetchedAt": "2026-11-14T19:27:24.929Z",
+ "issuance": {
+  "supplyNear": 1311676443,
+  "maxInflation": 0.025,
+  "nearUsd": 3.6,
+  "perDayUsd": 323427,
+  "perYearUsd": 118050880
+ },
+ "measuredAllInBps": {
+  "tokenDiff": 32.16,
+  "treasuryValueWeighted": 21.65,
+  "treasuryRobust": 26.09
+ },
+ "holderShareOfUserCostPct": {
+  "tokenDiff": 14.8,
+  "treasuryValueWeighted": 21.9,
+  "treasuryRobust": 18.2
+ },
+ "windows": {
+  "studyWeek": {
+   "from": "2026-11-07",
+   "to": "2026-11-13",
+   "intentsVolumePerDay": 139960091,
+   "intentsFeesPerDay": 269024,
+   "intentsFeeBps": 19.22,
+   "holdersRevenuePerDay": 54303,
+   "holdersShareOfFeesPct": 20.2,
+   "holdersBpsOfVolume": 3.88,
+   "gasFeesPerDay": 3228,
+   "gasBurnPerDay": 2260,
+   "offsetPctOfIssuance": {
+    "intentsBuyback": 16.79,
+    "gasBurn": 0.7,
+    "arbitrageBaseline": 0.107,
+    "arbitrageRegisteredMean": 0.386
+   },
+   "buybackVsBurn": 24,
+   "buybackVsArbBaseline": 156,
+   "breakevenIntentsVolumePerDay": 827774378,
+   "breakevenGrowthMultiple": 5.91
+  },
+  "last30d": {
+   "from": "2026-10-15",
+   "to": "2026-11-13",
+   "intentsVolumePerDay": 126582068,
+   "intentsFeesPerDay": 208890,
+   "intentsFeeBps": 16.5,
+   "holdersRevenuePerDay": 60071,
+   "holdersShareOfFeesPct": 28.8,
+   "holdersBpsOfVolume": 4.75,
+   "gasFeesPerDay": 4315,
+   "gasBurnPerDay": 3021,
+   "offsetPctOfIssuance": {
+    "intentsBuyback": 18.57,
+    "gasBurn": 0.93,
+    "arbitrageBaseline": 0.107,
+    "arbitrageRegisteredMean": 0.386
+   },
+   "buybackVsBurn": 19.9,
+   "buybackVsArbBaseline": 173,
+   "breakevenIntentsVolumePerDay": 675162432,
+   "breakevenGrowthMultiple": 5.33
+  },
+  "last90d": {
+   "from": "2026-08-16",
+   "to": "2026-11-13",
+   "intentsVolumePerDay": 137556049,
+   "intentsFeesPerDay": 216862,
+   "intentsFeeBps": 15.77,
+   "holdersRevenuePerDay": 58135,
+   "holdersShareOfFeesPct": 26.8,
+   "holdersBpsOfVolume": 4.23,
+   "gasFeesPerDay": 4234,
+   "gasBurnPerDay": 2964,
+   "offsetPctOfIssuance": {
+    "intentsBuyback": 17.97,
+    "gasBurn": 0.92,
+    "arbitrageBaseline": 0.107,
+    "arbitrageRegisteredMean": 0.386
+   },
+   "buybackVsBurn": 19.6,
+   "buybackVsArbBaseline": 167,
+   "breakevenIntentsVolumePerDay": 758263597,
+   "breakevenGrowthMultiple": 5.51
+  },
+  "sinceBuyback": {
+   "from": "2026-02-23",
+   "to": "2026-11-13",
+   "intentsVolumePerDay": 92129802,
+   "intentsFeesPerDay": 143345,
+   "intentsFeeBps": 15.56,
+   "holdersRevenuePerDay": 31053,
+   "holdersShareOfFeesPct": 21.7,
+   "holdersBpsOfVolume": 3.37,
+   "gasFeesPerDay": 2686,
+   "gasBurnPerDay": 1883,
+   "offsetPctOfIssuance": {
+    "intentsBuyback": 9.6,
+    "gasBurn": 0.58,
+    "arbitrageBaseline": 0.107,
+    "arbitrageRegisteredMean": 0.386
+   },
+   "buybackVsBurn": 16.5,
+   "buybackVsArbBaseline": 89,
+   "breakevenIntentsVolumePerDay": 953991202,
+   "breakevenGrowthMultiple": 10.35
+  }
+ },
+ "growth": [
+  {
+   "volumeMultiple": 1,
+   "intentsVolumePerDay": 126582068,
+   "offsetPctOfIssuance": 19.5
+  },
+  {
+   "volumeMultiple": 2,
+   "intentsVolumePerDay": 253164136,
+   "offsetPctOfIssuance": 38.1
+  },
+  {
+   "volumeMultiple": 3,
+   "intentsVolumePerDay": 379746204,
+   "offsetPctOfIssuance": 56.7
+  },
+  {
+   "volumeMultiple": 5,
+   "intentsVolumePerDay": 632910340,
+   "offsetPctOfIssuance": 93.8
+  },
+  {
+   "volumeMultiple": 10,
+   "intentsVolumePerDay": 1265820680,
+   "offsetPctOfIssuance": 186.7
+  }
+ ],
+ "priceSensitivity": [
+  {
+   "nearUsd": 2,
+   "offsetPctOfIssuance": 35.1
+  },
+  {
+   "nearUsd": 3.6,
+   "offsetPctOfIssuance": 19.5
+  },
+  {
+   "nearUsd": 6,
+   "offsetPctOfIssuance": 11.7
+  },
+  {
+   "nearUsd": 10,
+   "offsetPctOfIssuance": 7
+  }
+ ]
+}

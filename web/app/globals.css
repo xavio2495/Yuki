@@ -736,6 +736,92 @@ body {
   color: var(--text-3);
 }
 
+/* ------------------------------------------------------------------ model + live */
+.model {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 22px;
+  margin-top: 18px;
+}
+@container (max-width: 700px) {
+  .model {
+    grid-template-columns: 1fr;
+  }
+}
+.sliders {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;
+}
+.slider {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.sl-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.86rem;
+  color: var(--text-2);
+}
+.sl-head b {
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.slider input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+.model-out {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  align-content: start;
+}
+.model-out .num,
+.slide .num {
+  background: var(--surface-2);
+  border-radius: 16px;
+  padding: 16px 18px;
+}
+.model-out .num b {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 860;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+.model-out .num span {
+  font-size: 0.8rem;
+  color: var(--text-2);
+}
+.model-out .num.big {
+  grid-column: 1 / -1;
+  background: var(--fg);
+  color: var(--bg);
+}
+.model-out .num.big b {
+  font-size: clamp(2.2rem, 5cqw, 3.4rem);
+}
+.model-out .num.big span {
+  color: color-mix(in oklab, var(--bg) 72%, var(--fg));
+}
+.meter {
+  grid-column: 1 / -1;
+  height: 8px;
+  border-radius: 99px;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+.meter div {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 99px;
+  transition: width 300ms var(--ease);
+}
+
 /* ------------------------------------------------------------------ charts (palette only) */
 .chart {
   width: 100%;
