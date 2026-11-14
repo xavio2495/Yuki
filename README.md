@@ -207,7 +207,7 @@ Notes:
 | 28 | Value accrual, last 30 days: Intents buyback = 18.57 % of issuance; gas burn 0.93 % (§6) | $60,071/day buyback vs $323,427/day issuance at $3.60 | `results/model.json` → `windows.last30d` | `verify` §2 |
 | 29 | Breakeven: buyback + burn = issuance at 5.33× the 30-day Intents volume (§6) | ≈ $675M/day | `model.json` → `breakevenGrowthMultiple` | `verify` §2 |
 | 30 | Holders get 4.75 bps of volume = 21.9 % of measured all-in user cost (confidential path) (§6) | 14.8 % on public swaps | `model.json` → `holderShareOfUserCostPct` | `verify` §2 |
-| 31 | Buyback wallets exist: `buybacks.multisignature.near` ≈ 2.29 M NEAR, 3,416 txs (§6) | 2026-11-14 ~19:30 UTC | NEAR RPC `view_account`, FastNEAR `/account` | online only |
+| 31 | Buyback wallets exist: `buybacks.multisignature.near` ≈ 2.29 M NEAR, appears in 3,416 transactions (mostly receiving) (§6) | 2026-11-14 ~19:30 UTC | NEAR RPC `view_account`, FastNEAR `/account` | online only |
 | 32 | NEAR accumulated in revenue wallets over 30.26 days: 13,509 NEAR/day = 15.04 % of issuance (buyback wallet 10.79 %, fee wallet 4.25 %) (§6) | blocks 220,090,000 → 224,566,803 | `fixtures/buyback-wallets.json` → `results/model.json` `walletAccumulation` | `verify` §2 |
 
 ## 4. Layout

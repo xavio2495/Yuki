@@ -175,6 +175,75 @@ body {
   color: var(--bg);
 }
 
+/* ------------------------------------------------------------------ preloader (the line artwork) */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--bg);
+  display: grid;
+  place-items: center;
+  transition: opacity 650ms var(--ease), transform 700ms var(--ease);
+}
+.preloader.out {
+  opacity: 0;
+  transform: scale(1.02);
+  pointer-events: none;
+}
+.pl-rods {
+  position: absolute;
+  inset: 12% 16%;
+  display: flex;
+  justify-content: space-between;
+}
+.pl-rod {
+  position: relative;
+  width: 2px;
+  height: 100%;
+  transform-origin: top;
+  transform: scaleY(0);
+  background: linear-gradient(var(--accent), color-mix(in oklab, var(--accent) 10%, transparent));
+  animation: plRod 700ms var(--ease) forwards;
+}
+.pl-rod i {
+  position: absolute;
+  left: 50%;
+  width: 10px;
+  translate: -50% 0;
+  border-radius: 99px;
+  background: linear-gradient(var(--fg), var(--accent));
+  box-shadow: 0 0 18px color-mix(in oklab, var(--accent) 60%, transparent);
+  opacity: 0;
+  animation: plCap 650ms var(--ease) forwards;
+}
+.pl-mark {
+  position: relative;
+  height: clamp(70px, 14vh, 140px);
+  width: auto;
+  opacity: 0;
+  animation: plMark 600ms 500ms var(--ease) forwards;
+}
+@keyframes plRod {
+  to {
+    transform: scaleY(1);
+  }
+}
+@keyframes plCap {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes plMark {
+  to {
+    opacity: 1;
+  }
+}
+
 /* ------------------------------------------------------------------ brand */
 .brand-top {
   display: flex;
@@ -183,7 +252,7 @@ body {
   gap: 8px;
 }
 .wordmark {
-  height: clamp(44px, 6.4vh, 74px);
+  height: clamp(58px, 36cqh, 118px);
   width: auto;
   margin: -6px 0 0 -8px;
 }
@@ -985,6 +1054,36 @@ body {
 .accent-card .sum-list li::before {
   color: var(--bg);
   opacity: 0.55;
+}
+
+/* what to watch */
+.watch {
+  margin: auto 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: min(1.6cqh, 10px);
+}
+.watch div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  border-top: 1px solid var(--line);
+  padding-top: min(1.6cqh, 9px);
+}
+.watch dt {
+  font-size: max(0.72rem, min(0.9rem, 6cqh));
+  color: var(--text-2);
+}
+.watch dd {
+  margin: 0;
+  font-weight: 800;
+  font-size: max(0.9rem, min(1.25rem, 9cqh));
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.watch-link {
+  margin-top: min(1.8cqh, 10px);
 }
 
 /* ------------------------------------------------------------------ validators + checks */

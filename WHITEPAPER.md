@@ -10,7 +10,7 @@ Immanuel and Charles, independent researchers
 
 ## Abstract
 
-On most smart-contract chains, the value that trading creates is tied to the sale of transaction order, and the payment for position reaches block producers. NEAR has no protocol channel to buy position, burns its transaction fees and pays validators from issuance. A long-term holder therefore has to ask who captures the value of trading on NEAR, and whether any of it returns to the token. We measure each layer on one week of mainnet activity: arbitrage on the on-chain exchange, the share that reaches validators, what users pay on the intent-based exchange on its public and its confidential route, and the NEAR that accumulates in the wallets that hold fee revenue. A small model then sets each stream against issuance. Order-based extraction is small and is not paid to validators. Most of what users pay goes to the distribution layer of the intent system. Only the part of those fees that is swept into NEAR is large enough to matter to a holder, and it rests on a policy, not on a protocol rule. The paper states the evidence for this thesis, the evidence against it, and the observations that would change our mind.
+NEAR does not sell transaction order: it has no priority fee, burns its transaction fees and pays validators from issuance. For a long-term holder the question is therefore where the value of trading goes, and whether any of it returns to the token. Measuring one week of mainnet activity and setting each stream that reaches holders against issuance, we find that, of the streams we measured, only one is large against issuance. The share of intent-system fees swept into NEAR buyback and revenue wallets accumulates on chain, where it is held, not burned. Order-based extraction and burnt gas are one to two orders of magnitude smaller, and validators receive no share of fees. Users pay mainly for distribution: application and routing fees on public intent swaps, and a fee layer of similar size on the confidential route that the public chain cannot split. Holders keep a minority of what users pay, and matching issuance in size would take a severalfold rise in intent volume at today's rates. The buyback is a policy rather than a protocol rule, which is the main risk to the thesis. This paper states the evidence for the thesis, the evidence against it, and the observations that would change our mind; the results computed from the sampled data are recomputed offline from public data.
 
 **How to read the labels.** Every factual claim carries one of these marks:
 
@@ -30,12 +30,12 @@ Numbers in square brackets, such as [4], point to the reference list. All dates 
 The study covers one week of NEAR mainnet, from 2026-11-07 to 2026-11-14, read through a systematic sample of block windows and scaled to the week (Section 4). Dollar values use an external exchange price at the minute of each transaction.
 
 1. **Order-based extraction is small.** On the on-chain exchange Rhea, cyclic arbitrage earns about **$347 a day** outside one six-minute event (95 % CI $171–564), and $1,247 a day with it (95 % CI $216–3,085). That is 0.11 % and 0.39 % of NEAR's issuance. Three accounts take half of the profit. We confirmed no sandwich attack of the same-pool shape we searched for [measured].
-2. **Validators receive none of it.** Transaction fees are burnt and the validator reward in the chunk headers we inspected is zero [measured]. Across the week, the producers of the chunks that included 500 winning back-runs show no clustering once time is controlled (p = 0.08 against the producer schedule, p = 0.23 against failed attempts by the same bots within the same window) [measured].
+2. **Validators receive no fee share, and we detect no share through ordering.** Transaction fees are burnt, and the validator reward is zero in every chunk header of the one block we inspected [measured]. Across the week, the producers of the chunks that included 500 winning back-runs show no significant clustering once time is controlled (a borderline p = 0.08 against the producer schedule, p = 0.23 against failed attempts by the same bots within the same window) [measured].
 3. **On the public route of NEAR Intents, users pay about 32 bps, mostly to applications.** The cost is 24.07 bps of fees to the integrators that route the order, 8.07 bps of solver spread whose interval includes zero, and 0.027 bps of protocol fee [measured]. This route is only about 1 % of the volume reported for NEAR Intents.
 4. **On the confidential route, users pay about 22 bps all-in.** On 194 priced quotes the value-weighted cost is 21.65 bps (95 % CI 10.54–51.07). It is 51.78 bps outside stablecoin and same-asset routes and 3.56 bps on same-asset routes across chains. The typical quote is small and pays about 55 bps. The public chain cannot show how this cost divides between fees and solver spread [measured].
 5. **The stream that reaches holders is the Intents fee layer.** On chain, NEAR accumulated in the buyback and revenue wallets at about 13.5k NEAR a day over 30 days, **15.0 % of issuance**, a figure that needs no price and no label [measured]. DefiLlama attributes $60.1k a day to this flow, 18.6 % of issuance [secondary]. Purchases that are visible on chain as swaps are a lower bound of about 2.7 % [secondary]. Burnt gas is 0.9 % of issuance.
-6. **Holders receive a minority of what users pay.** Holders' revenue is 4.75 bps of Intents volume, roughly 15–22 % of the user's all-in cost on the two routes. Integrators, the 1Click routing service and solvers keep the rest.
-7. **About 5.3 times today's volume would offset issuance.** At the fee rate and holders' share of the last 30 days, buyback and burn together match issuance at about $675M of Intents volume a day [secondary inputs, our arithmetic].
+6. **Holders receive a minority of what users pay.** Holders' revenue is 4.75 bps of Intents volume, roughly 15–22 % of the user's all-in cost on the two routes. The numerator is a 30-day aggregate and the costs are one week's samples, so the share is approximate. Integrators, the 1Click routing service and solvers keep the rest.
+7. **About 5.3 times today's volume would match issuance in size.** At the fee rate and holders' share of the last 30 days, buyback and burn together equal issuance at about $675M of Intents volume a day [secondary inputs, our arithmetic]. The buyback NEAR is held in wallets, not burned, so this is a comparison of flows and not a net change in supply.
 8. **The stream is policy, not protocol.** The share swept to holders is set by the ecosystem and can be cut. Since the buyback began on 2026-02-23 it has averaged 9.6 % of issuance, about half of the last 30 days' level. A governance decision, HSP-029, would lower the issuance ceiling from 2.5 % to 1.6 %; it is not yet in force [secondary].
 
 **Bottom line** [judgment]. The long-term case for NEAR from trading is a bet that Intents volume grows and that its fee layer keeps paying holders. It is not a bet on selling blockspace or transaction order, which today would capture well under 1 % of issuance.
@@ -67,11 +67,11 @@ Gas burn and order-based extraction are one to two orders of magnitude smaller t
 
 - **What the design gets right.** Transaction order is not sold, so users are not taxed by searchers, and validators are paid from issuance, not from users' trades. Trading stays cheap at the base layer, and value capture moves to a layer that the protocol's ecosystem controls.
 - **Where the value sits.** The fee layer of NEAR Intents collects what users pay. The part swept into NEAR is the only trading stream that is material against issuance.
-- **Where the risk sits.** The buyback is a policy. Most volume settles on a confidential ledger whose fee split the public chain cannot show. The distribution layer keeps 78–85 % of what users pay. The thesis is only as durable as the share that reaches holders.
+- **Where the risk sits.** The buyback is a policy. Most volume settles on a confidential ledger whose fee split the public chain cannot show. The other 78–85 % of what users pay stays with integrators, 1Click and solvers; this share sets a 30-day aggregate against costs sampled in one week, so it is approximate. The thesis is only as durable as the share that reaches holders.
 
 ### 1.4 What this paper does not claim
 
-We do not measure whether users are leaving or joining NEAR, and no statement here should be read that way. Swap and withdrawal data cannot say whether a person stopped using a chain. Intents users mostly appear as one-time accounts with 64-character hexadecimal names: in our sample, 612 of the 1,410 transfers of the bridge treasury involve 586 distinct accounts of this kind, almost all seen once [measured]. No identity links them across trades. The pre-registration ruled out any such claim in advance. We report what users pay, and which assets flow across the ledger boundary, as facts.
+We do not measure whether users are leaving or joining NEAR, and no statement here should be read that way. Swap and withdrawal data cannot say whether a person stopped using a chain. Intents users mostly appear as one-time accounts with 64-character hexadecimal names: one account, the bridge treasury of Section 2.3, makes 1,410 transfers in our sample, and 612 of them involve 586 distinct accounts of this kind, almost all seen once [measured]. No identity links them across trades. The pre-registration ruled out any such claim in advance. We report what users pay, and which assets flow across the ledger boundary, as facts.
 
 ---
 
@@ -108,7 +108,7 @@ Most orders reach either route through **1Click**, a routing service that wallet
 
 The documented fee schedule has three parts [15] [verified that the documentation states these rates]: a protocol fee of 0.0001 % collected by `intents.near`; a 1Click fee of 20 bps by default, and 1 bp for stablecoin pairs and same-asset routes across chains; and the integrators' app fees on top.
 
-Part of the fee revenue is swept into NEAR held by three accounts, which the NEAR revenue dashboard lists as revenue wallets [18]: `buybacks.multisignature.near`, `fefundsadmin.sputnik-dao.near` and `1csfundsadmin.sputnik-dao.near`. DefiLlama states that since 2026-02-23 the captured Intents revenue buys NEAR on the open market and that the NEAR is not burned [16] [secondary]. We refer to this flow as the **buyback**, and to its recipients as **holders** in the sense that NEAR is taken off the market into wallets aligned with the token. Section 6 states what is and is not verified about it.
+Part of the fee revenue is swept into NEAR held by three accounts, which the NEAR revenue dashboard lists as revenue wallets [18]: `buybacks.multisignature.near`, `fefundsadmin.sputnik-dao.near` and `1csfundsadmin.sputnik-dao.near`. DefiLlama states that since 2026-02-23 the captured Intents revenue buys NEAR on the open market and that the NEAR is not burned [16] [secondary]. We refer to this flow as the **buyback**, and to its recipients as **holders** in the sense that NEAR moves into wallets aligned with the token. That NEAR is held, not burned and not distributed, and the parties that control the wallets can spend it. Section 6 states what is and is not verified about it.
 
 ---
 
@@ -139,7 +139,7 @@ This section defines the units used in the evidence. Section 10 gives the full m
 - **Cyclic arbitrage**: a transaction whose swaps start and end in the same token. Its gross profit is the value of its net token change. A **back-run** is a cyclic arbitrage that is the next swap on a pool within one block after a swap that is not an arbitrage.
 - **User cost on the public route**: app fees, plus solver spread, plus protocol fee. App fees are transfers signed under the user's own intent to an account that is not a counterparty of that swap. Solver spread is the solvers' net balance change valued at mid.
 - **All-in cost on the confidential route**: (value sent to the treasury − value released back) / value sent, both valued at the price of the release, so market drift between the two steps is excluded.
-- **Offset of issuance**: a stream reaching holders, in dollars a day, divided by issuance in dollars a day.
+- **Offset of issuance**: a stream reaching holders, in dollars a day, divided by issuance in dollars a day. It compares sizes. Only burnt gas reduces supply; NEAR in the revenue wallets remains in supply.
 
 **Pre-registration.** Hypotheses and kill criteria were registered in three stages on 2026-11-14; the first stage was written after a short pilot. Appendix B lists every outcome and Appendix C every departure. Analyses added afterwards are marked post hoc.
 
@@ -172,11 +172,11 @@ We parsed every swap hop from receipt logs, so multi-hop swaps and swaps started
 
 **Scale against issuance.** Baseline arbitrage is 0.11 % of issuance and the all-window mean is 0.39 %. These are upper bounds on what an order auction could capture from on-chain arbitrage today.
 
-### 5.2 Validators receive none of it
+### 5.2 Validators receive no fee share and show no detectable preference
 
-**Mechanism.** Fees are burnt, the validator reward in chunk headers is zero, and there is no tip field (Section 2.2).
+**Mechanism.** Fees are burnt, the validator reward is zero in the chunk headers of the block we inspected, and there is no tip field (Section 2.2).
 
-**Empirical check (post hoc).** If some chunk producers sold order outside the protocol, winning back-runs should be over-represented in their chunks. We tested this on the full week, in all 168 windows, with chunk authors read from two archival nodes that returned identical results. The test covers 500 of the 505 winning back-runs, 1,431 failed attempts by the same bots, and 300 random block heights across 8 shards as the reference. 170 of 4,755 chunk lookups (3.6 %) failed after retries and are left out [measured].
+**Empirical check (post hoc).** If some chunk producers sold order outside the protocol, winning back-runs should be over-represented in their chunks. We tested this on the full week, in all 168 windows, with chunk authors read from two archival nodes that returned identical results. The test covers 500 of the 505 winning back-runs, 1,431 failed attempts by the same bots, and 300 random block heights across 8 shards as the reference. Each of these needs a lookup of the chunk that included it. Of the 4,755 lookups, 170 (3.6 %) failed after retries and are left out [measured].
 
 - **Against the producer schedule.** Comparing the producers of the chunks that included the winners with each shard's producer mix gives χ² = 84.6 and a Monte Carlo p of 0.08. This is not significant at 5 %. The largest cell is 1.23 times its expected count.
 - **Against failed attempts by the same bots.** Permuting labels within shard gives p = 0.02. Permuting within shard and window, which controls for the producer schedule changing across epochs, gives p = 0.23.
@@ -271,7 +271,7 @@ Supply is 1.31 billion NEAR and maximum inflation is 2.5 %, from the live protoc
 
 ### 6.2 What is measured on chain
 
-**The wallets exist and are active** [measured, 2026-11-14]. `buybacks.multisignature.near` is a multisig that needs 2 of 4 keys. It holds about 2.29M NEAR and has 3,416 transactions, the latest at block 224,557,456. `fefundsadmin.sputnik-dao.near` holds about 2.02M NEAR. `1csfundsadmin.sputnik-dao.near` exists.
+**The wallets exist and are active** [measured, 2026-11-14]. `buybacks.multisignature.near` is a multisig that needs 2 of 4 keys. It holds about 2.29M NEAR and appears in 3,416 transactions, counting those in which it only receives, the latest at block 224,557,456. `fefundsadmin.sputnik-dao.near` holds about 2.02M NEAR. `1csfundsadmin.sputnik-dao.near` exists.
 
 **NEAR accumulates in them** [measured]. Between blocks 220,090,000 and 224,566,803, a span of 30.26 days:
 
@@ -285,7 +285,7 @@ Together that is about **13.5k NEAR a day, 15.0 % of issuance**. The figure is n
 
 DefiLlama counts as holders' revenue the NEAR and wrapped NEAR swept into the revenue wallets, and attributes it to Intents fees [16] [secondary]. Three observations limit how far that label can be taken.
 
-- Most of the buyback wallet's NEAR arrives as plain transfers from hexadecimal-named accounts, not as visible swaps: 453k NEAR around 2026-11-13 and 531k NEAR around 2026-11-10 [measured].
+- The two largest direct transfers into the buyback wallet in the study week are small: 453 NEAR on about 2026-11-13 and 531 NEAR on about 2026-11-10. The wallet has 27 direct transactions and about 3,400 receipts, and the most recent receipts we read are NEAR transfers from `intents.near`, one of them of 357 NEAR. The NEAR therefore appears to arrive mainly as withdrawals from the Intents ledger. We did not sum those receipts, and we did not trace where or at what price the NEAR was acquired inside the ledger [measured, explorer, read 2026-11-14].
 - A concurrent analysis traced about 2,440 NEAR a day of purchases on chain, about 2.7 % of issuance. That is a lower bound, because transferred NEAR may have been bought elsewhere [21] [secondary].
 - The NEAR revenue dashboard showed about 1.78M NEAR for the buyback wallet on 2026-11-14, against about 2.29M on chain [18].
 
@@ -314,7 +314,7 @@ NEP-541, a proposal for a transaction priority fee, was closed on 2025-09-22 as 
 
 ### 6.6 Reading [judgment]
 
-The only stream from trading on NEAR that is large enough to matter to a holder is the buyback funded by the Intents fee layer. It is roughly a fifth of issuance by attribution and 15.0 % by on-chain accumulation. Its share of fees in the last 30 days is above its average since it began. It would need about a fivefold increase in volume at current rates to offset dilution on its own.
+Of the streams we measured, the only one from trading on NEAR that is large against issuance is the buyback funded by the Intents fee layer. It is roughly a fifth of issuance by attribution and 15.0 % by on-chain accumulation. Its share of fees in the last 30 days is above its average since it began. It would need about a fivefold increase in volume at current rates to offset dilution on its own.
 
 ---
 
@@ -340,7 +340,7 @@ This section lists what weighs against the thesis and what went against our own 
 
 - **Policy risk.** The buyback can be reduced, redirected or ended by the parties that control the revenue wallets. The buyback wallet is controlled by 2 of 4 keys, and nothing we opened names the signers publicly [verified on chain; judgment].
 - **Opacity risk.** Most volume settles on a confidential ledger. Holders cannot verify from the public chain who receives the fees or how purchases are executed.
-- **Distribution risk.** Integrators and 1Click keep 78–85 % of what users pay. They own the user relationship and could route elsewhere.
+- **Distribution risk.** Integrators, 1Click and solvers keep 78–85 % of what users pay. Integrators own the user relationship and could route elsewhere.
 - **Data risk.** The headline volume and fee series come from one aggregator reading datasets that NEAR uploads.
 - **Price and issuance.** The offset moves inversely with the NEAR price and rises if the lower issuance ceiling takes effect. Neither is under the fee layer's control.
 - **Operational risk.** NEAR Intents halted services after an exploit reported on 2026-10-01, and the team pledged full compensation [22] [secondary]. A fee layer that carries the value-accrual case also concentrates this kind of risk.
@@ -396,7 +396,7 @@ The 168 windows are evenly spaced across the range, which makes the sample syste
 
 ### 10.4 Reproducibility
 
-Every measured number in this paper is recomputed offline from stored and hashed copies of the sampled data, by a check that returns pass or fail per number. The check runs without network access. The only exception is the live protocol configuration, which is read from a node. The algebra the claims rely on (the price-free same-asset cost, the cancellation of scale in ratios, and bounds on a weighted mean) and the arithmetic of derived figures are machine-checked in the Lean 4 proof assistant.
+The measured numbers computed from the sampled data, and the model's outputs, are recomputed offline from stored and hashed copies of that data, by a check that returns pass or fail per number. The check runs without network access. Facts read live from a node or an explorer are not covered by it: the protocol configuration, the chunk headers, and the wallets' balances, counts and transfers. The algebra the claims rely on (the price-free same-asset cost, the cancellation of scale in ratios, and bounds on a weighted mean) and the arithmetic of derived figures are machine-checked in the Lean 4 proof assistant.
 
 All data are public and were read through read-only public interfaces: the FastNEAR explorer interface and archival nodes, NEAR RPC nodes, Binance public price history, and the DefiLlama public API.
 
@@ -419,7 +419,7 @@ The work was revised after an independent blind adversarial review on 2026-11-14
 7. **Execution order within a block** comes from the explorer interface's outcome index per pool. One example was checked against a second data source in the original analysis; that check was not repeated here.
 8. **Grouping of accounts** into the `<name>1.near` family is by name only, without analysis of funding.
 9. **Data provenance.** Token metadata and price history were fetched on 2026-11-14 at 16:03 UTC for Intents and 16:22 UTC for Rhea. Re-collecting online can shift results slightly if metadata changes. Rhea's priced volume reproduces the original analysis within +0.2 %, because metadata was refetched (247 unpriced tokens against 290).
-10. **The value-accrual model.** Issuance is priced at one week's median price and uses the maximum inflation rate. DefiLlama's series are secondary. Gas burn before 2026-11-04 is DefiLlama's estimate of 70 % of gas fees. Holders' revenue is an attribution, purchases visible on chain are a lower bound, and we did not reconcile the two.
+10. **The value-accrual model.** The model adds the buyback to burnt gas, although NEAR in the revenue wallets is held and can be spent, while burnt gas leaves supply. Issuance is priced at one week's median price and uses the maximum inflation rate. DefiLlama's series are secondary. Gas burn before 2026-11-04 is DefiLlama's estimate of 70 % of gas fees. Holders' revenue is an attribution, purchases visible on chain are a lower bound, and we did not reconcile the two.
 11. **The confidential-route sample.** 62 of 334 sampled quote accounts (19 %) show no release within the search span and are excluded. If they are refunds or slow fills, their cost is not represented. The span of 20,000 blocks on either side is a design choice and was not registered.
 12. **Markouts.** Horizons below 60 s cannot be measured from one-minute prices.
 13. **Timestamp.** The independent timestamp of the pre-registration is 18:06 UTC, about two hours after the hash was taken (Section 10.5), and the first hypotheses were written after a pilot (Appendix C).
@@ -431,10 +431,10 @@ The work was revised after an independent blind adversarial review on 2026-11-14
 On a chain that does not sell transaction order, one week of evidence supports five statements.
 
 1. Order-based extraction on the on-chain exchange is small next to what users pay to trade, and a few bots that compete by speed take most of it.
-2. Validators receive none of the fee stream and show no detectable preference for the winning transactions.
+2. Validators receive no share of fees by protocol rule, and we detect no preference of block producers for the winning transactions.
 3. On the public route of NEAR Intents, the largest cost to users is the app fee carried in their own signed intent, not solver spread or protocol fee.
 4. On the confidential route, which carries far more of the system's activity, users pay a fee layer of similar order that the public chain cannot attribute.
-5. For a long-term holder, the NEAR accumulating from the Intents fee layer is the only trading stream that is material against issuance.
+5. For a long-term holder, the NEAR accumulating from the Intents fee layer is the only trading stream we measured that is large against issuance, and it is held in wallets, not burned.
 
 The investment case for NEAR from trading therefore rests on Intents volume, its fee rate and the holders' share. Selling order would capture little today. The same evidence marks the case's weak points: the holders' share is a policy, most settlement is confidential, the label on the buyback exceeds what can be traced as purchases, and everything here comes from one week. Further work should obtain the fee split on the confidential ledger, reconcile the aggregator's holders' revenue with the wallets' inflows, extend the sandwich search to routes across pools, and repeat the week to test whether router-driven events recur.
 

@@ -4,6 +4,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState, useSyncExter
 import Bars from "./bars";
 import { SliceBars, StackBars, WindowBars } from "./charts";
 import { LiveSlide, ModelSlide } from "./model";
+import Preloader from "./preloader";
 
 type Paper = { title: string; html: string; toc: { id: string; level: number; text: string }[]; words: number } | null;
 type OutFile = { path: string; lang: string; text: string };
@@ -139,10 +140,10 @@ export default function Bento({ site }: { site: Site }) {
   };
 
   const stats: { value: ReactNode; caption: string }[] = [
-    { value: <>{usd(n.rhea.baselinePerDay)}<span className="unit">/day</span></>, caption: "On-chain arbitrage on Rhea at baseline. Small, and taken by a few bots." },
+    { value: <>{usd(n.rhea.baselinePerDay)}<span className="unit">/day</span></>, caption: `On-chain arbitrage on Rhea at baseline: about ${(md?.offsetArb ?? 0.1).toFixed(1)} % of issuance, the most selling order could capture.` },
+    { value: <>0<span className="unit">%</span></>, caption: "Of transaction fees go to validators: gas is burnt and validators are paid from issuance." },
     { value: <>{f1(n.intents.totalBps)}<span className="unit">bps</span></>, caption: `What users pay on public Intents swaps; ${f1(n.intents.appFeeBps)} bps of it is app fees.` },
-    ...(t ? [{ value: <>{usd(t.costPerDay / 1000)}k<span className="unit">/day</span></>, caption: `All-in user cost on the confidential route: ${f1(t.allBps)} bps over ${t.quotes} priced quotes.` }] : []),
-    ...(md ? [{ value: <>{f1(md.offsetBuyback)}<span className="unit">%</span></>, caption: `Of NEAR issuance offset by the Intents-fee buyback (last 30 days); gas burn adds ${f1(md.offsetBurn)} %.` }] : []),
+    ...(t ? [{ value: <>{f1(t.allBps)}<span className="unit">bps</span></>, caption: `All-in user cost on the confidential route, over ${t.quotes} priced quotes.` }] : []),
   ];
 
   const Nums = ({ items }: { items: [string, string][] }) => (
@@ -151,14 +152,19 @@ export default function Bento({ site }: { site: Site }) {
   const finding = (id: string, short: string, kicker: string, title: string, lead: string, nums: [string, string][], body: string[]): Slide => ({
     id, short, kicker, title, body: (<><p className="lead">{lead}</p><Nums items={nums} />{body.map((p, i) => <p key={i}>{p}</p>)}</>),
   });
-  const thesis = (
+  const thesis = md ? (
     <ol className="sum-list">
-      <li><b>Order isn’t sold.</b> No priority fee and no tips; fees are burnt and validators are paid from issuance.</li>
-      <li><b>Arbitrage is small.</b> About {usd(n.rhea.baselinePerDay)} a day on Rhea, half of it to three bots.</li>
-      <li><b>Public swaps cost {f1(n.intents.totalBps)} bps,</b> {f1(n.intents.appFeeBps)} of it app fees in the user’s own intent.</li>
-      {t && <li><b>The confidential route costs about {f1(t.allBps)} bps</b> all-in, {usd(t.costPerDay)} a day, and the chain can’t say who gets it.</li>}
-      {md ? <li><b>So the long-term case is Intents.</b> Its fee buyback returns ≈ {f1(md.walletPct ?? md.offsetBuyback)} % of issuance on chain; ≈ {f1(md.breakevenMultiple)}× today’s volume would offset it all.</li>
-        : <li><b>So value goes to distribution,</b> not to order. Selling order would capture little.</li>}
+      <li><b>One stream is large against issuance.</b> NEAR is bought back into holder-aligned wallets at ≈ {f1(md.walletPct ?? md.offsetBuyback)} % of issuance, measured on chain, and held there.</li>
+      <li><b>Selling order would not change that.</b> All on-chain arbitrage is ≈ {md.offsetArb.toFixed(1)} % of issuance, and validators get none of the fees.</li>
+      <li><b>Users pay for distribution.</b> {f1(n.intents.totalBps)} bps on public swaps{t ? `, ≈ ${f1(t.allBps)} bps all-in on the confidential route` : ""}; holders keep {Math.round(md.holderShareOfUserCost.tokenDiff)}–{Math.round(md.holderShareOfUserCost.treasuryValueWeighted)} % of it.</li>
+      <li><b>The lever is Intents volume.</b> At today’s fee rate and share, ≈ {f1(md.breakevenMultiple)}× today’s volume would offset issuance.</li>
+      <li><b>The risk is policy.</b> The buyback is not a protocol rule, and most fee splits happen off the public chain.</li>
+    </ol>
+  ) : (
+    <ol className="sum-list">
+      <li><b>Order isn’t sold.</b> Fees are burnt and validators are paid from issuance.</li>
+      <li><b>Arbitrage is small.</b> About {usd(n.rhea.baselinePerDay)} a day on Rhea.</li>
+      <li><b>Public swaps cost {f1(n.intents.totalBps)} bps,</b> mostly app fees.</li>
     </ol>
   );
   const slides: Slide[] = [
@@ -325,6 +331,7 @@ export default function Bento({ site }: { site: Site }) {
 
   return (
     <main className={`frame${mobile ? " mobile" : ""}${mobile && reading ? " locked" : ""}`} ref={frameRef}>
+      <Preloader />
       {mobile && reading && <div className="backdrop" aria-hidden />}
       <div className="stage" style={{ height: mobile ? innerH : "100%" }} data-state={state}>
         {/* brand + tagline (stays in the reader) */}
@@ -457,27 +464,33 @@ export default function Bento({ site }: { site: Site }) {
           </button>
         </section>
 
-        {/* validators + checks, one card */}
+        {/* the long-term model in two numbers */}
         <section className="tile strong" style={tileStyle("val")}>
           <div className="val">
-            <button className="half" onClick={() => open({ tab: "summary", slide: slideIdx("validators") })}>
-              <span className="big-num">0 %</span>
-              <span className="cap">of fees go to validators</span>
+            <button className="half" onClick={() => open({ tab: "summary", slide: slideIdx("long-term") })}>
+              <span className="big-num">{f1(md?.walletPct ?? 0)} %</span>
+              <span className="cap">of NEAR issuance is bought back into holder-aligned wallets, measured on chain</span>
             </button>
-            <button className="half" onClick={() => open({ tab: "code", group: "verify", file: 0 })}>
-              <span className="big-num">{n.verify.passed ?? "—"}<span style={{ opacity: 0.45 }}>/{(n.verify.passed ?? 0) + n.verify.failed}</span></span>
-              <span className="cap">checks recomputed offline from hashed data</span>
+            <button className="half" onClick={() => open({ tab: "summary", slide: slideIdx("model") })}>
+              <span className="big-num">{f1(md?.breakevenMultiple ?? 0)}×</span>
+              <span className="cap">today’s Intents volume for buybacks to match issuance</span>
             </button>
           </div>
         </section>
 
         {/* bottom row */}
         <section className="tile soft" style={tileStyle("proof")}>
-          <div className="pad">
-            <h2 className="card-title">A traced quote</h2>
-            <span className="big-num" style={{ marginTop: "auto", fontSize: "min(20cqw, 30cqh)" }}>21.7<span style={{ fontSize: "0.4em", marginLeft: 4 }}>bps</span></span>
-            <p className="cap" style={{ marginTop: 8 }}>All-in cost of $57k NBTC to USDT: shielded, released 9 s later and withdrawn (account e464353c…).</p>
-          </div>
+          <button className="pad as-button" onClick={() => open({ tab: "summary", slide: slideIdx("live") })}>
+            <h2 className="card-title">What to watch</h2>
+            {md && (
+              <dl className="watch">
+                <div><dt>Intents volume</dt><dd>${(md.volumePerDay / 1e6).toFixed(0)}M/day</dd></div>
+                <div><dt>Fee rate</dt><dd>{f1(md.feeBps)} bps</dd></div>
+                <div><dt>Holders’ share of fees</dt><dd>{f1(md.holdersSharePct)} %</dd></div>
+              </dl>
+            )}
+            <span className="cap watch-link">30-day averages · open live data →</span>
+          </button>
         </section>
         <section className="tile" style={tileStyle("check")}>
           <div className="pad">
