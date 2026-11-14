@@ -5,11 +5,12 @@
 //  T2 (vs failures): winners vs failed attempts by the same bot signers, inclusion-chunk producer, label permutation
 //     within shard (2000 permutations).
 // If order were being sold by producers, winners should over-represent the selling producers. Post hoc; optional test.
-// Run: node --dns-result-order=ipv4first --max-old-space-size=2048 scripts/chunk-analyze.mjs  -> results/chunk-producers.json
+// Run: node --dns-result-order=ipv4first --max-old-space-size=2048 scripts/chunk-analyze.mjs [IN OUT]  -> results/chunk-producers.json
+// Full week: scripts/chunk-analyze.mjs fixtures/chunk-authors-fullweek.json results/chunk-producers-fullweek.json
 import fs from 'node:fs';
 import { readJson } from '../lib/io.mjs';
-export function analyzeChunks() {
-  const F = readJson('fixtures/chunk-authors.json'); const C = F.chunks;
+export function analyzeChunks(IN = 'fixtures/chunk-authors.json') {
+  const F = readJson(IN); const C = F.chunks;
   const auth = k => C[k]?.author ?? null;
   const shardOfKey = k => +k.split(':')[1];
   const win = F.items.filter(i => i.group === 'win' && auth(i.incl)), fail = F.items.filter(i => i.group === 'fail' && auth(i.incl));
@@ -41,7 +42,7 @@ export function analyzeChunks() {
   for (let b = 0; b < sims; b++) { const perm = []; for (const arr of Object.values(byShard)) { const ys = arr.map(i => i.y); for (let j = ys.length - 1; j > 0; j--) { const k = Math.floor(rnd() * (j + 1)); [ys[j], ys[k]] = [ys[k], ys[j]]; } arr.forEach((i, j) => perm.push({ ...i, y: ys[j] })); } if (stat(perm) >= t2) ge2++; }
   const execSame = win.filter(i => auth(i.exec) && auth(i.exec) === auth(i.incl)).length;
   return {
-    note: 'Optional, post hoc. Restricted to heights >= 224,360,000 (the last ~23 of 168 windows; the public archival endpoint did not serve older chunks on 2026-11-14). Tests clustering, not intent: a null result means no detectable producer-level pattern, not proof that no order is sold.',
+    note: (F.cut && F.cut <= 223455000 ? 'Optional, post hoc. Full week: all 168 windows (archival RPC ' + F.source + ').' : 'Optional, post hoc. Restricted to heights >= 224,360,000 (the last ~23 of 168 windows; the public archival endpoint did not serve older chunks on 2026-11-14).') + ' Tests clustering, not intent: a null result means no detectable producer-level pattern, not proof that no order is sold.',
     coverage: { winningBackrunsTested: win.length, failedComparators: fail.length, randomHeights: rand.length, shards, sameLayoutAtRangeEnds: F.sameLayoutAtRangeEnds, chunkErrors: Object.values(C).filter(x => x.error).length },
     T1_vsSchedule: { chiSquare: +chiObs.toFixed(1), monteCarloP: +((ge + 1) / (sims + 1)).toFixed(4), winnersWithProducerUnseenInBaseline: unexplained, topCells: over },
     T2_vsFailedSameSigners: { chiSquare: +t2.toFixed(1), permutationP: +((ge2 + 1) / (sims + 1)).toFixed(4), strata: 'shard' },
@@ -51,5 +52,5 @@ export function analyzeChunks() {
   };
 }
 if (import.meta.url === `file://${process.argv[1]}`) {
-  const r = analyzeChunks(); fs.writeFileSync('results/chunk-producers.json', JSON.stringify(r, null, 1)); console.log(JSON.stringify(r, null, 1));
+  const r = analyzeChunks(process.argv[2]); fs.writeFileSync(process.argv[3] || 'results/chunk-producers.json', JSON.stringify(r, null, 1)); console.log(JSON.stringify(r, null, 1));
 }

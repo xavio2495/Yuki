@@ -1,4 +1,4 @@
-// Yuki: OFFLINE. Builds web/index.html (static, no external dependencies, inline SVG) from results/*.json.
+// Yuki: OFFLINE. Builds web/public/charts.html (static, no external dependencies, inline SVG) from results/*.json.
 // Run: node scripts/build-web.mjs
 import fs from 'node:fs';
 import { readJson } from '../lib/io.mjs';
@@ -108,5 +108,5 @@ ${CH ? `<p class="note">Optional chunk-producer test (last ~23 windows only): wi
 <p class="note">Labels in THESIS.md: [measured] = computed here from on-chain data; [secondary] = DefiLlama. Nothing on this page is a claim that users are leaving NEAR.</p>
 </main></body></html>`;
 fs.mkdirSync('web', { recursive: true });
-fs.writeFileSync('web/index.html', html);
-console.log('wrote web/index.html', html.length, 'bytes');
+fs.writeFileSync('web/public/charts.html', html);
+console.log('wrote web/public/charts.html', html.length, 'bytes');
