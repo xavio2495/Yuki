@@ -47,10 +47,10 @@ type Place = [number, number, number, number] | null;
 type Layout = { cols: number[]; rows: number[]; tiles: Record<TileId, Place>; splits?: { top: TileId; bottom: TileId; ratio: number }[] };
 const TILES: TileId[] = ["brand", "big", "faq", "hero", "sum", "val", "proof", "check", "out", "index", "tabs"];
 const HOME: Layout = {
-  cols: [1, 1, 1, 1, 1.05], rows: [1.12, 0.68, 0.85, 0.9, 1.2],
+  cols: [1, 1, 1, 1, 1.05], rows: [1.26, 0.54, 0.85, 0.9, 1.2],
   tiles: { brand: [0, 0, 1, 1], big: [0, 1, 1, 2], faq: [0, 3, 1, 2], hero: [1, 0, 3, 4], sum: [4, 0, 1, 2], val: [4, 2, 1, 2], proof: [1, 4, 1, 1], check: [2, 4, 1, 1], out: [3, 4, 2, 1], index: null, tabs: null },
   // the thesis card gets room for all five points; the questions card for every question
-  splits: [{ top: "sum", bottom: "val", ratio: 0.62 }, { top: "big", bottom: "faq", ratio: 0.38 }],
+  splits: [{ top: "sum", bottom: "val", ratio: 0.72 }, { top: "big", bottom: "faq", ratio: 0.32 }],
 };
 const BOOT: Layout = { ...HOME, splits: [], tiles: { brand: null, big: null, faq: null, hero: [1, 0, 3, 4], sum: null, val: null, proof: null, check: null, out: null, index: null, tabs: null } };
 // the reading layout from the mock: brand + index on the left, tab bar + content on the right
@@ -156,7 +156,7 @@ export default function Bento({ site }: { site: Site }) {
       <li><b>Arbitrage is small.</b> About {usd(n.rhea.baselinePerDay)} a day on Rhea, half of it to three bots.</li>
       <li><b>Public swaps cost {f1(n.intents.totalBps)} bps,</b> {f1(n.intents.appFeeBps)} of it app fees in the user’s own intent.</li>
       {t && <li><b>The confidential route costs about {f1(t.allBps)} bps</b> all-in, {usd(t.costPerDay)} a day, and the chain can’t say who gets it.</li>}
-      {md ? <li><b>So the long-term case is Intents.</b> Its fee buyback returns ≈ {f1(md.walletPct ?? md.offsetBuyback)} % of issuance on chain, ≈ {Math.round(md.buybackVsArb)}× what selling order could; ≈ {f1(md.breakevenMultiple)}× today’s volume would offset it all.</li>
+      {md ? <li><b>So the long-term case is Intents.</b> Its fee buyback returns ≈ {f1(md.walletPct ?? md.offsetBuyback)} % of issuance on chain; ≈ {f1(md.breakevenMultiple)}× today’s volume would offset it all.</li>
         : <li><b>So value goes to distribution,</b> not to order. Selling order would capture little.</li>}
     </ol>
   );
@@ -379,6 +379,7 @@ export default function Bento({ site }: { site: Site }) {
         {/* stat carousel: content only */}
         <section className="tile" style={tileStyle("big")}>
           <div className="pad">
+            <h2 className="card-title">This week on NEAR</h2>
             <div key={stat} className="swap-in stat-slot">
               <div className="stat-big">{stats[stat].value}</div>
               <p className="cap">{stats[stat].caption}</p>
@@ -392,6 +393,7 @@ export default function Bento({ site }: { site: Site }) {
         {/* findings → summary slides */}
         <section className="tile" style={tileStyle("faq")}>
           <div className="pad">
+            <h2 className="card-title">Questions</h2>
             <ul className="faq-list">
               {[["long-term", "What’s the long-term case?"], ["arb", "Who captures arbitrage?"], ["validators", "Do validators get any?"], ["intents", "What do swaps cost users?"], ["treasury", "And the confidential route?"], ["order", "Would selling order help?"], ["trust", "How do we know it’s right?"]].filter(([id]) => slides.some(s => s.id === id)).map(([id, q]) => (
                 <li key={id}><button onClick={() => open({ tab: "summary", slide: slideIdx(id) })}>{q}</button></li>
@@ -444,6 +446,7 @@ export default function Bento({ site }: { site: Site }) {
         {/* thesis summary */}
         <section className="tile accent-card" style={tileStyle("sum")}>
           <button className="pad as-button" onClick={() => open({ tab: "summary", slide: 0 })}>
+            <h2 className="card-title">The thesis in five lines</h2>
             {thesis}
           </button>
         </section>
@@ -465,8 +468,9 @@ export default function Bento({ site }: { site: Site }) {
         {/* bottom row */}
         <section className="tile soft" style={tileStyle("proof")}>
           <div className="pad">
+            <h2 className="card-title">A traced quote</h2>
             <span className="big-num" style={{ marginTop: "auto", fontSize: "min(20cqw, 30cqh)" }}>21.7<span style={{ fontSize: "0.4em", marginLeft: 4 }}>bps</span></span>
-            <p className="cap" style={{ marginTop: 8 }}>All-in cost of one traced quote: $57k NBTC to USDT, shielded, released 9 s later and withdrawn (account e464353c…).</p>
+            <p className="cap" style={{ marginTop: 8 }}>All-in cost of $57k NBTC to USDT: shielded, released 9 s later and withdrawn (account e464353c…).</p>
           </div>
         </section>
         <section className="tile" style={tileStyle("check")}>

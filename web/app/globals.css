@@ -163,6 +163,18 @@ body {
   color: var(--text-2);
 }
 
+.card-title {
+  margin: 0 0 2px;
+  font-size: clamp(0.95rem, 1.15vw, 1.15rem);
+  font-weight: 760;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  color: var(--text);
+}
+.accent-card .card-title {
+  color: var(--bg);
+}
+
 /* ------------------------------------------------------------------ brand */
 .brand-top {
   display: flex;
@@ -892,8 +904,8 @@ body {
   border: 0;
   background: transparent;
   font: inherit;
-  font-size: clamp(0.78rem, 0.92vw, 0.95rem);
-  padding: clamp(8px, 1.3vh, 14px) 2px;
+  font-size: max(0.7rem, min(0.95rem, 4.3cqh, 5.2cqw));
+  padding: max(4px, min(14px, 1.9cqh)) 2px;
   border-top: 1px solid var(--line);
   cursor: pointer;
   color: var(--text);
@@ -942,9 +954,9 @@ body {
   min-height: 0;
   display: flex;
   flex-direction: column;
-  gap: min(1.6cqh, 12px);
-  font-size: clamp(0.74rem, 5.2cqw, 0.92rem);
-  line-height: 1.38;
+  gap: min(1.5cqh, 11px);
+  font-size: max(0.66rem, min(0.92rem, 4.5cqw, 3.1cqh));
+  line-height: 1.34;
   color: var(--text-2);
 }
 .sum-list li {
