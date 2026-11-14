@@ -19,12 +19,18 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0B0F12",
+  themeColor: "#05070A",
 };
+
+// dark is the default; a saved light choice is applied before first paint (no flash)
+const THEME = `try{if(localStorage.getItem("yuki-theme")==="light")document.documentElement.dataset.theme="light"}catch(e){}`;
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={giphurs.variable}>
+    <html lang="en" className={giphurs.variable} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME }} />
+      </head>
       <body>{children}</body>
     </html>
   );

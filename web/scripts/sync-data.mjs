@@ -4,6 +4,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import katex from 'katex';
+import { execFileSync } from 'node:child_process';
 
 const ROOT = path.resolve(import.meta.dirname, '..', '..');
 const read = p => fs.readFileSync(path.join(ROOT, p), 'utf8');
@@ -108,10 +109,32 @@ const numbers = {
   range: { from: 223455000, to: 224500000, dates: '2026-11-07 → 2026-11-14', windows: 168 },
 };
 
+// ---------- outputs: code, results, proofs, the offline verify log, the pre-registration
+const MAXLINES = 1200;
+const clip = (text, note) => { const lines = text.split('\n'); return lines.length > MAXLINES ? lines.slice(0, MAXLINES).join('\n') + `\n\n… truncated at ${MAXLINES} of ${lines.length} lines (${note}). The full file is in the repository.` : text; };
+const listDir = (dir, re) => fs.readdirSync(path.join(ROOT, dir)).filter(f => re.test(f)).sort().map(f => path.join(dir, f));
+const code = [...listDir('lib', /\.mjs$/), ...listDir('scripts', /\.mjs$/), 'lean/Yuki/Claims.lean'].filter(exists).map(f => ({ path: f, lang: f.endsWith('.lean') ? 'lean' : 'js', text: read(f) }));
+const results = listDir('results', /\.json$/).map(f => {
+  const raw = read(f);
+  if (f.endsWith('rhea-winning-backruns.json')) return { path: f, lang: 'json', text: `// ${(raw.length / 1e6).toFixed(1)} MB intermediate (winning back-runs and failed attempts for the chunk-producer test); first entries only\n` + clip(JSON.stringify(JSON.parse(raw), null, 1), 'intermediate file') };
+  return { path: f, lang: 'json', text: clip(raw, 'per-quote rows') };
+});
+let verifyLog = null;
+try { verifyLog = execFileSync(process.execPath, ['--dns-result-order=ipv4first', '--max-old-space-size=2048', 'scripts/verify.mjs'], { cwd: ROOT, encoding: 'utf8', timeout: 120000 }); }
+catch (e) { verifyLog = (e.stdout || '') + '\n' + (e.stderr || ''); }
+const outputs = {
+  code,
+  results,
+  proofs: exists('lean/Yuki/Claims.lean') ? [{ path: 'lean/Yuki/Claims.lean', lang: 'lean', text: read('lean/Yuki/Claims.lean') }] : [],
+  verify: verifyLog ? [{ path: 'node scripts/verify.mjs', lang: 'text', text: verifyLog }] : [],
+  prereg: exists('PREREGISTRATION.md') ? [{ path: 'PREREGISTRATION.md', lang: 'text', text: read('PREREGISTRATION.md') }] : [],
+};
+const series = { arbPerWindow: R.extended.perWindow.map(w => +w.arbUsd.toFixed(2)) };
+
 const DATA = path.join(import.meta.dirname, '..', 'app', '_data', 'site.json');
 const prev = fs.existsSync(DATA) ? JSON.parse(fs.readFileSync(DATA, 'utf8')) : null;
 // a checkout without the papers keeps the last rendered copies instead of dropping them
-const out = { generatedAt: new Date().toISOString(), numbers, papers: { lite: paper('PAPER.md') ?? prev?.papers?.lite ?? null, white: paper('THESIS.md') ?? prev?.papers?.white ?? null } };
+const out = { generatedAt: new Date().toISOString(), numbers, papers: { lite: paper('PAPER.md') ?? prev?.papers?.lite ?? null, white: paper('THESIS.md') ?? prev?.papers?.white ?? null }, outputs: { ...outputs, prereg: outputs.prereg.length ? outputs.prereg : prev?.outputs?.prereg ?? [] }, series };
 fs.mkdirSync(path.join(import.meta.dirname, '..', 'app', '_data'), { recursive: true });
 fs.writeFileSync(DATA, JSON.stringify(out));
-console.log('site.json:', Object.keys(out.papers).map(k => `${k} ${out.papers[k]?.words ?? 0} words`).join(', '), '| verify', numbers.verify.passed);
+console.log('site.json:', Object.keys(out.papers).map(k => `${k} ${out.papers[k]?.words ?? 0} words`).join(', '), '| verify', numbers.verify.passed, '| code', code.length, 'results', results.length, '| bytes', JSON.stringify(out).length);
