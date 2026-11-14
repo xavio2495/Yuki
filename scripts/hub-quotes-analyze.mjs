@@ -32,7 +32,7 @@ export function analyzeHubQuotes() {
     const ts = pay[0].ts, vX = usd({ [tA]: xs }, ts), vY = usd({ [tB]: ys }, ts);
     const withdrew = ev.some(t => t.ev.some(e => e.ok && /_withdraw$/.test(e.event) && e.data.some(d => d.account_id === acct)));
     quotes.push(st(tA === tB ? 'same-token release' : 'swap', {
-      tA, tB, symA: META[tA]?.symbol ?? null, symB: META[tB]?.symbol ?? null, h: pay[0].h, ts, secondsToRelease: round((pay[0].ts - toHub[0].ts) / 1000, 1), withdrew,
+      tA, tB, xs, ys, symA: META[tA]?.symbol ?? null, symB: META[tB]?.symbol ?? null, h: pay[0].h, ts, secondsToRelease: round((pay[0].ts - toHub[0].ts) / 1000, 1), withdrew,
       usdIn: vX, usdOut: vY, totalBps: vX && vY != null ? (vX - vY) / vX * 1e4 : null,
     }));
   }
@@ -45,7 +45,21 @@ export function analyzeHubQuotes() {
   const bySize = {}; for (const q of priced) (bySize[sizeBucket(q.usdIn)] ||= []).push(q);
   const byPair = {}; for (const q of priced) (byPair[q.symA + '->' + q.symB] ||= []).push(q);
   const same = quotes.filter(q => q.status === 'same-token release');
-  return {
+  // Robustness: extra Binance pairs for tokens the base pricing leaves out, and USDC at the USDCUSDT close instead of $1.
+  const robust = () => {
+  let robustness = null;
+  if (fs.existsSync('fixtures/hub-quotes-klines.json')) {
+    const K = readJson('fixtures/hub-quotes-klines.json'); const px = {}; for (const [k, v] of Object.entries(K)) if (k !== 'span' && Array.isArray(v)) px[k] = new Map(v);
+    const base = makePricing(META, readJson('fixtures/intents-klines.json'));
+    const EXTRA = { XRP: 'XRPUSDT', LTC: 'LTCUSDT', POL: 'POLUSDT', SUI: 'SUIUSDT', PEPE: 'PEPEUSDT', SHIB: 'SHIBUSDT', BCH: 'BCHUSDT', PENGU: 'PENGUUSDT', DOGE: 'DOGEUSDT' };
+    const at = (sym, ts) => { const m = px[sym]; if (!m) return null; const k = Math.floor(ts / 60000) * 60000; return m.get(k) ?? m.get(k - 60000) ?? null; };
+    const priceOf = (t, ts) => { const sym = META[t]?.symbol; if (!sym) return null; if (/^USDC(\.E)?$/i.test(sym)) return at('USDCUSDT', ts); if (EXTRA[sym.toUpperCase()]) return at(EXTRA[sym.toUpperCase()], ts); return base.priceOf(t, ts); };
+    const val = (t, a, ts) => { const p = priceOf(t, ts); return p == null ? null : Number(BigInt(a)) / 10 ** META[t].decimals * p; };
+    const re = quotes.filter(q => q.status === 'swap').map(q => ({ ...q, usdIn: val(q.tA, q.xs, q.ts), usdOut: val(q.tB, q.ys, q.ts) })).filter(q => q.usdIn && q.usdOut != null);
+    robustness = { note: 'Extra pairs (XRP, LTC, POL, SUI, PEPE, SHIB, BCH, PENGU, DOGE) and USDC at the Binance USDCUSDT close; other stables still at $1.', all: block(re), stableToStable: block(re.filter(isStable)), other: block(re.filter(q => !isStable(q))), sameAssetCrossChain: block(re.filter(q => q.symA === q.symB)), userCostPerDayUsd: Math.round(sum(re, q => q.usdIn - q.usdOut) * perTxToDay), unpricedSwaps: quotes.filter(q => q.status === 'swap').length - re.length };
+  }
+  return robustness; };
+  const res = {
     note: 'Post hoc; not pre-registered. Frame: per-quote implicit accounts that send to the Treasury 51e8f94d... in the random intents.near tx sample. totalBps = all-in user cost (private-side fees + solver spread) against the Binance 1-minute mid at release; only quotes whose both tokens are priced (NEAR, BTC, ETH, SOL, ZEC, TRX, BNB, TON, stables). Treasury identity from the NEAR Intents docs, not from chain data.',
     frame: { accounts: quotes.length, status },
     all: { ...block(priced), medianUsdIn: round(med(priced.map(q => q.usdIn))) },
@@ -59,6 +73,8 @@ export function analyzeHubQuotes() {
     unpricedSwaps: quotes.filter(q => q.status === 'swap').length - priced.length,
     quotes,
   };
+  res.robustness = robust(); // after the main blocks, so they keep the same bootstrap draws
+  return res;
 }
 if (import.meta.url === `file://${process.argv[1]}`) {
   const r = analyzeHubQuotes(); fs.writeFileSync('results/hub-quotes.json', JSON.stringify(r, null, 1));

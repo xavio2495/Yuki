@@ -1,5 +1,5 @@
 {
- "writtenAt": "2026-11-14T17:33:46.541Z",
+ "writtenAt": "2026-11-14T17:53:05.291Z",
  "files": {
   "fixtures/chunk-authors.json": "dee816972c3e69373e45a2872c052999dbfabe713fbbfc6c4330b3979c0141ef",
   "fixtures/data/intents-223455000-224500000/counts.json": "be7e04d29f58aad5dd40078621236bdcb5774b4fdc2b8417a182d718393aecb6",
@@ -10,6 +10,7 @@
   "fixtures/data/run-223455000-224500000/meta.json": "7f275ba7c1ba2ead5dac91b55f3de0883faa1b2ac168bae47dbbefe10cbde2b8",
   "fixtures/defillama-near-intents.json": "9e9bffb8ee169df27d846a24aad773a9c6a93df42cd3d86bb8e262ba7d240606",
   "fixtures/hub-facts.json": "7c7e6f44d0e092720e9bd73c7101e42c11de8871f3eb613aff88186e8504b002",
+  "fixtures/hub-quotes-klines.json": "26e6e2a8436a75b05052a1f053156697e69eb24b56ea865fcd632ba7c4eef96b",
   "fixtures/hub-quotes.json.gz": "d4956173127ffd35401f14bdb7441a68d44d026c817aa4b01a860c97a8839041",
   "fixtures/hub-sample-events.json.gz": "c4d5f7efe040fdd82f4ac679dd5bac3163f5f9e83d0c78a5eee9da2ab9e1bd75",
   "fixtures/intents-klines.json": "fa47b9cd66ba2ed1c6c4760748b1a920ae13fe48db6f3f96114690e4427ac38a",

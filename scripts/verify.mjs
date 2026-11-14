@@ -85,6 +85,7 @@ if (hq) {
   const HQ = readJson('results/hub-quotes.json');
   checks.push(['Treasury path: priced swaps (quotes)', hq.all.quotes, HQ.all.quotes], ['Treasury path: all-in user cost bps', hq.all.totalBps, HQ.all.totalBps], ['Treasury path: all-in 95% CI', hq.all.ci95, HQ.all.ci95],
     ['Treasury path: non-stable pairs bps', hq.other.totalBps, HQ.other.totalBps], ['Treasury path: same-asset cross-chain bps', hq.sameAssetCrossChain.totalBps, HQ.sameAssetCrossChain.totalBps], ['Treasury path: user cost $/day', hq.perDay.userCostUsd, HQ.perDay.userCostUsd]);
+  if (HQ.robustness) checks.push(['Treasury path, extra pairs + USDC at market: all bps', hq.robustness.all.totalBps, HQ.robustness.all.totalBps], ['Treasury path, extra pairs + USDC at market: stable bps', hq.robustness.stableToStable.totalBps, HQ.robustness.stableToStable.totalBps]);
 }
 lines.push('== 2. recomputed from fixtures vs committed results/*.json (tol max(0.01, 1e-6 rel))');
 for (const [w, a, b] of checks) row(near(a, b), w, fmt(a), fmt(b));
