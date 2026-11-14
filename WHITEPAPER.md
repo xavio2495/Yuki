@@ -402,7 +402,7 @@ All data are public and were read through read-only public interfaces: the FastN
 
 ### 10.5 Pre-registration and its timestamp
 
-The hypotheses and kill criteria were registered in three stages on 2026-11-14: the Rhea part at about 10:50 UTC, the Intents part at about 14:40 and the flows part at about 15:35. These times are the authors' own notes. The SHA-256 of the registration document is `751ca84ec592f49058ae6c2499e0a8b18200276bcfc7ddd3014f69c719ae3fe8`, taken at 16:17:43 UTC. That hash proves only that the document has not changed since. The same hash was submitted to four OpenTimestamps calendars at 18:06:28 UTC, with anchoring into Bitcoin pending at the time of writing. The public timestamp proves that the document existed no later than 18:06 UTC, not at 16:17. We have no independent proof of when each stage was written.
+The hypotheses and kill criteria were registered in three stages on 2026-11-14: the Rhea part at about 10:50 UTC, the Intents part at about 14:40 and the flows part at about 15:35. These times are the authors' own notes. The SHA-256 of the registration document is `751ca84ec592f49058ae6c2499e0a8b18200276bcfc7ddd3014f69c719ae3fe8`, taken at 16:17:43 UTC. That hash proves only that the document has not changed since. The same hash was submitted to four OpenTimestamps calendars at 18:06:28 UTC and is anchored in Bitcoin block 975,830. The public timestamp proves that the document existed no later than 18:06 UTC, not at 16:17. We have no independent proof of when each stage was written.
 
 The work was revised after an independent blind adversarial review on 2026-11-14, whose methods for fee attribution and solver sensitivity it builds on. Appendix D lists the corrections.
 
