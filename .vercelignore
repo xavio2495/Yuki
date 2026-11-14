@@ -1,0 +1,9 @@
+# internal, never uploaded
+context/
+scratch/
+claude-docs/
+.claude/
+lean/.lake/
+web/node_modules/
+web/.next/
+**/*.log
