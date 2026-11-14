@@ -30,6 +30,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="en" className={giphurs.variable} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME }} />
+        <link rel="alternate" type="text/markdown" href="/index.md" title="Agent-readable landing page" />
+        <link rel="alternate" type="text/markdown" href="/litepaper.md" title="Litepaper (Markdown)" />
+        <link rel="alternate" type="text/markdown" href="/whitepaper.md" title="Whitepaper (Markdown)" />
+        <link rel="alternate" type="text/markdown" href="/summary.md" title="Summary of findings (Markdown)" />
+        <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt" />
       </head>
       <body>{children}</body>
     </html>

@@ -5,6 +5,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import katex from 'katex';
 import { execFileSync } from 'node:child_process';
+import { writeAgentFiles } from './agent-files.mjs';
 
 const ROOT = path.resolve(import.meta.dirname, '..', '..');
 const read = p => fs.readFileSync(path.join(ROOT, p), 'utf8');
@@ -146,4 +147,6 @@ const prev = fs.existsSync(DATA) ? JSON.parse(fs.readFileSync(DATA, 'utf8')) : n
 const out = { generatedAt: new Date().toISOString(), numbers, papers: { lite: paper('PAPER.md') ?? prev?.papers?.lite ?? null, white: paper('WHITEPAPER.md') ?? paper('THESIS.md') ?? prev?.papers?.white ?? null }, outputs: { ...outputs, prereg: outputs.prereg.length ? outputs.prereg : prev?.outputs?.prereg ?? [] }, series };
 fs.mkdirSync(path.join(import.meta.dirname, '..', 'app', '_data'), { recursive: true });
 fs.writeFileSync(DATA, JSON.stringify(out));
+const agents = writeAgentFiles({ root: ROOT, out: path.join(import.meta.dirname, '..', 'public'), numbers, papers: out.papers, outputs: out.outputs, series, readPaper: f => (exists(f) ? read(f) : null) });
+console.log('agent files:', agents.files.length, 'pages,', agents.code, 'code/text files,', agents.data, 'data files');
 console.log('site.json:', Object.keys(out.papers).map(k => `${k} ${out.papers[k]?.words ?? 0} words`).join(', '), '| verify', numbers.verify.passed, '| code', code.length, 'results', results.length, '| bytes', JSON.stringify(out).length);
