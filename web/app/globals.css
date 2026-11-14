@@ -1157,10 +1157,69 @@ body {
 }
 
 /* ------------------------------------------------------------------ small screens (layout comes from the engine) */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 49;
+  background: var(--bg);
+}
+.index-toggle {
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 650;
+  font-size: 0.8rem;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--text);
+  margin-left: auto;
+}
+.index-toggle[aria-expanded="true"] {
+  background: var(--fg);
+  color: var(--bg);
+}
+
 @media (max-width: 860px) {
+  .tabs-tile {
+    gap: 6px;
+    padding: 0 6px;
+  }
+  .seg {
+    flex: 1;
+    min-width: 0;
+  }
   .seg button {
-    padding: 6px 10px;
-    font-size: 0.78rem;
+    padding: 6px 7px;
+    font-size: 0.72rem;
+  }
+  .index-toggle + .close {
+    margin-left: 0;
+  }
+  .close {
+    padding: 6px 8px;
+    font-size: 1rem;
+  }
+  .close .word {
+    display: none;
+  }
+  .paper {
+    font-size: 1.02rem;
+    line-height: 1.55;
+  }
+  .paper .paper-title {
+    font-size: 1.4em;
+    max-width: none;
+  }
+  .paper p {
+    text-align: left;
+    hyphens: manual;
+  }
+  .slide h2 {
+    font-size: 1.7rem;
+  }
+  .quad .out-l {
+    font-size: 1.1rem;
   }
 }
 

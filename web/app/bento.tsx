@@ -93,8 +93,8 @@ function compute(layout: Layout, W: number, H: number, gap: number): Record<Tile
   }
   return out;
 }
-const MOBILE_H: Partial<Record<TileId, number>> = { brand: 150, big: 200, val: 170, sum: 400, faq: 400, out: 260, proof: 180, check: 230 };
-const MOBILE_ORDER: TileId[] = ["brand", "hero", "big", "val", "sum", "faq", "out", "proof", "check"];
+const MOBILE_H: Partial<Record<TileId, number>> = { brand: 150, big: 210, val: 210, sum: 270, faq: 400, out: 230, proof: 210, check: 250 };
+const MOBILE_ORDER: TileId[] = ["brand", "hero", "sum", "out", "big", "faq", "val", "proof", "check"];
 
 const subscribeTheme = (cb: () => void) => { addEventListener("yuki-theme", cb); return () => removeEventListener("yuki-theme", cb); };
 
@@ -123,6 +123,7 @@ export default function Bento({ site }: { site: Site }) {
   const [state, setState] = useState<"boot" | "home" | "read">("boot");
   const [view, setView] = useState<View>({ tab: "lite", group: "code", file: 0, slide: 0 });
   const [stat, setStat] = useState(0);
+  const [indexOpen, setIndexOpen] = useState(false);
   const [size, setSize] = useState({ W: 0, H: 0, vh: 0 });
   const light = useSyncExternalStore(subscribeTheme, () => document.documentElement.dataset.theme === "light", () => false);
   const frameRef = useRef<HTMLElement>(null);
@@ -297,6 +298,9 @@ export default function Bento({ site }: { site: Site }) {
   // a hidden tile waits, faded, where it lives in the other layout: home tiles fade in place, reader tiles grow from theirs
   const tileStyle = (id: TileId): React.CSSProperties => {
     if (!size.W) return { visibility: "hidden" };
+    if (mobile && reading && id === "index") {
+      return { position: "fixed", left: gap, top: gap + 52 + gap, width: `calc(100vw - ${2 * gap}px)`, height: "min(70dvh, 560px)", zIndex: 52, opacity: indexOpen ? 1 : 0, pointerEvents: indexOpen ? undefined : "none", transform: indexOpen ? "none" : "translateY(-8px)" };
+    }
     if (mobile && reading && (id === "tabs" || id === "hero")) {
       return id === "tabs"
         ? { position: "fixed", left: gap, top: gap, width: `calc(100vw - ${2 * gap}px)`, height: 52, zIndex: 51 }
@@ -321,6 +325,7 @@ export default function Bento({ site }: { site: Site }) {
 
   return (
     <main className={`frame${mobile ? " mobile" : ""}${mobile && reading ? " locked" : ""}`} ref={frameRef}>
+      {mobile && reading && <div className="backdrop" aria-hidden />}
       <div className="stage" style={{ height: mobile ? innerH : "100%" }} data-state={state}>
         {/* brand + tagline (stays in the reader) */}
         <section className="tile" style={tileStyle("brand")}>
@@ -351,7 +356,8 @@ export default function Bento({ site }: { site: Site }) {
               <button key={k} role="tab" aria-selected={view.tab === k} onClick={() => open({ tab: k })}>{TAB_LABEL[k]}</button>
             ))}
           </div>
-          <button className="close" onClick={close} aria-label="Close reader">Close <span aria-hidden>×</span></button>
+          {mobile && <button className="index-toggle" aria-expanded={indexOpen} onClick={() => setIndexOpen(v => !v)}>Index</button>}
+          <button className="close" onClick={() => { setIndexOpen(false); close(); }} aria-label="Close reader"><span className="word">Close </span><span aria-hidden>×</span></button>
         </section>
 
         {/* reader: index */}
@@ -359,18 +365,18 @@ export default function Bento({ site }: { site: Site }) {
           <div className="pad index">
             <nav className="index-list">
               {paper && paper.toc.map(h => (
-                <a key={h.id} href={"#" + h.id} className={"l" + h.level} onClick={e => { e.preventDefault(); scrollRef.current?.querySelector("#" + CSS.escape(h.id))?.scrollIntoView({ behavior: "smooth" }); }}>{h.text}</a>
+                <a key={h.id} href={"#" + h.id} className={"l" + h.level} onClick={e => { e.preventDefault(); setIndexOpen(false); scrollRef.current?.querySelector("#" + CSS.escape(h.id))?.scrollIntoView({ behavior: "smooth" }); }}>{h.text}</a>
               ))}
               {view.tab === "code" && groups.map(g => (
                 <div key={g} className="group">
                   <button className={`group-head${view.group === g ? " on" : ""}`} onClick={() => open({ group: g, file: 0 })}>{GROUP_LABEL[g]} <span>{o[g].length}</span></button>
                   {view.group === g && o[g].map((f, i) => (
-                    <a key={f.path} href="#" className={`file${i === view.file ? " on" : ""}`} onClick={e => { e.preventDefault(); setView(v => ({ ...v, file: i })); }}>{f.path}</a>
+                    <a key={f.path} href="#" className={`file${i === view.file ? " on" : ""}`} onClick={e => { e.preventDefault(); setIndexOpen(false); setView(v => ({ ...v, file: i })); }}>{f.path}</a>
                   ))}
                 </div>
               ))}
               {view.tab === "summary" && slides.map((s, i) => (
-                <a key={s.id} href={"#summary/" + s.id} className={`slide-link${i === view.slide ? " on" : ""}`} onClick={e => { e.preventDefault(); open({ slide: i }); }}><span>{String(i + 1).padStart(2, "0")}</span>{s.short}</a>
+                <a key={s.id} href={"#summary/" + s.id} className={`slide-link${i === view.slide ? " on" : ""}`} onClick={e => { e.preventDefault(); setIndexOpen(false); open({ slide: i }); }}><span>{String(i + 1).padStart(2, "0")}</span>{s.short}</a>
               ))}
             </nav>
           </div>
